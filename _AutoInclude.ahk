@@ -1,0 +1,1 @@
+#Include .\Func\test.ahk
