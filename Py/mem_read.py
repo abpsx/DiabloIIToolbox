@@ -345,6 +345,7 @@ _CTRL_NEXT   = 0x3C   # pNext 链表
 _CTRL_STATE  = 0x44   # unkState（按钮 1=置灰）
 _CTRL_TEXTS  = 0x48   # pFirstText
 _CTRL_INLINE = 0x5C   # EDITBOX/TEXTBOX 内联 wText[256]
+_CTRL_CB     = 0x34   # 按钮专属回调（D2Win 代码区，相对偏移 = 稳定唯一标识）
 # ControlText 结构（size=0x20）
 _TXT_W0      = 0x00   # wchar_t* 文本指针
 _TXT_NEXT    = 0x1C   # pNext
@@ -471,8 +472,12 @@ def read_control_texts(pid: int, h: int, ctrl: int) -> list:
     return texts
 
 
-def read_control_chain(pid: int, h: int, first: int) -> list:
-    """遍历 D2WIN FirstControl 控件链（pNext @+0x3C），最多 512 个防死循环。"""
+def read_control_chain(pid: int, h: int, first: int, mod_base: int = 0) -> list:
+    """遍历 D2WIN FirstControl 控件链（pNext @+0x3C），最多 512 个防死循环。
+
+    mod_base：控件所属模块基址（如 D2Win.dll），用于把 @0x34 回调
+    换算成稳定唯一标识（模块相对偏移）。
+    """
     out: list = []
     cur, seen = first, set()
     for _ in range(512):
@@ -489,6 +494,11 @@ def read_control_chain(pid: int, h: int, first: int) -> list:
                      read_dword(pid, h, cur + _CTRL_SIZEY)],
             "state": read_dword(pid, h, cur + _CTRL_STATE),
         }
+        cb = read_dword(pid, h, cur + _CTRL_CB)
+        if cb and mod_base and mod_base <= cb < mod_base + 0x400000:
+            c["cb_off"] = "+0x{:X}".format(cb - mod_base)
+        else:
+            c["cb_off"] = "" if not cb else "0x{:X}".format(cb)
         c["type_name"] = CONTROL_TYPES.get(c["type"], f"0x{c['type']:02X}")
         c["texts"] = read_control_texts(pid, h, cur)
         out.append(c)
@@ -534,7 +544,8 @@ def read_controls(pid: int, h: int, item: dict, config_dir: str) -> dict:
     """
     base = resolve_base(pid, f"{item['module']}+{item['offset']}")
     first = read_ptr(pid, h, base)
-    controls = read_control_chain(pid, h, first)
+    mod_base = module_base(pid, item["module"]) or 0
+    controls = read_control_chain(pid, h, first, mod_base)
 
     player = 0
     po = item.get("player_off", "D2CLIENT+0x11B800")
