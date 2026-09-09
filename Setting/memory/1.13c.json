@@ -62,5 +62,13 @@
     "ui_open": "0x60",
     "page_addr": "0x02CBE36C",
     "page_aob": "FF0000000101000068676C20"
+  },
+  {
+    "name": "控件链",
+    "module": "D2Win.dll",
+    "offset": "0x214A0",
+    "offsets": [],
+    "type": "controls",
+    "player_off": "D2CLIENT+0x11B800"
   }
 ]

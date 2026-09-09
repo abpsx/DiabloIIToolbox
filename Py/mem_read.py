@@ -86,7 +86,9 @@ def find_process(exe_name: str) -> int | None:
 
 
 def module_base(pid: int, module_name: str) -> int | None:
-    """取目标进程内某模块的加载基址（32 位进程，返回 4 字节地址）。"""
+    """取目标进程内某模块的加载基址（32 位进程，返回 4 字节地址）。
+    模块名容错：不区分大小写、忽略 .dll 扩展名差异。"""
+    want = module_name.strip().lower().removesuffix(".dll")
     snap = kernel32.CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, pid)
     if snap == INVALID_HANDLE_VALUE:
         return None
@@ -96,7 +98,7 @@ def module_base(pid: int, module_name: str) -> int | None:
         if not kernel32.Module32FirstW(snap, ctypes.byref(entry)):
             return None
         while True:
-            if entry.szModule.lower() == module_name.lower():
+            if entry.szModule.lower().removesuffix(".dll") == want:
                 return int(ctypes.addressof(entry.modBaseAddr.contents))
             if not kernel32.Module32NextW(snap, ctypes.byref(entry)):
                 return None
@@ -211,6 +213,8 @@ def read_all(pid: int, items: list, config_dir: str) -> dict:
                         ui_open=it.get("ui_open", "0x60"),
                         page_addr=int(it.get("page_addr", "0x02CBE36C"), 16),
                         page_aob=it.get("page_aob", ""))
+                elif it.get("type") == "controls":
+                    out[it["name"]] = read_controls(pid, h, it, config_dir)
                 else:
                     out[it["name"]] = read_config_entry(pid, h, it)
             except Exception as e:
@@ -320,6 +324,162 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
     return entries
 
 _stash_page_cache: dict = {}   # pid -> 页签结构地址（AOB 定位缓存）
+
+
+# ---------- D2WIN 控件链（controls 类型） ----------
+
+# D2BS Constants.h 控件类型
+CONTROL_TYPES = {
+    0x01: "EDITBOX", 0x02: "IMAGE", 0x03: "UNUSED", 0x04: "TEXTBOX",
+    0x05: "SCROLLBAR", 0x06: "BUTTON", 0x07: "LIST", 0x08: "TIMER",
+    0x09: "SMACK", 0x0A: "PROGRESSBAR", 0x0B: "POPUP", 0x0C: "ACCOUNTLIST",
+}
+# Control 结构偏移（D2BS D2Structs.h:132，1.13c 待实测验证）
+_CTRL_TYPE   = 0x00   # dwType
+_CTRL_DIS    = 0x08   # dwDisabled
+_CTRL_POSX   = 0x0C
+_CTRL_POSY   = 0x10
+_CTRL_SIZEX  = 0x14
+_CTRL_SIZEY  = 0x18
+_CTRL_NEXT   = 0x3C   # pNext 链表
+_CTRL_STATE  = 0x44   # unkState（按钮 1=置灰）
+_CTRL_TEXTS  = 0x48   # pFirstText
+_CTRL_INLINE = 0x5C   # EDITBOX/TEXTBOX 内联 wText[256]
+# ControlText 结构（size=0x20）
+_TXT_W0      = 0x00   # wchar_t* 文本指针
+_TXT_NEXT    = 0x1C   # pNext
+
+
+def _read_wstr(pid: int, h: int, ptr: int, max_chars: int = 64) -> str:
+    """读 UTF-16LE 字符串（到双零终止）。"""
+    if not ptr:
+        return ""
+    raw = read(pid, h, ptr, max_chars * 2)
+    if not raw:
+        return ""
+    raw = raw.split(b"\x00\x00")[0]
+    try:
+        return raw.decode("utf-16-le", errors="replace")
+    except Exception:
+        return ""
+
+
+def read_control_texts(pid: int, h: int, ctrl: int) -> list:
+    """控件文本：EDITBOX/TEXTBOX 内联 wText + BUTTON 内联文本 + ControlText 文本链。
+
+    1.13c 实测：BUTTON 文本内联在 @+0x64（UTF-16LE，连续到 0x6C+）；
+    EDITBOX/TEXTBOX 内联 @+0x5C。另走 pFirstText(@+0x48) ControlText 链兜底。
+    """
+    texts: list = []
+    t = read_dword(pid, h, ctrl + _CTRL_TYPE)
+    if t in (0x01, 0x04, 0x06):  # EDITBOX/TEXTBOX/BUTTON 内联文本（IMAGE 等不读）
+        for off in (0x64, 0x5C):  # BUTTON 文本起始实测 @+0x64；文本框 @+0x5C
+            raw = read(pid, h, ctrl + off, 512)
+            if not raw:
+                continue
+            # 找第一个非零 wchar 起始，解码到双零
+            s = ""
+            for i in range(0, len(raw) - 1, 2):
+                if raw[i] or raw[i + 1]:
+                    s = raw[i:].split(b"\x00\x00")[0].decode("utf-16-le", errors="replace")
+                    break
+            s = s.strip("\x00")
+            if s and all(ord(ch) >= 0x20 for ch in s):
+                texts.append(s)
+                break
+    ptext = read_ptr(pid, h, ctrl + _CTRL_TEXTS)
+    seen: set = set()
+    for _ in range(64):
+        if not ptext or ptext in seen:
+            break
+        seen.add(ptext)
+        s = _read_wstr(pid, h, read_ptr(pid, h, ptext + _TXT_W0))
+        if s:
+            texts.append(s)
+        ptext = read_ptr(pid, h, ptext + _TXT_NEXT)
+    return texts
+
+
+def read_control_chain(pid: int, h: int, first: int) -> list:
+    """遍历 D2WIN FirstControl 控件链（pNext @+0x3C），最多 512 个防死循环。"""
+    out: list = []
+    cur, seen = first, set()
+    for _ in range(512):
+        if not cur or cur in seen:
+            break
+        seen.add(cur)
+        c = {
+            "addr": cur,
+            "type": read_dword(pid, h, cur + _CTRL_TYPE),
+            "disabled": read_dword(pid, h, cur + _CTRL_DIS),
+            "pos": [read_dword(pid, h, cur + _CTRL_POSX),
+                    read_dword(pid, h, cur + _CTRL_POSY)],
+            "size": [read_dword(pid, h, cur + _CTRL_SIZEX),
+                     read_dword(pid, h, cur + _CTRL_SIZEY)],
+            "state": read_dword(pid, h, cur + _CTRL_STATE),
+        }
+        c["type_name"] = CONTROL_TYPES.get(c["type"], f"0x{c['type']:02X}")
+        c["texts"] = read_control_texts(pid, h, cur)
+        out.append(c)
+        cur = read_ptr(pid, h, cur + _CTRL_NEXT)
+    return out
+
+
+def _has_ctrl(controls: list, typ: int, x=None, y=None) -> bool:
+    for c in controls:
+        if c["type"] != typ:
+            continue
+        if x is not None and c["pos"][0] != x:
+            continue
+        if y is not None and c["pos"][1] != y:
+            continue
+        return True
+    return False
+
+
+def _page_name(controls: list) -> str:
+    """按 Profile.cpp 特征控件坐标识别菜单页（800x600 布局）。"""
+    if not controls:
+        return ""
+    if _has_ctrl(controls, 0x06, 264, 324) and _has_ctrl(controls, 0x06, 264, 366):
+        return "主菜单"
+    if _has_ctrl(controls, 0x01, 322, 342) and _has_ctrl(controls, 0x01, 322, 396):
+        return "登录"
+    if _has_ctrl(controls, 0x06, 264, 297) and _has_ctrl(controls, 0x06, 264, 340):
+        return "难度选择"
+    if _has_ctrl(controls, 0x06, 264, 310) and _has_ctrl(controls, 0x06, 264, 350):
+        return "其他多人"
+    if _has_ctrl(controls, 0x0C) or _has_ctrl(controls, 0x07):
+        return "角色选择/列表"
+    return "菜单"
+
+
+def read_controls(pid: int, h: int, item: dict, config_dir: str) -> dict:
+    """读 D2WIN 控件链 + 页面状态（ClientState 式判定）。
+
+    schema: module/offset = D2Win.dll + 0x8DB34（FirstControl 指针）；
+    player_off 可选（默认 D2CLIENT+0x11B800）用于区分 游戏内/菜单。
+    返回 {first, count, state, page, controls}。
+    """
+    base = resolve_base(pid, f"{item['module']}+{item['offset']}")
+    first = read_ptr(pid, h, base)
+    controls = read_control_chain(pid, h, first)
+
+    player = 0
+    po = item.get("player_off", "D2CLIENT+0x11B800")
+    try:
+        player = read_ptr(pid, h, resolve_base(pid, po))
+    except Exception:
+        player = 0
+
+    if player and not first:
+        state, page = "game", "游戏内"
+    elif not player and first:
+        state, page = "menu", _page_name(controls)
+    else:
+        state, page = "null", "未就绪"
+    return {"first": first, "count": len(controls), "state": state,
+            "page": page, "controls": controls}
 
 
 def find_pattern(pid: int, h: int, pattern: bytes, max_hits: int = 8) -> list:
