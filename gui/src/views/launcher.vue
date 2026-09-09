@@ -154,7 +154,7 @@
                   </div>
                   <div class="ctrl-filter">
                     <span class="cf-title">类型</span>
-                    <label v-for="o in CTRL_TYPE_OPTIONS" :key="o.v" class="cf-item">
+                    <label v-for="o in ctrlTypeOptions" :key="o.v" class="cf-item">
                       <input type="checkbox" :value="o.v" v-model="ctrlTypes" /> {{ o.label }}
                     </label>
                   </div>
@@ -232,6 +232,7 @@ export default {
       ctrlErr: "",
       ctrlLoading: false,
       ctrlTypes: [...ALL_CTRL_TYPES],  // 控件类型过滤：默认全选
+      ctrlTypeOptions: CTRL_TYPE_OPTIONS,
     };
   },
   computed: {
