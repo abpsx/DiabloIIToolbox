@@ -157,6 +157,9 @@
                     <label v-for="o in ctrlTypeOptions" :key="o.v" class="cf-item">
                       <input type="checkbox" :value="o.v" v-model="ctrlTypes" /> {{ o.label }}
                     </label>
+                    <label class="cf-item">
+                      <input type="checkbox" v-model="ctrlHideEmpty" /> 剔除空文本
+                    </label>
                   </div>
                   <div class="ctrl-list">
                     <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state }" @click="ctrlClick(c)">
@@ -233,16 +236,18 @@ export default {
       ctrlLoading: false,
       ctrlTypes: [...ALL_CTRL_TYPES],  // 控件类型过滤：默认全选
       ctrlTypeOptions: CTRL_TYPE_OPTIONS,
+      ctrlHideEmpty: false,  // 剔除文本为空的控件
     };
   },
   computed: {
     runningCount() {
       return this.slots.filter((s) => s.pid && s.alive).length;
     },
-    // 控件列表：按顶部勾选的类型过滤（默认全选）
+    // 控件列表：按顶部勾选的类型过滤（默认全选），可选剔除空文本
     ctrlList() {
       if (!this.ctrlData || !this.ctrlData.controls) return [];
       return this.ctrlData.controls.filter((c) => {
+        if (this.ctrlHideEmpty && (!c.texts || !c.texts.length)) return false;
         const hit = CTRL_TYPE_OPTIONS.find((o) => o.v === c.type);
         return this.ctrlTypes.includes(hit ? hit.v : -1);
       });
