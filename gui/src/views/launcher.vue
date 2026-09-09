@@ -674,12 +674,11 @@ export default {
   gap: 6px;
   margin-top: 4px;
 }
-/* 附加功能弹窗：侧边栏 + 内容区 */
+/* 附加功能弹窗：侧边栏 + 内容区（固定尺寸，内容区内滚动） */
 .extra-body {
   display: flex;
   gap: 14px;
-  min-height: 320px;
-  max-height: 72vh;
+  height: 460px;   /* 固定高度，弹窗整体尺寸稳定 */
 }
 .extra-side {
   flex-shrink: 0;
@@ -689,6 +688,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  overflow-y: auto;
 }
 .extra-nav {
   padding: 9px 12px;
@@ -710,19 +710,17 @@ export default {
 .extra-main {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
+  overflow-y: auto;   /* 内容超高时内容区滚动 */
 }
 .extra-main .mem-dlg,
 .extra-main .ctrl-dlg {
-  max-height: 66vh;
+  max-height: none;
 }
 /* 指针监听弹窗 */
 .mem-dlg {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 62vh;
-  overflow-y: auto;
 }
 .md-row {
   display: flex;
@@ -763,7 +761,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-height: 46vh;
+  max-height: 360px;   /* 固定高度内滚动（弹窗整体 460px 已固定） */
   overflow-y: auto;
   border: 1px solid #333;
   border-radius: 8px;
