@@ -150,10 +150,10 @@
                   </div>
                   <div class="md-row">
                     <span class="md-k">链首</span>
-                    <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlData.count }} 个</span>
+                    <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlList.length }} 个</span>
                   </div>
                   <div class="ctrl-list">
-                    <div v-for="(c, k) in ctrlData.controls" :key="k" class="ctrl-item" @click="ctrlClick(c)">
+                    <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
                       <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
                       <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
@@ -217,6 +217,11 @@ export default {
   computed: {
     runningCount() {
       return this.slots.filter((s) => s.pid && s.alive).length;
+    },
+    // 控件列表：过滤掉图片(2)与滚动条(5)
+    ctrlList() {
+      if (!this.ctrlData || !this.ctrlData.controls) return [];
+      return this.ctrlData.controls.filter((c) => c.type !== 2 && c.type !== 5);
     },
   },
   mounted() {
