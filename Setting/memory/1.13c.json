@@ -46,5 +46,13 @@
     "offsets": ["0x60"],
     "type": "bag",
     "table": "item_codes.json"
+  },
+  {
+    "name": "仓库状态",
+    "module": "D2CLIENT.DLL",
+    "type": "stash",
+    "ui_offset": "0x50D00",
+    "ui_open": "0x60",
+    "page_addr": "0x02C3E370"
   }
 ]

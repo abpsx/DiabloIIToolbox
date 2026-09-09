@@ -1,35 +1,47 @@
 # -*- coding: utf-8 -*-
-"""核对城镇卷指针 0x12A3C4EE"""
-import sys
+"""翻页后验证 0x02C3E370 指针"""
+import sys, ctypes, re
 sys.path.insert(0, r"C:\Users\abps\Desktop\DiabloIIToolbox\Py")
-import mem_read as m
+import mem_read as mem
+import locale_text as lt
 
-pid = int(sys.argv[1])
-h = m.open_process_readonly(pid)
-if not h:
-    print("open failed"); sys.exit(1)
+pid = mem.find_process("D2Loader.exe")
+h = mem.open_process_readonly(pid)
 
-USER_PTR = 0x12A3C4EE
+def dword(a):
+    raw = mem.read(pid, h, a, 4)
+    return int.from_bytes(raw, "little") if raw else 0
 
-base = m.resolve_base(pid, "D2CLIENT.DLL+0x11B800")
-P = m.read_dword(pid, h, base)
-print(f"P = *(0x11B800) = {P:#x}")
+p = dword(0x02C3E370)
+raw = mem.read(pid, h, p, 60)
+s = raw.decode("utf-16-le", errors="replace") if raw else ""
+print(f"[0x02C3E370] = 0x{p:X}")
+print(f"  指向内容: {s[:50]!r}")
+m = re.match(r"当前页数 : (\d+)页", s)
+print("  解析页数:", m.group(1) if m else "非文本")
 
-slot0 = m.read_dword(pid, h, P + 0x700)   # 背包第一格物品对象
-slot1 = m.read_dword(pid, h, P + 0x704)   # 第二格
-print(f"P+0x700 (第一格) = {slot0:#x}  {'== 用户指针!' if slot0 == USER_PTR else '!= 用户指针'}")
-print(f"P+0x704 (第二格) = {slot1:#x}")
+raw2 = mem.read(pid, h, 0x1AFF7D00, 40)
+print("0x1AFF7D00:", raw2.decode("utf-16-le", errors="replace")[:36])
 
-# 从用户指针读物品码
-c0 = m.read_dword(pid, h, USER_PTR + 0x4)
-print(f"*(用户指针+0x4) = {c0:#x} ({c0})  -> {'tsc' if c0 == 529 else 'isc' if c0 == 530 else '?'}")
+for off in [0x0, 0x4, 0x8, 0xC]:
+    print(f"  [0x02C3E370+{off:#x}] = 0x{dword(0x02C3E370+off):X}")
 
-# 从槽 0 指针读物品码
-if slot0:
-    c1 = m.read_dword(pid, h, slot0 + 0x4)
-    print(f"*(slot0+0x4) = {c1:#x} ({c1})  -> {'tsc' if c1 == 529 else 'isc' if c1 == 530 else '?'}")
-
-# 用户指针处内容
-print("用户指针前 0x20 dword:", [hex(m.read_dword(pid, h, USER_PTR + o)) for o in range(0, 0x20, 4)])
-
-m.kernel32.CloseHandle(h)
+d2c = mem.module_base(pid, "D2CLIENT.DLL")
+pPlayer = dword(d2c + 0x11B800)
+pInv = dword(pPlayer + 0x60)
+cur = dword(pInv + 0x0C)
+seen = set()
+items = []
+n = 0
+while cur and cur not in seen and n < 60:
+    seen.add(cur)
+    txt = dword(cur + 4)
+    idat = dword(cur + 0x14)
+    r69 = mem.read(pid, h, idat + 0x69, 1) if idat else b""
+    r45 = mem.read(pid, h, idat + 0x45, 1) if idat else b""
+    if r69 and r45 and r69[0] == 1 and r45[0] == 4:
+        items.append(lt.txt_to_name(pid, h, txt)[0])
+    cur = dword(idat + 0x64) if idat else 0
+    n += 1
+print("当前仓库物品:", items)
+ctypes.windll.kernel32.CloseHandle(h)

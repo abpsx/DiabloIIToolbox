@@ -82,7 +82,16 @@
             </div>
             <div class="mem-row">
               <span class="mem-k">背包</span>
-              <span class="mem-v" :title="bagDetail(s.mem.bag)">{{ bagText(s.mem.bag) }}</span>
+              <span class="mem-bag mem-v" :title="bagDetail(s.mem.bag)">{{ bagText(s.mem.bag) }}</span>
+            </div>
+            <div class="mem-row">
+              <span class="mem-k">仓库</span>
+              <span class="mem-bag mem-v">
+                <template v-if="s.mem.stash && s.mem.stash.stash_open">
+                  第{{ s.mem.stash.page }}页<template v-if="stashText(s.mem.bag)"> · {{ stashText(s.mem.bag) }}</template>
+                </template>
+                <template v-else>未打开</template>
+              </span>
             </div>
           </template>
         </div>
@@ -115,9 +124,9 @@
 <script>
 const CFG = "Setting\\launcher.json";
 const MAX_LOG = 200;
-const LOC_NAMES = { 0: "地面", 1: "背包", 2: "腰带", 3: "装备" };
+const LOC_NAMES = { 0: "地面", 1: "背包", 2: "腰带", 3: "装备", 4: "仓库", 5: "盒子" };
 
-const emptyMem = () => ({ marker: null, account: "", charIndex: null, charName: "", bag: [], error: "" });
+const emptyMem = () => ({ marker: null, account: "", charIndex: null, charName: "", bag: [], stash: null, error: "" });
 const emptySlot = () => ({ label: "", dir: "", params: "", title: "", script: "", pid: 0, mem: emptyMem() });
 
 export default {
@@ -178,7 +187,7 @@ export default {
             .join(" ");
           return `${LOC_NAMES[k] || "?"}[${items}]`;
         });
-      return parts.join(" ") || "—";
+      return parts.join("\n") || "—";
     },
     bagDetail(bag) {
       const g = this.groupBag(bag);
@@ -186,11 +195,19 @@ export default {
         .sort((a, b) => a - b)
         .map((k) => {
           const items = [...g[k].values()]
-            .map((b) => `${b.name || b.abbr}(${b.code}) ×${b.count}`)
+            .map((b) => `${b.name || b.abbr} ×${b.count}`)
             .join("，");
           return `${LOC_NAMES[k] || "?"}[${items}]`;
         });
-      return parts.join("；") || "空";
+      return parts.join("\n") || "空";
+    },
+    // 仓库当前页物品（loc==4），仅返回物品串（无则空串）
+    stashText(bag) {
+      const g = this.groupBag(bag);
+      const items = [...(g[4] || new Map()).values()]
+        .map((b) => `${b.name || b.abbr}×${b.count}`)
+        .join("，");
+      return items || "";
     },
 
     now() {
@@ -361,6 +378,7 @@ export default {
                 s.mem.charIndex = m["人物位置索引"] ?? null;
                 s.mem.charName = m["人物名称"] || "";
                 s.mem.bag = Array.isArray(m["背包物品"]) ? m["背包物品"] : [];
+                s.mem.stash = m["仓库状态"] ?? null;
               });
             }
           } catch (e) {
@@ -500,6 +518,12 @@ export default {
 }
 .mem-err {
   color: #f56c6c;
+}
+.mem-bag {
+  white-space: pre-line; /* 背包/腰带/仓库等不同位置换行显示 */
+  overflow: visible;
+  text-overflow: clip;
+  word-break: break-all;
 }
 .slot-actions {
   display: flex;

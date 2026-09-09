@@ -204,6 +204,12 @@ def read_all(pid: int, items: list, config_dir: str) -> dict:
             try:
                 if it.get("type") == "bag":
                     out[it["name"]] = read_bag(pid, h, it, config_dir)
+                elif it.get("type") == "stash":
+                    out[it["name"]] = read_stash_state(
+                        pid, h,
+                        ui_offset=it.get("ui_offset", "0x50D00"),
+                        ui_open=it.get("ui_open", "0x60"),
+                        page_addr=int(it.get("page_addr", "0x02C3E370"), 16))
                 else:
                     out[it["name"]] = read_config_entry(pid, h, it)
             except Exception as e:
@@ -277,8 +283,24 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
         seen.add(cur)
         txt = read_dword(pid, h, cur + 0x04)       # dwTxtFileNo = 码表 id
         idat = read_ptr(pid, h, cur + 0x14)        # pItemData
-        raw = read(pid, h, idat + 0x69, 1) if idat else b""
-        loc = raw[0] if raw else -1               # nLocation: 0地 1背包 2腰带 3装备
+        # 位置判定：nLocation(+0x69) 区分 腰带(2)/装备(3)；nItemLocation(+0x45) 区分 背包(0)/盒子(3)/仓库(4)
+        raw69 = read(pid, h, idat + 0x69, 1) if idat else b""
+        raw45 = read(pid, h, idat + 0x45, 1) if idat else b""
+        loc69 = raw69[0] if raw69 else -1
+        loc45 = raw45[0] if raw45 else -1
+        if loc69 == 2:
+            loc = 2        # 腰带
+        elif loc69 == 3:
+            loc = 3        # 装备
+        elif loc45 == 0:
+            loc = 1        # 背包
+        elif loc45 == 4:
+            loc = 4        # 仓库
+        elif loc45 == 3:
+            loc = 5        # 盒子
+        else:
+            loc = 0        # 地面/未知
+        # loc: 0地面 1背包 2腰带 3装备 4仓库 5盒子
         name = ""
         if txt_to_name and txt is not None:
             try:
@@ -295,6 +317,28 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
         cur = read_ptr(pid, h, idat + 0x64) if idat else 0
         idx += 1
     return entries
+
+def read_stash_state(pid: int, h: int,
+                     ui_offset: str = "0x50D00",
+                     ui_open: str = "0x60",
+                     page_addr: int = 0x02C3E370) -> dict:
+    """仓库页状态：仓库是否打开 + 当前页数（只读，不写入）。
+
+    仓库开：   ui_ptr = [D2CLIENT+0x50D00]（先解引用）；stash_open = [ui_ptr+0x60]
+    当前页数： page_addr 是指针，指向存放页索引(dword, 0 基, 十六进制)的地址；
+               页数(1 基) = [ [page_addr] ] + 1。仓库关时页数返回 0。
+    返回 {"stash_open": bool, "page": int}
+    """
+    base = resolve_base(pid, f"D2CLIENT.DLL+{ui_offset}")
+    ui_ptr = read_ptr(pid, h, base)
+    stash_open = read_dword(pid, h, ui_ptr + int(ui_open, 16)) if ui_ptr else 0
+    page = 0
+    if stash_open:
+        inner = read_ptr(pid, h, page_addr)
+        if inner:
+            page = read_dword(pid, h, inner) + 1   # 0 基 → 1 基
+    return {"stash_open": bool(stash_open), "page": page}
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="D2Loader 多实例只读内存（按 PID）")
