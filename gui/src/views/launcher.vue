@@ -6,6 +6,9 @@
         <span class="dot" :class="runningCount ? 'on' : ''"></span>
         启动器（{{ runningCount }}/9 运行中）
       </div>
+      <label class="poll-switch" title="每 1.5 秒读取所有运行槽位的内存（关闭时仅手动刷新）">
+        <input type="checkbox" v-model="polling" /> 内存轮询
+      </label>
       <el-button size="small" @click="addSlot">+ 空槽位</el-button>
       <el-button size="small" @click="save">保存配置</el-button>
       <el-button size="small" type="danger" plain @click="stopAll">全部停止</el-button>
@@ -60,6 +63,9 @@
           <el-button v-if="!(s.pid && s.alive)" type="primary" size="small" @click="start(i)">启动</el-button>
           <el-button v-else type="danger" size="small" @click="stop(i)">停止</el-button>
           <el-button v-if="s.pid && s.alive" size="small" type="primary" plain @click="openExtra(i)">附加</el-button>
+          <label class="poll-sw" :title="'内存轮询（每 1.5s），槽位独立持久化'">
+            <input type="checkbox" v-model="s.poll" @change="save()" /> 轮询
+          </label>
           <el-button size="small" @click="clearSlot(i)">清空</el-button>
           <el-button size="small" type="warning" plain @click="removeSlot(i)">删除</el-button>
         </div>
@@ -221,7 +227,7 @@ const CTRL_TYPE_OPTIONS = [
 const ALL_CTRL_TYPES = CTRL_TYPE_OPTIONS.map((o) => o.v);
 
 const emptyMem = () => ({ marker: null, account: "", charIndex: null, charName: "", gameType: null, bag: [], stash: null, error: "" });
-const emptySlot = () => ({ label: "", dir: "", params: "", title: "", script: "", pid: 0, mem: emptyMem() });
+const emptySlot = () => ({ label: "", dir: "", params: "", title: "", script: "", pid: 0, mem: emptyMem(), poll: false });
 
 export default {
   name: "launcher",
@@ -231,6 +237,10 @@ export default {
       logs: [],
       timer: null,
       saving: false,
+      // 内存轮询开关：默认关闭，从 localStorage 恢复
+      polling: (() => {
+        try { return localStorage.getItem("d2it_polling") === "1"; } catch (e) { return false; }
+      })(),
       extraDlg: null,   // 附加功能弹窗打开的槽位索引（null=关闭）
       extraTab: "mem",  // 附加功能侧边栏当前页：mem 内存 / ctrl 控件
       ctrlData: null,
@@ -570,11 +580,15 @@ export default {
         if (alive) running.push(s.pid);
       });
 
-      // 批量读内存：一次调用读全部运行实例
-      if (running.length) {
+      // 批量读内存：仅读取开启"轮询"的槽位（槽位独立）
+      const memPids = running.filter((pid) => {
+        const s = this.slots.find((x) => x.pid === pid);
+        return s && s.poll;
+      });
+      if (memPids.length) {
         let r = null;
         try {
-          r = this.ahkL().Mem(running.join(","));
+          r = this.ahkL().Mem(memPids.join(","));
         } catch (e) {
           this.log("内存读取调用异常: " + e.message, "warn");
         }
@@ -746,8 +760,25 @@ export default {
 }
 .slot-actions {
   display: flex;
+  align-items: center;
   gap: 6px;
   margin-top: 4px;
+}
+/* 内存轮询开关（槽位独立） */
+.poll-sw {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 2px;
+}
+.poll-sw input {
+  margin: 0;
+  accent-color: #8bc8ea;
+  cursor: pointer;
 }
 /* 附加功能弹窗：侧边栏 + 内容区（固定尺寸，内容区内滚动） */
 .extra-body {
