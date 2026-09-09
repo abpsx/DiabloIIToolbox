@@ -59,109 +59,116 @@
         <div class="slot-actions">
           <el-button v-if="!(s.pid && s.alive)" type="primary" size="small" @click="start(i)">启动</el-button>
           <el-button v-else type="danger" size="small" @click="stop(i)">停止</el-button>
-          <el-button v-if="s.pid && s.alive" size="small" type="info" plain @click="openMem(i)">内存</el-button>
-          <el-button v-if="s.pid && s.alive" size="small" type="primary" plain @click="openCtrl(i)">控件</el-button>
+          <el-button v-if="s.pid && s.alive" size="small" type="primary" plain @click="openExtra(i)">附加</el-button>
           <el-button size="small" @click="clearSlot(i)">清空</el-button>
           <el-button size="small" type="warning" plain @click="removeSlot(i)">删除</el-button>
         </div>
       </div>
     </div>
 
-    <!-- 指针监听弹窗 -->
-    <el-dialog :model-value="memDlg !== null" title="指针监听" width="640px" append-to-body @close="memDlg = null">
-      <template v-if="memDlg !== null && slots[memDlg]">
-        <div class="mem-dlg">
-          <div class="md-row">
-            <span class="md-k">槽位</span>
-            <span class="md-v">#{{ memDlg + 1 }} {{ slots[memDlg].label || slots[memDlg].dir || "" }}</span>
+    <!-- 附加功能弹窗（侧边栏：内存 / 控件） -->
+    <el-dialog :model-value="extraDlg !== null" title="附加功能" width="880px" append-to-body @close="extraDlg = null">
+      <template v-if="extraDlg !== null && slots[extraDlg]">
+        <div class="extra-body">
+          <div class="extra-side">
+            <div class="extra-nav" :class="{ active: extraTab === 'mem' }" @click="extraTab = 'mem'">内存</div>
+            <div class="extra-nav" :class="{ active: extraTab === 'ctrl' }" @click="switchCtrl()">控件</div>
           </div>
-          <template v-if="slots[memDlg].mem.error">
-            <div class="md-row">
-              <span class="md-k">内存</span>
-              <span class="md-v md-err">{{ slots[memDlg].mem.error }}</span>
-            </div>
-          </template>
-          <template v-else>
-            <div class="md-row">
-              <span class="md-k">状态</span>
-              <span class="md-v">
-                <el-tag size="small" :type="memTagType(slots[memDlg].mem.marker)" effect="plain">{{ memStatus(slots[memDlg].mem.marker) }}</el-tag>
-                标记 {{ slots[memDlg].mem.marker ?? "—" }}
-              </span>
-            </div>
-            <div class="md-row" v-if="slots[memDlg].mem.gameType !== 0">
-              <span class="md-k">账号</span>
-              <span class="md-v">{{ slots[memDlg].mem.account || "—" }}</span>
-            </div>
-            <div class="md-row">
-              <span class="md-k">人物</span>
-              <span class="md-v">{{ slots[memDlg].mem.charName || "—" }}</span>
-            </div>
-            <div class="md-row">
-              <span class="md-k">索引</span>
-              <span class="md-v">{{ slots[memDlg].mem.charIndex == null ? "—" : (slots[memDlg].mem.charIndex === 4294967295 ? "未选" : slots[memDlg].mem.charIndex) }}</span>
-            </div>
-            <div class="md-row">
-              <span class="md-k">背包</span>
-              <span class="md-v pre" :title="bagDetail(slots[memDlg].mem.bag)">{{ bagText(slots[memDlg].mem.bag) }}</span>
-            </div>
-            <div class="md-row">
-              <span class="md-k">仓库</span>
-              <span class="md-v pre">
-                <template v-if="slots[memDlg].mem.stash && slots[memDlg].mem.stash.stash_open">
-                  第{{ slots[memDlg].mem.stash.page }}页<template v-if="stashText(slots[memDlg].mem.bag)"> · {{ stashText(slots[memDlg].mem.bag) }}</template>
+          <div class="extra-main">
+            <!-- ========== 内存页 ========== -->
+            <template v-if="extraTab === 'mem'">
+              <div class="mem-dlg">
+                <div class="md-row">
+                  <span class="md-k">槽位</span>
+                  <span class="md-v">#{{ extraDlg + 1 }} {{ slots[extraDlg].label || slots[extraDlg].dir || "" }}</span>
+                </div>
+                <template v-if="slots[extraDlg].mem.error">
+                  <div class="md-row">
+                    <span class="md-k">内存</span>
+                    <span class="md-v md-err">{{ slots[extraDlg].mem.error }}</span>
+                  </div>
                 </template>
-                <template v-else>未打开</template>
-              </span>
-            </div>
-          </template>
-          <div class="md-tip">每 1.5 秒自动刷新（轮询进行中）</div>
-        </div>
-      </template>
-    </el-dialog>
-
-    <!-- 控件信息弹窗 -->
-    <el-dialog :model-value="ctrlDlg !== null" title="控件信息（D2WIN 控件链）" width="760px" append-to-body @close="ctrlDlg = null">
-      <template v-if="ctrlDlg !== null && slots[ctrlDlg]">
-        <div class="ctrl-dlg">
-          <div class="md-row">
-            <span class="md-k">槽位</span>
-            <span class="md-v">#{{ ctrlDlg + 1 }} {{ slots[ctrlDlg].label || slots[ctrlDlg].dir || "" }}</span>
-          </div>
-          <template v-if="ctrlErr">
-            <div class="md-row">
-              <span class="md-k">读取</span>
-              <span class="md-v md-err">{{ ctrlErr }}</span>
-            </div>
-          </template>
-          <template v-else-if="ctrlData">
-            <div class="md-row">
-              <span class="md-k">状态</span>
-              <span class="md-v">
-                <el-tag size="small" :type="ctrlData.state === 'game' ? 'success' : ctrlData.state === 'menu' ? 'warning' : 'info'" effect="plain">
-                  {{ ctrlStateName(ctrlData.state) }}
-                </el-tag>
-                页面：{{ ctrlData.page || "—" }}
-              </span>
-            </div>
-            <div class="md-row">
-              <span class="md-k">链首</span>
-              <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlData.count }} 个</span>
-            </div>
-            <div class="ctrl-list">
-              <div v-for="(c, k) in ctrlData.controls" :key="k" class="ctrl-item" :class="{ clickable: true }" @click="ctrlClick(c)">
-                <span class="ci-no">#{{ k }}</span>
-                <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
-                <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
-                <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
-                <span v-if="c.cb_off" class="ci-cb" :title="'回调 @0x34 相对偏移，同版本下稳定唯一'">{{ c.cb_off }}</span>
-                <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state }">{{ (c.texts || []).join("\n") || "—" }}</span>
+                <template v-else>
+                  <div class="md-row">
+                    <span class="md-k">状态</span>
+                    <span class="md-v">
+                      <el-tag size="small" :type="memTagType(slots[extraDlg].mem.marker)" effect="plain">{{ memStatus(slots[extraDlg].mem.marker) }}</el-tag>
+                      标记 {{ slots[extraDlg].mem.marker ?? "—" }}
+                    </span>
+                  </div>
+                  <div class="md-row" v-if="slots[extraDlg].mem.gameType !== 0">
+                    <span class="md-k">账号</span>
+                    <span class="md-v">{{ slots[extraDlg].mem.account || "—" }}</span>
+                  </div>
+                  <div class="md-row">
+                    <span class="md-k">人物</span>
+                    <span class="md-v">{{ slots[extraDlg].mem.charName || "—" }}</span>
+                  </div>
+                  <div class="md-row">
+                    <span class="md-k">索引</span>
+                    <span class="md-v">{{ slots[extraDlg].mem.charIndex == null ? "—" : (slots[extraDlg].mem.charIndex === 4294967295 ? "未选" : slots[extraDlg].mem.charIndex) }}</span>
+                  </div>
+                  <div class="md-row">
+                    <span class="md-k">背包</span>
+                    <span class="md-v pre" :title="bagDetail(slots[extraDlg].mem.bag)">{{ bagText(slots[extraDlg].mem.bag) }}</span>
+                  </div>
+                  <div class="md-row">
+                    <span class="md-k">仓库</span>
+                    <span class="md-v pre">
+                      <template v-if="slots[extraDlg].mem.stash && slots[extraDlg].mem.stash.stash_open">
+                        第{{ slots[extraDlg].mem.stash.page }}页<template v-if="stashText(slots[extraDlg].mem.bag)"> · {{ stashText(slots[extraDlg].mem.bag) }}</template>
+                      </template>
+                      <template v-else>未打开</template>
+                    </span>
+                  </div>
+                </template>
+                <div class="md-tip">每 1.5 秒自动刷新（轮询进行中）</div>
               </div>
-            </div>
-          </template>
-          <div class="ctrl-actions">
-            <el-button size="small" :loading="ctrlLoading" @click="loadCtrl(ctrlDlg)">刷新</el-button>
-            <span class="md-tip">点击时读取快照，非自动刷新</span>
+            </template>
+            <!-- ========== 控件页 ========== -->
+            <template v-else-if="extraTab === 'ctrl'">
+              <div class="ctrl-dlg">
+                <div class="md-row">
+                  <span class="md-k">槽位</span>
+                  <span class="md-v">#{{ extraDlg + 1 }} {{ slots[extraDlg].label || slots[extraDlg].dir || "" }}</span>
+                </div>
+                <template v-if="ctrlErr">
+                  <div class="md-row">
+                    <span class="md-k">读取</span>
+                    <span class="md-v md-err">{{ ctrlErr }}</span>
+                  </div>
+                </template>
+                <template v-else-if="ctrlData">
+                  <div class="md-row">
+                    <span class="md-k">状态</span>
+                    <span class="md-v">
+                      <el-tag size="small" :type="ctrlData.state === 'game' ? 'success' : ctrlData.state === 'menu' ? 'warning' : 'info'" effect="plain">
+                        {{ ctrlStateName(ctrlData.state) }}
+                      </el-tag>
+                      页面：{{ ctrlData.page || "—" }}
+                    </span>
+                  </div>
+                  <div class="md-row">
+                    <span class="md-k">链首</span>
+                    <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlData.count }} 个</span>
+                  </div>
+                  <div class="ctrl-list">
+                    <div v-for="(c, k) in ctrlData.controls" :key="k" class="ctrl-item" @click="ctrlClick(c)">
+                      <span class="ci-no">#{{ k }}</span>
+                      <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
+                      <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
+                      <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
+                      <span v-if="c.cb_off" class="ci-cb" :title="'回调 @0x34 相对偏移，同版本下稳定唯一'">{{ c.cb_off }}</span>
+                      <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state }">{{ (c.texts || []).join("\n") || "—" }}</span>
+                    </div>
+                  </div>
+                </template>
+                <div class="ctrl-actions">
+                  <el-button size="small" :loading="ctrlLoading" @click="loadCtrl(extraDlg)">刷新</el-button>
+                  <span class="md-tip">点击时读取快照，非自动刷新；点击控件行可后台点击游戏窗口</span>
+                </div>
+              </div>
+            </template>
           </div>
         </div>
       </template>
@@ -200,8 +207,8 @@ export default {
       logs: [],
       timer: null,
       saving: false,
-      memDlg: null,
-      ctrlDlg: null,
+      extraDlg: null,   // 附加功能弹窗打开的槽位索引（null=关闭）
+      extraTab: "mem",  // 附加功能侧边栏当前页：mem 内存 / ctrl 控件
       ctrlData: null,
       ctrlErr: "",
       ctrlLoading: false,
@@ -344,21 +351,25 @@ export default {
       if (this.slots[i].pid && this.slots[i].alive) this.stop(i);
       this.slots.splice(i, 1);
       if (!this.slots.length) this.slots.push(emptySlot()); // 至少保留 1 个
-      if (this.memDlg === i) this.memDlg = null;
-      else if (this.memDlg !== null && this.memDlg > i) this.memDlg--;
+      if (this.extraDlg === i) this.extraDlg = null;
+      else if (this.extraDlg !== null && this.extraDlg > i) this.extraDlg--;
       this.save();
       this.log(`槽位 #${i + 1} 已删除`);
     },
-    openMem(i) {
-      this.memDlg = i;
+    // ---------------- 附加功能（侧边栏：内存 / 控件） ----------------
+    openExtra(i) {
+      this.extraDlg = i;
+      this.extraTab = "mem";
+    },
+    // 切换到控件页：首次进入时读取快照
+    switchCtrl() {
+      this.extraTab = "ctrl";
+      const s = this.slots[this.extraDlg];
+      if (s && s.pid) this.loadCtrl(this.extraDlg);
     },
     // ---------------- 控件信息（点击时读取快照） ----------------
     ctrlStateName(state) {
       return { menu: "菜单", game: "游戏内", null: "无", busy: "加载中" }[state] || state || "—";
-    },
-    openCtrl(i) {
-      this.ctrlDlg = i;
-      this.loadCtrl(i);
     },
     async loadCtrl(i) {
       const s = this.slots[i];
@@ -384,7 +395,7 @@ export default {
     },
     // 点击控件行 → 向游戏窗口发送后台点击（PostMessage，附控件中心坐标）
     async ctrlClick(c) {
-      const s = this.slots[this.ctrlDlg];
+      const s = this.slots[this.extraDlg];
       if (!s || !s.pid) return;
       // 用控件中心（pos + size/2），避免点在边缘触发区
       const x = c.pos[0] + Math.floor(c.size[0] / 2);
@@ -662,6 +673,48 @@ export default {
   display: flex;
   gap: 6px;
   margin-top: 4px;
+}
+/* 附加功能弹窗：侧边栏 + 内容区 */
+.extra-body {
+  display: flex;
+  gap: 14px;
+  min-height: 320px;
+  max-height: 72vh;
+}
+.extra-side {
+  flex-shrink: 0;
+  width: 118px;
+  border-right: 1px solid #333;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.extra-nav {
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s, color 0.12s;
+}
+.extra-nav:hover {
+  background: #2a2a2a;
+}
+.extra-nav.active {
+  background: #2e3a4a;
+  color: #8bc8ea;
+  font-weight: 600;
+}
+.extra-main {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.extra-main .mem-dlg,
+.extra-main .ctrl-dlg {
+  max-height: 66vh;
 }
 /* 指针监听弹窗 */
 .mem-dlg {
