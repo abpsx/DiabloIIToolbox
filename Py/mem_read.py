@@ -350,16 +350,22 @@ _TXT_W0      = 0x00   # wchar_t* 文本指针
 _TXT_NEXT    = 0x1C   # pNext
 
 
+def _wstr_cut(raw: bytes) -> bytes:
+    """按 UTF-16LE wchar 对齐截到首个 0x0000 前（避免字节级双零误切吃掉尾字节）。"""
+    for i in range(0, len(raw) - 1, 2):
+        if raw[i] == 0 and raw[i + 1] == 0:
+            return raw[:i]
+    return raw
+
+
 def _read_wstr(pid: int, h: int, ptr: int, max_chars: int = 64) -> str:
-    """读 UTF-16LE 字符串（到双零终止）。"""
+    """读 UTF-16LE 字符串（到首个 0x0000 wchar）。"""
     if not ptr:
         return ""
     raw = read(pid, h, ptr, max_chars * 2)
     if not raw:
         return ""
-    raw = raw.split(b"\x00\x00")[0]
-    if len(raw) % 2:  # 去尾部奇数残字节，避免 decode 出 \ufffd
-        raw = raw[:-1]
+    raw = _wstr_cut(raw)
     try:
         return raw.decode("utf-16-le", errors="replace")
     except Exception:
