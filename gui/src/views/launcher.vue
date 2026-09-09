@@ -482,14 +482,14 @@ export default {
         this.log(`控件 [${label}] 为禁用状态(dwDisabled=0x${(c.disabled >>> 0).toString(16)})，忽略点击`, "warn");
         return;
       }
-      // 用控件中心（pos + size/2），避免点在边缘触发区
-      const x = c.pos[0] + Math.floor(c.size[0] / 2);
-      const y = c.pos[1] + Math.floor(c.size[1] / 2);
+      // 用控件左上角坐标（pos）
+      const x = c.pos[0];
+      const y = c.pos[1];
       const label = (c.texts || []).join("/") || c.type_name || "控件";
       try {
         const r = this.ahkL().Click(String(s.pid), x, y);
         if (r && r.ok) {
-          this.log(`点击控件 [${label}] @ 中心(${x},${y}) [pos(${c.pos[0]},${c.pos[1]}) ${c.size[0]}×${c.size[1]}] → 窗口 0x${(r.hwnd >>> 0).toString(16).toUpperCase()}`);
+          this.log(`点击控件 [${label}] @ 左上(${x},${y}) [pos(${c.pos[0]},${c.pos[1]}) ${c.size[0]}×${c.size[1]}] → 窗口 0x${(r.hwnd >>> 0).toString(16).toUpperCase()}`);
           // 点击后界面可能切换，延迟刷新控件快照
           setTimeout(() => this.loadCtrl(this.extraDlg), 350);
         } else this.log("控件点击失败: " + ((r && r.error) || "无返回"), "error");
