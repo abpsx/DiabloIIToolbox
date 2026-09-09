@@ -164,11 +164,10 @@
                   <div class="ctrl-list">
                     <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state, noclick: c.type !== 6 }" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
-                      <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
+                      <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : 'info'">{{ c.type_name }}</el-tag>
                       <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
-                      <el-tag v-else-if="c.type !== 6" size="small" type="info" effect="plain" title="非按钮控件，不可点击">不可点</el-tag>
                       <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
-                      <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state }">{{ (c.texts || []).join("\n") || "—" }}</span>
+                      <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state, 'ci-strike': c.type !== 6 }">{{ (c.texts || []).join("\n") || "—" }}</span>
                       <span v-if="c.cb_off" class="ci-cb" :title="'回调 @0x34 相对偏移，同版本下稳定唯一'">{{ c.cb_off }}</span>
                     </div>
                   </div>
@@ -235,9 +234,19 @@ export default {
       ctrlData: null,
       ctrlErr: "",
       ctrlLoading: false,
-      ctrlTypes: [...ALL_CTRL_TYPES],  // 控件类型过滤：默认全选
+      // 控件类型过滤：从 localStorage 恢复，默认全选（全槽位通用）
+      ctrlTypes: (() => {
+        try {
+          const v = JSON.parse(localStorage.getItem("d2it_ctrl_types"));
+          if (Array.isArray(v) && v.length) return v;
+        } catch (e) { /* 忽略损坏数据 */ }
+        return [...ALL_CTRL_TYPES];
+      })(),
       ctrlTypeOptions: CTRL_TYPE_OPTIONS,
-      ctrlHideEmpty: false,  // 剔除文本为空的控件
+      // 剔除空文本：从 localStorage 恢复，默认关闭
+      ctrlHideEmpty: (() => {
+        try { return localStorage.getItem("d2it_ctrl_hide_empty") === "1"; } catch (e) { return false; }
+      })(),
     };
   },
   computed: {
@@ -252,6 +261,14 @@ export default {
         const hit = CTRL_TYPE_OPTIONS.find((o) => o.v === c.type);
         return this.ctrlTypes.includes(hit ? hit.v : -1);
       });
+    },
+  },
+  watch: {
+    ctrlTypes(v) {
+      try { localStorage.setItem("d2it_ctrl_types", JSON.stringify(v)); } catch (e) { /* 忽略 */ }
+    },
+    ctrlHideEmpty(v) {
+      try { localStorage.setItem("d2it_ctrl_hide_empty", v ? "1" : "0"); } catch (e) { /* 忽略 */ }
     },
   },
   mounted() {
@@ -902,6 +919,11 @@ export default {
 }
 .ci-txt.ci-dis {
   color: #999;
+}
+/* 非按钮（不可点击）控件：文本加删除线 + 弱化 */
+.ci-txt.ci-strike {
+  text-decoration: line-through;
+  color: #888;
 }
 .ctrl-actions {
   display: flex;
