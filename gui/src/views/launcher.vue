@@ -162,12 +162,12 @@
                     </label>
                   </div>
                   <div class="ctrl-list">
-                    <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state, noclick: c.state }" @click="ctrlClick(c)">
+                    <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: ctrlDisabled(c), noclick: ctrlDisabled(c) }" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
-                      <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : 'info'" class="ci-type" :class="{ strike: c.state }">{{ c.type_name }}</el-tag>
-                      <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
+                      <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : 'info'" class="ci-type" :class="{ strike: ctrlDisabled(c) }">{{ c.type_name }}</el-tag>
+                      <el-tag v-if="c.type === 6 && ctrlDisabled(c)" size="small" type="danger" effect="dark" title="dwDisabled@0x08 bit0: 0=不可点击 1=可点击">禁用</el-tag>
                       <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
-                      <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state }">{{ (c.texts || []).join("\n") || "—" }}</span>
+                      <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && ctrlDisabled(c) }">{{ (c.texts || []).join("\n") || "—" }}</span>
                       <span v-if="c.cb_off" class="ci-cb" :title="'回调 @0x34 相对偏移，同版本下稳定唯一'">{{ c.cb_off }}</span>
                     </div>
                   </div>
@@ -423,6 +423,10 @@ export default {
     ctrlStateName(state) {
       return { menu: "菜单", game: "游戏内", null: "无", busy: "加载中" }[state] || state || "—";
     },
+    // 禁用判断：dwDisabled@0x08 的 bit0（0=不可点击 1=可点击），链路上所有控件通用
+    ctrlDisabled(c) {
+      return c.disabled !== undefined && (c.disabled & 1) === 0;
+    },
     async loadCtrl(i) {
       const s = this.slots[i];
       if (!s || !s.pid) return;
@@ -449,10 +453,10 @@ export default {
     async ctrlClick(c) {
       const s = this.slots[this.extraDlg];
       if (!s || !s.pid) return;
-      // 不可点击判断：unkState@0x44 非0=置灰（链路上字段，不限按钮类型）
-      if (c.state) {
+      // 不可点击判断：dwDisabled@0x08 bit0==0（链路上所有控件通用）
+      if (this.ctrlDisabled(c)) {
         const label = (c.texts || []).join("/") || c.type_name || "控件";
-        this.log(`控件 [${label}] 为禁用状态(unkState=${c.state})，忽略点击`, "warn");
+        this.log(`控件 [${label}] 为禁用状态(dwDisabled=0x${(c.disabled >>> 0).toString(16)})，忽略点击`, "warn");
         return;
       }
       // 用控件中心（pos + size/2），避免点在边缘触发区
@@ -880,7 +884,7 @@ export default {
 .ctrl-item.disabled:hover {
   background: transparent;
 }
-/* 不可点击（unkState≠0）：默认光标 + 不触发高亮 */
+/* 不可点击（dwDisabled bit0=0）：默认光标 + 不触发高亮 */
 .ctrl-item.noclick {
   cursor: default;
 }
@@ -899,7 +903,7 @@ export default {
   flex-shrink: 0;
   box-sizing: border-box;
 }
-/* 不可点击（unkState≠0）：类型标签文本划删除线 */
+/* 不可点击（dwDisabled bit0=0）：类型标签文本划删除线 */
 .ci-type.strike {
   text-decoration: line-through;
   opacity: 0.75;
