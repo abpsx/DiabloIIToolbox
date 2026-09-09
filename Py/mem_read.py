@@ -556,12 +556,13 @@ def read_controls(pid: int, h: int, item: dict, config_dir: str) -> dict:
     except Exception:
         player = 0
 
-    if player and not first:
-        state, page = "game", "游戏内"
-    elif not player and first:
-        state, page = "menu", _page_name(controls)
-    else:
+    if not player and not first:
         state, page = "null", "未就绪"
+    elif player:
+        # 游戏内：first 非0 表示有活动控件（聊天框/游戏内弹窗），否则为空
+        state, page = "game", "游戏内"
+    else:
+        state, page = "menu", _page_name(controls)
     return {"first": first, "count": len(controls), "state": state,
             "page": page, "controls": controls}
 
