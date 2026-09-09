@@ -171,7 +171,8 @@ LauncherClick(pid, x, y) {
         hwnd := WinGetID("ahk_pid " pid)
     catch
         return { ok: false, error: "找不到窗口 (PID " pid ")" }
-    lParam := (Integer(y) & 0xFFFF) | ((Integer(x) & 0xFFFF) << 16)
+    ; WM_LBUTTONDOWN lParam：低 16 位 = x，高 16 位 = y
+    lParam := (Integer(x) & 0xFFFF) | ((Integer(y) & 0xFFFF) << 16)
     PostMessage(0x0201, 0x0001, lParam, , "ahk_pid " pid)  ; WM_LBUTTONDOWN, MK_LBUTTON
     PostMessage(0x0202, 0, lParam, , "ahk_pid " pid)        ; WM_LBUTTONUP
     return { ok: true, hwnd: hwnd, x: Integer(x), y: Integer(y) }
