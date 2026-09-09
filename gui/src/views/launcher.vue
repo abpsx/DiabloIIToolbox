@@ -160,6 +160,9 @@
                     <label class="cf-item">
                       <input type="checkbox" v-model="ctrlHideEmpty" /> 剔除空文本
                     </label>
+                    <label class="cf-item">
+                      <input type="checkbox" v-model="ctrlHideDisabled" /> 过滤禁用
+                    </label>
                   </div>
                   <div class="ctrl-list">
                     <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: ctrlDisabled(c), noclick: ctrlDisabled(c) }" @click="ctrlClick(c)">
@@ -246,16 +249,21 @@ export default {
       ctrlHideEmpty: (() => {
         try { return localStorage.getItem("d2it_ctrl_hide_empty") === "1"; } catch (e) { return false; }
       })(),
+      // 过滤禁用（dwDisabled bit0=0）：从 localStorage 恢复，默认关闭
+      ctrlHideDisabled: (() => {
+        try { return localStorage.getItem("d2it_ctrl_hide_disabled") === "1"; } catch (e) { return false; }
+      })(),
     };
   },
   computed: {
     runningCount() {
       return this.slots.filter((s) => s.pid && s.alive).length;
     },
-    // 控件列表：按顶部勾选的类型过滤（默认全选），可选剔除空文本
+    // 控件列表：按顶部勾选的类型过滤（默认全选），可选剔除空文本/过滤禁用
     ctrlList() {
       if (!this.ctrlData || !this.ctrlData.controls) return [];
       return this.ctrlData.controls.filter((c) => {
+        if (this.ctrlHideDisabled && this.ctrlDisabled(c)) return false;
         if (this.ctrlHideEmpty && (!c.texts || !c.texts.length)) return false;
         const hit = CTRL_TYPE_OPTIONS.find((o) => o.v === c.type);
         return this.ctrlTypes.includes(hit ? hit.v : -1);
@@ -268,6 +276,9 @@ export default {
     },
     ctrlHideEmpty(v) {
       try { localStorage.setItem("d2it_ctrl_hide_empty", v ? "1" : "0"); } catch (e) { /* 忽略 */ }
+    },
+    ctrlHideDisabled(v) {
+      try { localStorage.setItem("d2it_ctrl_hide_disabled", v ? "1" : "0"); } catch (e) { /* 忽略 */ }
     },
   },
   mounted() {
