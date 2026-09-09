@@ -56,54 +56,68 @@
           </div>
         </div>
 
-        <!-- 内存信息（仅运行中） -->
-        <div class="mem-box" v-if="s.pid && s.alive">
-          <div class="mem-row" v-if="s.mem.error">
-            <span class="mem-k">内存</span>
-            <span class="mem-v mem-err">{{ s.mem.error }}</span>
-          </div>
-          <template v-else>
-            <div class="mem-row">
-              <span class="mem-k">状态</span>
-              <el-tag size="small" :type="memTagType(s.mem.marker)" effect="plain">{{ memStatus(s.mem.marker) }}</el-tag>
-              <span class="mem-v">标记 {{ s.mem.marker ?? "—" }}</span>
-            </div>
-            <div class="mem-row">
-              <span class="mem-k">账号</span>
-              <span class="mem-v">{{ s.mem.account || "—" }}</span>
-            </div>
-            <div class="mem-row">
-              <span class="mem-k">人物</span>
-              <span class="mem-v">{{ s.mem.charName || "—" }}</span>
-            </div>
-            <div class="mem-row">
-              <span class="mem-k">索引</span>
-              <span class="mem-v">{{ s.mem.charIndex == null ? "—" : (s.mem.charIndex === 4294967295 ? "未选" : s.mem.charIndex) }}</span>
-            </div>
-            <div class="mem-row">
-              <span class="mem-k">背包</span>
-              <span class="mem-bag mem-v" :title="bagDetail(s.mem.bag)">{{ bagText(s.mem.bag) }}</span>
-            </div>
-            <div class="mem-row">
-              <span class="mem-k">仓库</span>
-              <span class="mem-bag mem-v">
-                <template v-if="s.mem.stash && s.mem.stash.stash_open">
-                  第{{ s.mem.stash.page }}页<template v-if="stashText(s.mem.bag)"> · {{ stashText(s.mem.bag) }}</template>
-                </template>
-                <template v-else>未打开</template>
-              </span>
-            </div>
-          </template>
-        </div>
-
         <div class="slot-actions">
           <el-button v-if="!(s.pid && s.alive)" type="primary" size="small" @click="start(i)">启动</el-button>
           <el-button v-else type="danger" size="small" @click="stop(i)">停止</el-button>
+          <el-button v-if="s.pid && s.alive" size="small" type="info" plain @click="openMem(i)">内存</el-button>
           <el-button size="small" @click="clearSlot(i)">清空</el-button>
           <el-button size="small" type="warning" plain @click="removeSlot(i)">删除</el-button>
         </div>
       </div>
     </div>
+
+    <!-- 指针监听弹窗 -->
+    <el-dialog :model-value="memDlg !== null" title="指针监听" width="640px" append-to-body @close="memDlg = null">
+      <template v-if="memDlg !== null && slots[memDlg]">
+        <div class="mem-dlg">
+          <div class="md-row">
+            <span class="md-k">槽位</span>
+            <span class="md-v">#{{ memDlg + 1 }} {{ slots[memDlg].label || slots[memDlg].dir || "" }}</span>
+          </div>
+          <template v-if="slots[memDlg].mem.error">
+            <div class="md-row">
+              <span class="md-k">内存</span>
+              <span class="md-v md-err">{{ slots[memDlg].mem.error }}</span>
+            </div>
+          </template>
+          <template v-else>
+            <div class="md-row">
+              <span class="md-k">状态</span>
+              <span class="md-v">
+                <el-tag size="small" :type="memTagType(slots[memDlg].mem.marker)" effect="plain">{{ memStatus(slots[memDlg].mem.marker) }}</el-tag>
+                标记 {{ slots[memDlg].mem.marker ?? "—" }}
+              </span>
+            </div>
+            <div class="md-row">
+              <span class="md-k">账号</span>
+              <span class="md-v">{{ slots[memDlg].mem.account || "—" }}</span>
+            </div>
+            <div class="md-row">
+              <span class="md-k">人物</span>
+              <span class="md-v">{{ slots[memDlg].mem.charName || "—" }}</span>
+            </div>
+            <div class="md-row">
+              <span class="md-k">索引</span>
+              <span class="md-v">{{ slots[memDlg].mem.charIndex == null ? "—" : (slots[memDlg].mem.charIndex === 4294967295 ? "未选" : slots[memDlg].mem.charIndex) }}</span>
+            </div>
+            <div class="md-row">
+              <span class="md-k">背包</span>
+              <span class="md-v pre" :title="bagDetail(slots[memDlg].mem.bag)">{{ bagText(slots[memDlg].mem.bag) }}</span>
+            </div>
+            <div class="md-row">
+              <span class="md-k">仓库</span>
+              <span class="md-v pre">
+                <template v-if="slots[memDlg].mem.stash && slots[memDlg].mem.stash.stash_open">
+                  第{{ slots[memDlg].mem.stash.page }}页<template v-if="stashText(slots[memDlg].mem.bag)"> · {{ stashText(slots[memDlg].mem.bag) }}</template>
+                </template>
+                <template v-else>未打开</template>
+              </span>
+            </div>
+          </template>
+          <div class="md-tip">每 1.5 秒自动刷新（轮询进行中）</div>
+        </div>
+      </template>
+    </el-dialog>
 
     <!-- Log 面板 -->
     <div class="log-panel">
@@ -138,6 +152,7 @@ export default {
       logs: [],
       timer: null,
       saving: false,
+      memDlg: null,
     };
   },
   computed: {
@@ -276,8 +291,13 @@ export default {
       if (this.slots[i].pid && this.slots[i].alive) this.stop(i);
       this.slots.splice(i, 1);
       if (!this.slots.length) this.slots.push(emptySlot()); // 至少保留 1 个
+      if (this.memDlg === i) this.memDlg = null;
+      else if (this.memDlg !== null && this.memDlg > i) this.memDlg--;
       this.save();
       this.log(`槽位 #${i + 1} 已删除`);
+    },
+    openMem(i) {
+      this.memDlg = i;
     },
     clearScript(i) {
       this.slots[i].script = "";
@@ -443,12 +463,13 @@ export default {
 }
 .slot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, 320px); /* 固定列宽，槽位数变化不改变卡片大小 */
   gap: 10px;
   flex: 1; /* 中间区域占满剩余空间 */
   min-height: 0; /* flex 子项允许收缩，滚动仅发生在本区域 */
   overflow-y: auto;
   padding-right: 4px;
+  align-content: start; /* 不满一行时卡片不拉伸 */
 }
 .slot-card {
   background: #2c2c2c;
@@ -541,6 +562,43 @@ export default {
   display: flex;
   gap: 6px;
   margin-top: 4px;
+}
+/* 指针监听弹窗 */
+.mem-dlg {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 62vh;
+  overflow-y: auto;
+}
+.md-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+}
+.md-k {
+  flex-shrink: 0;
+  width: 52px;
+  color: #8a8a8a;
+  line-height: 1.6;
+}
+.md-v {
+  flex: 1;
+  line-height: 1.6;
+  color: #ddd;
+  word-break: break-all;
+}
+.md-v.pre {
+  white-space: pre-line;
+}
+.md-err {
+  color: #e88080;
+}
+.md-tip {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #777;
 }
 .log-panel {
   flex-shrink: 0;
