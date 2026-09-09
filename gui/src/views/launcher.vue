@@ -153,7 +153,7 @@
                     <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlList.length }} 个</span>
                   </div>
                   <div class="ctrl-list">
-                    <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" @click="ctrlClick(c)">
+                    <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state }" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
                       <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
                       <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
@@ -402,6 +402,12 @@ export default {
     async ctrlClick(c) {
       const s = this.slots[this.extraDlg];
       if (!s || !s.pid) return;
+      // 禁用按钮（unkState 非0=置灰）：忽略点击，不发送
+      if (c.type === 6 && c.state) {
+        const label = (c.texts || []).join("/") || c.type_name || "控件";
+        this.log(`控件 [${label}] 为禁用状态(unkState=${c.state})，忽略点击`, "warn");
+        return;
+      }
       // 用控件中心（pos + size/2），避免点在边缘触发区
       const x = c.pos[0] + Math.floor(c.size[0] / 2);
       const y = c.pos[1] + Math.floor(c.size[1] / 2);
@@ -790,6 +796,14 @@ export default {
 }
 .ctrl-item:hover {
   background: #2e3a4a;
+}
+/* 禁用按钮：整行置灰 + 禁止点击光标 */
+.ctrl-item.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ctrl-item.disabled:hover {
+  background: transparent;
 }
 .ci-no {
   color: #8bc8ea;
