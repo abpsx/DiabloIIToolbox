@@ -53,6 +53,7 @@
     "type": "stash",
     "ui_offset": "0x50D00",
     "ui_open": "0x60",
-    "page_addr": "0x02C3E370"
+    "page_addr": "0x02CBE36C",
+    "page_aob": "FF0000000101000068676C20"
   }
 ]

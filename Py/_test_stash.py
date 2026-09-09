@@ -1,17 +1,28 @@
 # -*- coding: utf-8 -*-
-"""测试仓库页读取"""
-import sys, ctypes
+"""测试 AOB 定位仓库页数（当前应=10）"""
+import sys, ctypes, time
 sys.path.insert(0, r"C:\Users\abps\Desktop\DiabloIIToolbox\Py")
 import mem_read as mem
 
 pid = mem.find_process("D2Loader.exe")
 h = mem.open_process_readonly(pid)
-st = mem.read_stash_state(pid, h)
+
+t0 = time.time()
+addr = mem.find_stash_page_addr(pid, h, "FF0000000101000068676C20")
+t1 = time.time()
+print(f"AOB 定位: 页数地址=0x{addr:X} (耗时 {t1-t0:.2f}s)")
+
+st = mem.read_stash_state(pid, h,
+                          ui_offset="0x50D00", ui_open="0x60",
+                          page_addr=0x02CBE36C,
+                          page_aob="FF0000000101000068676C20")
 print("仓库状态:", st)
-cfg = {"module": "D2CLIENT.DLL", "offset": "0x11B800", "offsets": ["0x60"], "table": "item_codes.json"}
-items = mem.read_bag(pid, h, cfg, r"C:\Users\abps\Desktop\DiabloIIToolbox\Setting\memory")
-stash_items = [i for i in items if i["loc"] == 4]
-print(f"仓库物品 {len(stash_items)} 件:")
-for i in stash_items:
-    print(f"  [{i['code']}] {i['name']}")
+
+# 第二次调用（缓存）
+t2 = time.time()
+st2 = mem.read_stash_state(pid, h, ui_offset="0x50D00", ui_open="0x60",
+                           page_addr=0x02CBE36C,
+                           page_aob="FF0000000101000068676C20")
+t3 = time.time()
+print(f"缓存命中: {st2} (耗时 {t3-t2:.2f}s)")
 ctypes.windll.kernel32.CloseHandle(h)

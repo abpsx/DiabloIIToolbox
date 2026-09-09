@@ -209,7 +209,8 @@ def read_all(pid: int, items: list, config_dir: str) -> dict:
                         pid, h,
                         ui_offset=it.get("ui_offset", "0x50D00"),
                         ui_open=it.get("ui_open", "0x60"),
-                        page_addr=int(it.get("page_addr", "0x02C3E370"), 16))
+                        page_addr=int(it.get("page_addr", "0x02CBE36C"), 16),
+                        page_aob=it.get("page_aob", ""))
                 else:
                     out[it["name"]] = read_config_entry(pid, h, it)
             except Exception as e:
@@ -318,15 +319,92 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
         idx += 1
     return entries
 
+_stash_page_cache: dict = {}   # pid -> 页签结构地址（AOB 定位缓存）
+
+
+def find_pattern(pid: int, h: int, pattern: bytes, max_hits: int = 8) -> list:
+    """全内存搜索字节模式（只读），返回命中地址列表（最多 max_hits 个）。
+
+    遍历 0x10000-0x7FFFFFFF 可读可写区域，每次读 1MB 块内 find。
+    用于定位堆内动态分配的 UI 结构（如仓库页签控件）。
+    """
+    from ctypes import wintypes as _wt
+    kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+
+    class MBI(ctypes.Structure):
+        _fields_ = [("BaseAddress", ctypes.c_void_p), ("AllocationBase", ctypes.c_void_p),
+                    ("AllocationProtect", _wt.DWORD), ("RegionSize", ctypes.c_size_t),
+                    ("State", _wt.DWORD), ("Protect", _wt.DWORD), ("Type", _wt.DWORD)]
+
+    hits: list = []
+    addr = 0x10000
+    while addr < 0x7FFFFFFF and len(hits) < max_hits:
+        mbi = MBI()
+        if not kernel32.VirtualQueryEx(h, ctypes.c_void_p(addr), ctypes.byref(mbi), ctypes.sizeof(mbi)):
+            break
+        if mbi.State == 0x1000 and (mbi.Protect & 0xFF) & 0xFE:
+            lo, size = int(mbi.BaseAddress), int(mbi.RegionSize)
+            chunk = 0x100000
+            for off in range(0, size, chunk):
+                buf = read(pid, h, lo + off, min(chunk, size - off))
+                if not buf:
+                    continue
+                p = 0
+                while True:
+                    i = buf.find(pattern, p)
+                    if i < 0:
+                        break
+                    hits.append(lo + off + i)
+                    if len(hits) >= max_hits:
+                        return hits
+                    p = i + 1
+        addr = (int(mbi.BaseAddress) + int(mbi.RegionSize) + 0xFFFF) & ~0xFFFF
+    return hits
+
+
+def find_stash_page_addr(pid: int, h: int, aob: str = "") -> int:
+    """AOB 定位仓库页签结构地址（页数 dword 所在处），带进程级缓存。
+
+    aob: 十六进制特征串；仓库页签结构模板特征（1.13c 实证）：
+      +0x00 页数(1基 dword)  +0x04 文本缓冲指针  +0x10 起 'FF 00 00 00 01 01 00 00 68 67 6C 20'
+    页数地址 = 特征命中 - 0x10。
+    """
+    global _stash_page_cache
+    cached = _stash_page_cache.get(pid)
+    if cached:
+        # 校验缓存仍有效（页数在合理范围 1-100）
+        v = read_dword(pid, h, cached)
+        if 1 <= v <= 100:
+            return cached
+        _stash_page_cache.pop(pid, None)
+    if aob:
+        try:
+            pattern = bytes.fromhex(aob.replace(" ", ""))
+        except Exception:
+            pattern = b""
+        if pattern:
+            hits = find_pattern(pid, h, pattern, max_hits=4)
+            # 特征命中处 -0x10 为结构起始（页数）
+            for hit in hits:
+                addr = hit - 0x10
+                v = read_dword(pid, h, addr)
+                if 1 <= v <= 100:
+                    _stash_page_cache[pid] = addr
+                    return addr
+    return 0
+
+
 def read_stash_state(pid: int, h: int,
                      ui_offset: str = "0x50D00",
                      ui_open: str = "0x60",
-                     page_addr: int = 0x02C3E370) -> dict:
+                     page_addr: int = 0x02CBE36C,
+                     page_aob: str = "") -> dict:
     """仓库页状态：仓库是否打开 + 当前页数（只读，不写入）。
 
     仓库开：   ui_ptr = [D2CLIENT+0x50D00]（先解引用）；stash_open = [ui_ptr+0x60]
-    当前页数： page_addr 是指针，指向存放页索引(dword, 0 基, 十六进制)的地址；
-               页数(1 基) = [ [page_addr] ] + 1。仓库关时页数返回 0。
+    当前页数： 优先 AOB 定位页签结构（重启后地址漂移自动重定位）；
+              无 AOB 时用固定地址 page_addr（页数 dword, 1 基）。
+              仓库关时页数返回 0 并清除 AOB 缓存。
     返回 {"stash_open": bool, "page": int}
     """
     base = resolve_base(pid, f"D2CLIENT.DLL+{ui_offset}")
@@ -334,9 +412,13 @@ def read_stash_state(pid: int, h: int,
     stash_open = read_dword(pid, h, ui_ptr + int(ui_open, 16)) if ui_ptr else 0
     page = 0
     if stash_open:
-        inner = read_ptr(pid, h, page_addr)
-        if inner:
-            page = read_dword(pid, h, inner) + 1   # 0 基 → 1 基
+        addr = find_stash_page_addr(pid, h, page_aob)
+        if not addr and page_addr:
+            addr = page_addr
+        if addr:
+            page = read_dword(pid, h, addr)
+    else:
+        _stash_page_cache.pop(pid, None)
     return {"stash_open": bool(stash_open), "page": page}
 
 
