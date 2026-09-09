@@ -162,10 +162,11 @@
                     </label>
                   </div>
                   <div class="ctrl-list">
-                    <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state }" @click="ctrlClick(c)">
+                    <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state, noclick: c.type !== 6 }" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
                       <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
                       <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
+                      <el-tag v-else-if="c.type !== 6" size="small" type="info" effect="plain" title="非按钮控件，不可点击">不可点</el-tag>
                       <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
                       <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state }">{{ (c.texts || []).join("\n") || "—" }}</span>
                       <span v-if="c.cb_off" class="ci-cb" :title="'回调 @0x34 相对偏移，同版本下稳定唯一'">{{ c.cb_off }}</span>
@@ -431,8 +432,14 @@ export default {
     async ctrlClick(c) {
       const s = this.slots[this.extraDlg];
       if (!s || !s.pid) return;
+      // 非按钮控件（文本框/编辑框/图片/滚动条/列表等）不可点击，忽略
+      if (c.type !== 6) {
+        const label = (c.texts || []).join("/") || c.type_name || "控件";
+        this.log(`控件 [${label}] 类型 ${c.type_name} 不可点击，忽略`, "warn");
+        return;
+      }
       // 禁用按钮（unkState 非0=置灰）：忽略点击，不发送
-      if (c.type === 6 && c.state) {
+      if (c.state) {
         const label = (c.texts || []).join("/") || c.type_name || "控件";
         this.log(`控件 [${label}] 为禁用状态(unkState=${c.state})，忽略点击`, "warn");
         return;
@@ -860,6 +867,13 @@ export default {
   cursor: not-allowed;
 }
 .ctrl-item.disabled:hover {
+  background: transparent;
+}
+/* 非按钮控件：不可点击（默认光标 + 不触发高亮） */
+.ctrl-item.noclick {
+  cursor: default;
+}
+.ctrl-item.noclick:hover {
   background: transparent;
 }
 .ci-no {
