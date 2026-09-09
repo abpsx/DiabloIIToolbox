@@ -63,9 +63,6 @@
           <el-button v-if="!(s.pid && s.alive)" type="primary" size="small" @click="start(i)">启动</el-button>
           <el-button v-else type="danger" size="small" @click="stop(i)">停止</el-button>
           <el-button v-if="s.pid && s.alive" size="small" type="primary" plain @click="openExtra(i)">附加</el-button>
-          <label class="poll-sw" :title="'内存轮询（每 1.5s），槽位独立持久化'">
-            <input type="checkbox" v-model="s.poll" @change="save()" /> 轮询
-          </label>
           <el-button size="small" @click="clearSlot(i)">清空</el-button>
           <el-button size="small" type="warning" plain @click="removeSlot(i)">删除</el-button>
         </div>
@@ -87,6 +84,12 @@
                 <div class="md-row">
                   <span class="md-k">槽位</span>
                   <span class="md-v">#{{ extraDlg + 1 }} {{ slots[extraDlg].label || slots[extraDlg].dir || "" }}</span>
+                </div>
+                <div class="md-row">
+                  <span class="md-k">轮询</span>
+                  <span class="md-v">
+                    <el-switch v-model="slots[extraDlg].poll" size="small" @change="save()" active-text="开启" inactive-text="关闭" inline-prompt />
+                  </span>
                 </div>
                 <template v-if="slots[extraDlg].mem.error">
                   <div class="md-row">
@@ -763,22 +766,6 @@ export default {
   align-items: center;
   gap: 6px;
   margin-top: 4px;
-}
-/* 内存轮询开关（槽位独立） */
-.poll-sw {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 12px;
-  color: #ccc;
-  cursor: pointer;
-  user-select: none;
-  padding: 0 2px;
-}
-.poll-sw input {
-  margin: 0;
-  accent-color: #8bc8ea;
-  cursor: pointer;
 }
 /* 附加功能弹窗：侧边栏 + 内容区（固定尺寸，内容区内滚动） */
 .extra-body {
