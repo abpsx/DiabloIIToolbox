@@ -358,45 +358,110 @@ def _read_wstr(pid: int, h: int, ptr: int, max_chars: int = 64) -> str:
     if not raw:
         return ""
     raw = raw.split(b"\x00\x00")[0]
+    if len(raw) % 2:  # 去尾部奇数残字节，避免 decode 出 \ufffd
+        raw = raw[:-1]
     try:
         return raw.decode("utf-16-le", errors="replace")
     except Exception:
         return ""
 
 
-def read_control_texts(pid: int, h: int, ctrl: int) -> list:
-    """控件文本：EDITBOX/TEXTBOX 内联 wText + BUTTON 内联文本 + ControlText 文本链。
+_BAD_W = set(range(0x00, 0x20)) - {0x09, 0x0A, 0x0D}  # 控制字符（保留 \t\r\n）
 
-    1.13c 实测：BUTTON 文本内联在 @+0x64（UTF-16LE，连续到 0x6C+）；
-    EDITBOX/TEXTBOX 内联 @+0x5C。另走 pFirstText(@+0x48) ControlText 链兜底。
+
+def _w_ok(w: int) -> bool:
+    """文本字符白名单：拒控制字符/代理/特殊区（组合符、PUA、0xFFF0+）。"""
+    if w in _BAD_W:
+        return False
+    if 0xD800 <= w <= 0xDFFF or w == 0xFFFF or w == 0xFFFE:
+        return False
+    if 0xE000 <= w <= 0xF8FF:      # PUA 私有区
+        return False
+    if 0x0300 <= w <= 0x036F:      # 组合重音
+        return False
+    return True
+
+
+def _inline_text(pid: int, h: int, ctrl: int, off: int) -> str:
+    """读控件内联文本区（如 BUTTON @+0x64）。
+
+    1.13c 实测：文本可能分多段（段间 0x0000 分隔，UI 上为换行）；
+    起始可能错位 1 字节。策略：
+      - 双对齐（0/1）各解一次，取可打印比例最高者
+      - 非零 wchar 段拼接，段间换行 \n；垃圾段（含白名单外字符）跳过
+    """
+    raw = read(pid, h, ctrl + off, 512)
+    if not raw:
+        return ""
+    best, best_score = "", 0.0
+    for align in (0, 1):
+        segs: list = []
+        cur: list = []
+        for i in range(align, len(raw) - 1, 2):
+            w = raw[i] | (raw[i + 1] << 8)
+            if w == 0:
+                if cur:
+                    segs.append(cur)
+                    cur = []
+            else:
+                cur.append(w)
+        if cur:
+            segs.append(cur)
+        if not segs:
+            continue
+        lines = []
+        for seg in segs:
+            if not all(_w_ok(w) for w in seg):
+                continue  # 垃圾段跳过
+            s = "".join(chr(w) for w in seg).rstrip("\x00")
+            if s:
+                lines.append(s)
+        if not lines:
+            continue
+        s = "\n".join(lines)
+        if not s:
+            continue
+        good = sum(1 for ch in s if ch != "\ufffd" and (ord(ch) >= 0x20 or ch in "\r\n\t"))
+        score = good / max(len(s), 1)
+        if score >= 0.8 and score > best_score:
+            best, best_score = s, score
+    return best
+
+
+def read_control_texts(pid: int, h: int, ctrl: int) -> list:
+    """控件文本：pFirstText ControlText 链优先，内联兜底。
+
+    1.13c 实测：
+      - 角色列表等 TEXTBOX 文本在 ControlText 链（wText[0..4] 5 个指针 + pNext）
+      - 主菜单 BUTTON 文本内联 @+0x64（UTF-16LE，段间换行）
+      - EDITBOX 内联 @+0x5C；IMAGE 无文本
     """
     texts: list = []
     t = read_dword(pid, h, ctrl + _CTRL_TYPE)
-    if t in (0x01, 0x04, 0x06):  # EDITBOX/TEXTBOX/BUTTON 内联文本（IMAGE 等不读）
-        for off in (0x64, 0x5C):  # BUTTON 文本起始实测 @+0x64；文本框 @+0x5C
-            raw = read(pid, h, ctrl + off, 512)
-            if not raw:
-                continue
-            # 找第一个非零 wchar 起始，解码到双零
-            s = ""
-            for i in range(0, len(raw) - 1, 2):
-                if raw[i] or raw[i + 1]:
-                    s = raw[i:].split(b"\x00\x00")[0].decode("utf-16-le", errors="replace")
-                    break
-            s = s.strip("\x00")
-            if s and all(ord(ch) >= 0x20 for ch in s):
-                texts.append(s)
-                break
+    # 1) pFirstText 链（TEXTBOX/复杂控件主路径）
     ptext = read_ptr(pid, h, ctrl + _CTRL_TEXTS)
     seen: set = set()
     for _ in range(64):
         if not ptext or ptext in seen:
             break
         seen.add(ptext)
-        s = _read_wstr(pid, h, read_ptr(pid, h, ptext + _TXT_W0))
+        for j in range(5):  # ControlText.wText[0..4]
+            wp = read_ptr(pid, h, ptext + j * 4)
+            s = _read_wstr(pid, h, wp)
+            if s:
+                texts.append(s)
+        ptext = read_ptr(pid, h, ptext + _TXT_NEXT)
+    if texts:
+        return texts
+    # 2) 链空：内联兜底
+    if t == 0x06:  # BUTTON @+0x64
+        s = _inline_text(pid, h, ctrl, 0x64)
         if s:
             texts.append(s)
-        ptext = read_ptr(pid, h, ptext + _TXT_NEXT)
+    elif t in (0x01, 0x04):  # EDITBOX/TEXTBOX @+0x5C（仅接受单段文本）
+        s = _inline_text(pid, h, ctrl, 0x5C)
+        if s and "\n" not in s:
+            texts.append(s)
     return texts
 
 
