@@ -60,6 +60,7 @@
           <el-button v-if="!(s.pid && s.alive)" type="primary" size="small" @click="start(i)">启动</el-button>
           <el-button v-else type="danger" size="small" @click="stop(i)">停止</el-button>
           <el-button v-if="s.pid && s.alive" size="small" type="info" plain @click="openMem(i)">内存</el-button>
+          <el-button v-if="s.pid && s.alive" size="small" type="primary" plain @click="openCtrl(i)">控件</el-button>
           <el-button size="small" @click="clearSlot(i)">清空</el-button>
           <el-button size="small" type="warning" plain @click="removeSlot(i)">删除</el-button>
         </div>
@@ -119,6 +120,51 @@
       </template>
     </el-dialog>
 
+    <!-- 控件信息弹窗 -->
+    <el-dialog :model-value="ctrlDlg !== null" title="控件信息（D2WIN 控件链）" width="760px" append-to-body @close="ctrlDlg = null">
+      <template v-if="ctrlDlg !== null && slots[ctrlDlg]">
+        <div class="ctrl-dlg">
+          <div class="md-row">
+            <span class="md-k">槽位</span>
+            <span class="md-v">#{{ ctrlDlg + 1 }} {{ slots[ctrlDlg].label || slots[ctrlDlg].dir || "" }}</span>
+          </div>
+          <template v-if="ctrlErr">
+            <div class="md-row">
+              <span class="md-k">读取</span>
+              <span class="md-v md-err">{{ ctrlErr }}</span>
+            </div>
+          </template>
+          <template v-else-if="ctrlData">
+            <div class="md-row">
+              <span class="md-k">状态</span>
+              <span class="md-v">
+                <el-tag size="small" :type="ctrlData.state === 'game' ? 'success' : ctrlData.state === 'menu' ? 'warning' : 'info'" effect="plain">
+                  {{ ctrlStateName(ctrlData.state) }}
+                </el-tag>
+                页面：{{ ctrlData.page || "—" }}
+              </span>
+            </div>
+            <div class="md-row">
+              <span class="md-k">链首</span>
+              <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlData.count }} 个</span>
+            </div>
+            <div class="ctrl-list">
+              <div v-for="(c, k) in ctrlData.controls" :key="k" class="ctrl-item">
+                <span class="ci-no">#{{ k }}</span>
+                <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
+                <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
+                <span class="ci-txt">{{ (c.texts || []).join(" | ") || "—" }}</span>
+              </div>
+            </div>
+          </template>
+          <div class="ctrl-actions">
+            <el-button size="small" :loading="ctrlLoading" @click="loadCtrl(ctrlDlg)">刷新</el-button>
+            <span class="md-tip">点击时读取快照，非自动刷新</span>
+          </div>
+        </div>
+      </template>
+    </el-dialog>
+
     <!-- Log 面板 -->
     <div class="log-panel">
       <div class="log-head">
@@ -153,6 +199,10 @@ export default {
       timer: null,
       saving: false,
       memDlg: null,
+      ctrlDlg: null,
+      ctrlData: null,
+      ctrlErr: "",
+      ctrlLoading: false,
     };
   },
   computed: {
@@ -299,6 +349,36 @@ export default {
     },
     openMem(i) {
       this.memDlg = i;
+    },
+    // ---------------- 控件信息（点击时读取快照） ----------------
+    ctrlStateName(state) {
+      return { menu: "菜单", game: "游戏内", null: "无", busy: "加载中" }[state] || state || "—";
+    },
+    openCtrl(i) {
+      this.ctrlDlg = i;
+      this.loadCtrl(i);
+    },
+    async loadCtrl(i) {
+      const s = this.slots[i];
+      if (!s || !s.pid) return;
+      this.ctrlLoading = true;
+      this.ctrlErr = "";
+      this.ctrlData = null;
+      try {
+        const r = this.ahkL().Mem(String(s.pid));
+        if (!r || !r.ok) {
+          this.ctrlErr = (r && r.error) || "内存读取无返回";
+          return;
+        }
+        const data = JSON.parse(r.json);
+        const m = data.results && data.results[String(s.pid)];
+        this.ctrlData = (m && m["控件链"]) || null;
+        if (!this.ctrlData) this.ctrlErr = "未读取到控件链（可能不在菜单/游戏界面）";
+      } catch (e) {
+        this.ctrlErr = "读取失败: " + e.message;
+      } finally {
+        this.ctrlLoading = false;
+      }
     },
     clearScript(i) {
       this.slots[i].script = "";
@@ -601,6 +681,50 @@ export default {
   margin-top: 4px;
   font-size: 12px;
   color: #777;
+}
+/* 控件信息弹窗 */
+.ctrl-dlg {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ctrl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 46vh;
+  overflow-y: auto;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px;
+  background: #242424;
+}
+.ctrl-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.ci-no {
+  color: #8bc8ea;
+  width: 28px;
+  flex-shrink: 0;
+}
+.ci-pos {
+  color: #aaa;
+  width: 130px;
+  flex-shrink: 0;
+}
+.ci-txt {
+  color: #ddd;
+  flex: 1;
+  word-break: break-all;
+}
+.ctrl-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .log-panel {
   flex-shrink: 0;
