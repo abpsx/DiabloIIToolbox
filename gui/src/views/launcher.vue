@@ -152,8 +152,9 @@
               <div v-for="(c, k) in ctrlData.controls" :key="k" class="ctrl-item">
                 <span class="ci-no">#{{ k }}</span>
                 <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
+                <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
                 <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
-                <span class="ci-txt">{{ (c.texts || []).join(" | ") || "—" }}</span>
+                <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state }">{{ (c.texts || []).join("\n") || "—" }}</span>
               </div>
             </div>
           </template>
@@ -720,6 +721,10 @@ export default {
   color: #ddd;
   flex: 1;
   word-break: break-all;
+  white-space: pre-line; /* 控件文本内换行（段间换行）保留显示 */
+}
+.ci-txt.ci-dis {
+  color: #999;
 }
 .ctrl-actions {
   display: flex;
