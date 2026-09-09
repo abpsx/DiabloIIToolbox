@@ -163,19 +163,22 @@ LauncherMem(pidsCsv) {
 }
 
 ; ---------------- 控件点击（后台 PostMessage，不抢焦点不移动鼠标） ----------------
-; x, y : D2 客户区坐标（即控件链 pos），lParam = (y<<16)|x
+; x, y : D2 控件坐标（控件链 pos），lParam = (y<<16)|x
+; 坐标校准（winspy 实测 1.13c）：
+;   "好"按钮控件中心 (691,589)，鼠标真实客户区位置 (691,559) → y 偏移 -30，x 无偏移
 LauncherClick(pid, x, y) {
+    yOff := -30  ; D2 控件坐标 → 客户区坐标：y 偏移（实测校准）
     if !pid or !ProcessExist(pid)
         return { ok: false, error: "进程不存在" }
     try
         hwnd := WinGetID("ahk_pid " pid)
     catch
         return { ok: false, error: "找不到窗口 (PID " pid ")" }
-    ; WM_LBUTTONDOWN lParam：低 16 位 = x，高 16 位 = y
-    lParam := (Integer(x) & 0xFFFF) | ((Integer(y) & 0xFFFF) << 16)
+    ; WM_LBUTTONDOWN lParam：低 16 位 = x，高 16 位 = y（控件坐标换算客户区坐标）
+    lParam := (Integer(x) & 0xFFFF) | (((Integer(y) + yOff) & 0xFFFF) << 16)
     PostMessage(0x0201, 0x0001, lParam, , "ahk_pid " pid)  ; WM_LBUTTONDOWN, MK_LBUTTON
     PostMessage(0x0202, 0, lParam, , "ahk_pid " pid)        ; WM_LBUTTONUP
-    return { ok: true, hwnd: hwnd, x: Integer(x), y: Integer(y) }
+    return { ok: true, hwnd: hwnd, x: Integer(x), y: Integer(y), y_off: yOff }
 }
 
 ; ---------------- 文件/目录选择（复用现有功能） ----------------
