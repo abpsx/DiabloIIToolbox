@@ -100,6 +100,7 @@
           <el-button v-if="!(s.pid && s.alive)" type="primary" size="small" @click="start(i)">启动</el-button>
           <el-button v-else type="danger" size="small" @click="stop(i)">停止</el-button>
           <el-button size="small" @click="clearSlot(i)">清空</el-button>
+          <el-button size="small" type="warning" plain @click="removeSlot(i)">删除</el-button>
         </div>
       </div>
     </div>
@@ -243,7 +244,7 @@ export default {
         this.slots = [];
         this.log("配置加载失败: " + e.message, "warn");
       }
-      if (this.slots.length < 9) this.slots.length = 9;
+      if (!this.slots.length) this.slots.push(emptySlot()); // 至少保留 1 个空槽
     },
     save() {
       if (this.saving) return;
@@ -259,6 +260,10 @@ export default {
 
     // ---------------- 槽位操作 ----------------
     addSlot() {
+      if (this.slots.length >= 9) {
+        this.log("最多 9 个槽位", "warn");
+        return;
+      }
       this.slots.push(emptySlot());
       this.save();
     },
@@ -266,6 +271,13 @@ export default {
       if (this.slots[i].pid && this.slots[i].alive) this.stop(i);
       this.slots[i] = emptySlot();
       this.save();
+    },
+    removeSlot(i) {
+      if (this.slots[i].pid && this.slots[i].alive) this.stop(i);
+      this.slots.splice(i, 1);
+      if (!this.slots.length) this.slots.push(emptySlot()); // 至少保留 1 个
+      this.save();
+      this.log(`槽位 #${i + 1} 已删除`);
     },
     clearScript(i) {
       this.slots[i].script = "";
