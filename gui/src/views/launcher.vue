@@ -171,13 +171,14 @@ export default {
     // ---------------- 内存状态辅助 ----------------
     memStatus(marker) {
       if (marker == null) return "未读取";
-      if (marker >= 3000 && marker <= 3999) return "游戏内";
+      if (marker >= 3000 && marker <= 3999) return "游戏内（单机）";
+      if (marker >= 2000 && marker <= 2999) return "游戏内（战网）";
       if (marker === 10 || marker === 11) return "大厅";
       return "未知";
     },
     memTagType(marker) {
       if (marker == null) return "info";
-      if (marker >= 3000 && marker <= 3999) return "success";
+      if ((marker >= 2000 && marker <= 2999) || (marker >= 3000 && marker <= 3999)) return "success";
       return "warning";
     },
     // 背包显示：按位置分组（loc: 0地面 1背包 2腰带 3装备）合并同物品 + 数量汇总
