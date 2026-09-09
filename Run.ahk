@@ -2,6 +2,7 @@
 
 ; 自检
 FuncList := GetAhkFilesWithoutExt()
+
 result := FuncListCheck(FuncList)
 
 if result {

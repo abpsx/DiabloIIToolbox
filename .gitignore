@@ -4,7 +4,7 @@ node_modules
 test.ini
 ready
 port.txt
-
+_AutoInclude.ahk
 
 # local env files
 .env.local
@@ -24,3 +24,16 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Py runtime artifacts
+Py/_tables_cache.json
+Py/_mem_out.json
+Py/_ce_shot.png
+Py/_img_*.png
+Py/_kor_tbl.json
+Py/_tbl_names.json
+Py/_utf8_ext.json
+Py/_mem_d2lang_pool16.json
+Py/_mem_kor_tbl_pool.json
+Py/_mpq/
+Py/_d2hackmap/

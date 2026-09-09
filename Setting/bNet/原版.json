@@ -1,0 +1,9 @@
+{
+  "inventorySet": {
+    "bagSize": [4, 10],
+    "storageSize": [8, 6, 1],
+    "fzStorageSize": [4, 6, 1],
+    "boxSize": [4, 3]
+  },
+  "regSet": {}
+}

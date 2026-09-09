@@ -1,0 +1,50 @@
+[
+  {
+    "name": "界面标记",
+    "module": "Fog.dll",
+    "offset": "0x4AFE0",
+    "offsets": ["0x8"],
+    "type": "dword"
+  },
+  {
+    "name": "登录的战网账号",
+    "module": "D2MCPClient.dll",
+    "offset": "0xAF28",
+    "offsets": [],
+    "type": "string",
+    "length": 6,
+    "unicode": 0
+  },
+  {
+    "name": "人物位置索引",
+    "module": "d2launch.dll",
+    "offset": "0x24DB0",
+    "offsets": [],
+    "type": "dword"
+  },
+  {
+    "name": "人物指针",
+    "module": "D2CLIENT.DLL",
+    "offset": "0x11B800",
+    "offsets": [],
+    "type": "dword"
+  },
+  {
+    "name": "人物名称",
+    "module": "D2CLIENT.DLL",
+    "offset": "0x11B800",
+    "offsets": ["0x14"],
+    "type": "string",
+    "length": 10,
+    "unicode": 0,
+    "deref_str": 1
+  },
+  {
+    "name": "背包物品",
+    "module": "D2CLIENT.DLL",
+    "offset": "0x11B800",
+    "offsets": ["0x60"],
+    "type": "bag",
+    "table": "item_codes.json"
+  }
+]

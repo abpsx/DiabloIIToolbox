@@ -1,0 +1,14 @@
+{
+  "inventorySet": {
+    "bagSize": [4, 10],
+    "storageSize": [10, 10, 20],
+    "fzStorageSize": [4, 6, 1],
+    "boxSize": [8, 10]
+  },
+  "regSet": {
+    "BNETIP": {
+      "type": "REG_SZ",
+      "data": "bn.anhei2.com"
+    }
+  }
+}

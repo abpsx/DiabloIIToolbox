@@ -1,1 +1,9 @@
+#Include .\Func\FileSelector.ahk
+#Include .\Func\FolderSelect.ahk
+#Include .\Func\Launcher.ahk
+#Include .\Func\LoadFileNameByType.ahk
+#Include .\Func\LoadJson.ahk
+#Include .\Func\RunGame.ahk
+#Include .\Func\SaveFile.ahk
 #Include .\Func\test.ahk
+#Include .\Func\WaitingConfirm.ahk
