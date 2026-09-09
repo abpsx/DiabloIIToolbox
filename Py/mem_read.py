@@ -362,33 +362,41 @@ def find_pattern(pid: int, h: int, pattern: bytes, max_hits: int = 8) -> list:
     return hits
 
 
+def _stash_struct_ok(pid: int, h: int, addr: int) -> bool:
+    """校验页签结构有效性：+0x00 总页数(1-100) 且 +0x04 文本缓冲首 dword(0-100)。"""
+    tot = read_dword(pid, h, addr)
+    if not (1 <= tot <= 100):
+        return False
+    pbuf = read_ptr(pid, h, addr + 0x04)
+    if not pbuf:
+        return False
+    idx = read_dword(pid, h, pbuf)
+    return 0 <= idx <= 100
+
+
 def find_stash_page_addr(pid: int, h: int, aob: str = "") -> int:
-    """AOB 定位仓库页签结构地址（页数 dword 所在处），带进程级缓存。
+    """AOB 定位仓库页签结构地址，带进程级缓存。
 
     aob: 十六进制特征串；仓库页签结构模板特征（1.13c 实证）：
-      +0x00 页数(1基 dword)  +0x04 文本缓冲指针  +0x10 起 'FF 00 00 00 01 01 00 00 68 67 6C 20'
-    页数地址 = 特征命中 - 0x10。
+      +0x00 总页数(1基)  +0x04 文本缓冲指针(首 dword=0 基当前页数)
+      +0x10 起 'FF 00 00 00 01 01 00 00 68 67 6C 20'
+    结构地址 = 特征命中 - 0x10。误命中经 _stash_struct_ok 过滤。
+    注：翻页/重开仓库后结构会重新分配，缓存校验失败即重新 AOB。
     """
     global _stash_page_cache
     cached = _stash_page_cache.get(pid)
-    if cached:
-        # 校验缓存仍有效（页数在合理范围 1-100）
-        v = read_dword(pid, h, cached)
-        if 1 <= v <= 100:
-            return cached
-        _stash_page_cache.pop(pid, None)
+    if cached and _stash_struct_ok(pid, h, cached):
+        return cached
+    _stash_page_cache.pop(pid, None)
     if aob:
         try:
             pattern = bytes.fromhex(aob.replace(" ", ""))
         except Exception:
             pattern = b""
         if pattern:
-            hits = find_pattern(pid, h, pattern, max_hits=4)
-            # 特征命中处 -0x10 为结构起始（页数）
-            for hit in hits:
+            for hit in find_pattern(pid, h, pattern, max_hits=8):
                 addr = hit - 0x10
-                v = read_dword(pid, h, addr)
-                if 1 <= v <= 100:
+                if _stash_struct_ok(pid, h, addr):
                     _stash_page_cache[pid] = addr
                     return addr
     return 0
@@ -402,9 +410,10 @@ def read_stash_state(pid: int, h: int,
     """仓库页状态：仓库是否打开 + 当前页数（只读，不写入）。
 
     仓库开：   ui_ptr = [D2CLIENT+0x50D00]（先解引用）；stash_open = [ui_ptr+0x60]
-    当前页数： 优先 AOB 定位页签结构（重启后地址漂移自动重定位）；
-              无 AOB 时用固定地址 page_addr（页数 dword, 1 基）。
-              仓库关时页数返回 0 并清除 AOB 缓存。
+    当前页数： 页签结构（AOB 定位）：
+                +0x00 总页数；+0x04 文本缓冲指针；页数(1基) = [ [结构+0x04] ] + 1。
+               无 AOB 时 fallback：page_addr 处若为指针则解引用+1，否则直接当 1 基页数。
+               仓库关时页数返回 0 并清除 AOB 缓存。
     返回 {"stash_open": bool, "page": int}
     """
     base = resolve_base(pid, f"D2CLIENT.DLL+{ui_offset}")
@@ -413,10 +422,19 @@ def read_stash_state(pid: int, h: int,
     page = 0
     if stash_open:
         addr = find_stash_page_addr(pid, h, page_aob)
-        if not addr and page_addr:
-            addr = page_addr
         if addr:
-            page = read_dword(pid, h, addr)
+            pbuf = read_ptr(pid, h, addr + 0x04)
+            if pbuf:
+                page = read_dword(pid, h, pbuf) + 1   # 0 基 → 1 基
+        elif page_addr:
+            v = read_dword(pid, h, page_addr)
+            if v:
+                # 兼容：旧式指针结构（[addr] 指向页索引）则解引用+1；直接 1 基则原样
+                inner = read_ptr(pid, h, page_addr)
+                if inner and read_dword(pid, h, inner) <= 100 and read_dword(pid, h, inner) != v:
+                    page = read_dword(pid, h, inner) + 1
+                else:
+                    page = v
     else:
         _stash_page_cache.pop(pid, None)
     return {"stash_open": bool(stash_open), "page": page}
