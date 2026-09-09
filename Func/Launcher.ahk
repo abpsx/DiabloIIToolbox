@@ -23,6 +23,7 @@ Launcher() {
         Alive: LauncherAlive,
         PickLnk: LauncherPickLnk,
         Mem: LauncherMem,
+        Click: LauncherClick,
         SelectExe: LauncherSelectExe,
         SelectDir: LauncherSelectDir,
         SelectAhk: LauncherSelectAhk
@@ -159,6 +160,21 @@ LauncherMem(pidsCsv) {
         return { ok: false, json: "{}", error: "内存读取无输出" }
     raw := FileRead(tmpPath)
     return { ok: true, json: raw }
+}
+
+; ---------------- 控件点击（后台 PostMessage，不抢焦点不移动鼠标） ----------------
+; x, y : D2 客户区坐标（即控件链 pos），lParam = (y<<16)|x
+LauncherClick(pid, x, y) {
+    if !pid or !ProcessExist(pid)
+        return { ok: false, error: "进程不存在" }
+    try
+        hwnd := WinGetID("ahk_pid " pid)
+    catch
+        return { ok: false, error: "找不到窗口 (PID " pid ")" }
+    lParam := (Integer(y) & 0xFFFF) | ((Integer(x) & 0xFFFF) << 16)
+    PostMessage(0x0201, 0x0001, lParam, , "ahk_pid " pid)  ; WM_LBUTTONDOWN, MK_LBUTTON
+    PostMessage(0x0202, 0, lParam, , "ahk_pid " pid)        ; WM_LBUTTONUP
+    return { ok: true, hwnd: hwnd, x: Integer(x), y: Integer(y) }
 }
 
 ; ---------------- 文件/目录选择（复用现有功能） ----------------

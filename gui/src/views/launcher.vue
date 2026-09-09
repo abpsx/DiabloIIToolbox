@@ -149,7 +149,7 @@
               <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlData.count }} 个</span>
             </div>
             <div class="ctrl-list">
-              <div v-for="(c, k) in ctrlData.controls" :key="k" class="ctrl-item">
+              <div v-for="(c, k) in ctrlData.controls" :key="k" class="ctrl-item" :class="{ clickable: true }" @click="ctrlClick(c)">
                 <span class="ci-no">#{{ k }}</span>
                 <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : c.type === 2 ? 'info' : ''">{{ c.type_name }}</el-tag>
                 <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
@@ -380,6 +380,20 @@ export default {
         this.ctrlErr = "读取失败: " + e.message;
       } finally {
         this.ctrlLoading = false;
+      }
+    },
+    // 点击控件行 → 向游戏窗口发送后台点击（PostMessage，附控件坐标）
+    async ctrlClick(c) {
+      const s = this.slots[this.ctrlDlg];
+      if (!s || !s.pid) return;
+      const x = c.pos[0], y = c.pos[1];
+      const label = (c.texts || []).join("/") || c.type_name || "控件";
+      try {
+        const r = this.ahkL().Click(String(s.pid), x, y);
+        if (r && r.ok) this.log(`点击控件 [${label}] @ (${x},${y}) → 窗口 0x${(r.hwnd >>> 0).toString(16).toUpperCase()}`);
+        else this.log("控件点击失败: " + ((r && r.error) || "无返回"), "error");
+      } catch (e) {
+        this.log("控件点击异常: " + e.message, "error");
       }
     },
     clearScript(i) {
@@ -707,6 +721,14 @@ export default {
   gap: 8px;
   font-size: 12px;
   line-height: 1.6;
+  padding: 3px 6px;
+  margin: 1px -6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.ctrl-item:hover {
+  background: #2e3a4a;
 }
 .ci-no {
   color: #8bc8ea;
