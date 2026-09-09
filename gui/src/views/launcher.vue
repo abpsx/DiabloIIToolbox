@@ -164,7 +164,7 @@
                   <div class="ctrl-list">
                     <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state, noclick: c.type !== 6 }" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
-                      <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : 'info'">{{ c.type_name }}</el-tag>
+                      <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : 'info'" class="ci-type">{{ c.type_name }}</el-tag>
                       <el-tag v-if="c.type === 6 && c.state" size="small" type="danger" effect="dark" title="unkState: 0=可点击 非0=置灰">禁用</el-tag>
                       <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
                       <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && c.state, 'ci-strike': c.type !== 6 }">{{ (c.texts || []).join("\n") || "—" }}</span>
@@ -897,6 +897,13 @@ export default {
   color: #8bc8ea;
   width: 28px;
   flex-shrink: 0;
+}
+/* 类型标签统一宽度居中 */
+.ci-type {
+  width: 60px;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 .ci-pos {
   color: #aaa;
