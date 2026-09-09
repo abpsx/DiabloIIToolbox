@@ -152,6 +152,12 @@
                     <span class="md-k">链首</span>
                     <span class="md-v">0x{{ (ctrlData.first || 0).toString(16).toUpperCase().padStart(8, "0") }} · 控件 {{ ctrlList.length }} 个</span>
                   </div>
+                  <div class="ctrl-filter">
+                    <span class="cf-title">类型</span>
+                    <label v-for="o in CTRL_TYPE_OPTIONS" :key="o.v" class="cf-item">
+                      <input type="checkbox" :value="o.v" v-model="ctrlTypes" /> {{ o.label }}
+                    </label>
+                  </div>
                   <div class="ctrl-list">
                     <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: c.type === 6 && c.state }" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
@@ -196,6 +202,19 @@ const CFG = "Setting\\launcher.json";
 const MAX_LOG = 200;
 const LOC_NAMES = { 0: "地面", 1: "背包", 2: "腰带", 3: "装备", 4: "仓库", 5: "盒子" };
 
+// 控件类型选项（用于顶部复选框过滤；-1 = 未列出的其他类型）
+const CTRL_TYPE_OPTIONS = [
+  { v: 6, label: "按钮" },
+  { v: 4, label: "文本框" },
+  { v: 1, label: "编辑框" },
+  { v: 2, label: "图片" },
+  { v: 5, label: "滚动条" },
+  { v: 7, label: "列表" },
+  { v: 12, label: "账号列表" },
+  { v: -1, label: "其他" },
+];
+const ALL_CTRL_TYPES = CTRL_TYPE_OPTIONS.map((o) => o.v);
+
 const emptyMem = () => ({ marker: null, account: "", charIndex: null, charName: "", gameType: null, bag: [], stash: null, error: "" });
 const emptySlot = () => ({ label: "", dir: "", params: "", title: "", script: "", pid: 0, mem: emptyMem() });
 
@@ -212,16 +231,20 @@ export default {
       ctrlData: null,
       ctrlErr: "",
       ctrlLoading: false,
+      ctrlTypes: [...ALL_CTRL_TYPES],  // 控件类型过滤：默认全选
     };
   },
   computed: {
     runningCount() {
       return this.slots.filter((s) => s.pid && s.alive).length;
     },
-    // 控件列表：过滤掉图片(2)与滚动条(5)
+    // 控件列表：按顶部勾选的类型过滤（默认全选）
     ctrlList() {
       if (!this.ctrlData || !this.ctrlData.controls) return [];
-      return this.ctrlData.controls.filter((c) => c.type !== 2 && c.type !== 5);
+      return this.ctrlData.controls.filter((c) => {
+        const hit = CTRL_TYPE_OPTIONS.find((o) => o.v === c.type);
+        return this.ctrlTypes.includes(hit ? hit.v : -1);
+      });
     },
   },
   mounted() {
@@ -770,6 +793,34 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+.ctrl-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  padding: 6px 8px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #ccc;
+  user-select: none;
+}
+.cf-title {
+  color: #888;
+  margin-right: 2px;
+}
+.cf-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+}
+.cf-item input {
+  margin: 0;
+  accent-color: #8bc8ea;
+  cursor: pointer;
 }
 .ctrl-list {
   display: flex;
