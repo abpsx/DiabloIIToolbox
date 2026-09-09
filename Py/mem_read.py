@@ -530,6 +530,8 @@ def _page_name(controls: list) -> str:
         return "难度选择"
     if _has_ctrl(controls, 0x06, 264, 310) and _has_ctrl(controls, 0x06, 264, 350):
         return "其他多人"
+    if _has_ctrl(controls, 0x06, 627, 572) and _has_ctrl(controls, 0x06, 33, 572):
+        return "角色选择"
     if _has_ctrl(controls, 0x0C) or _has_ctrl(controls, 0x07):
         return "角色选择/列表"
     return "菜单"
