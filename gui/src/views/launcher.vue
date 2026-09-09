@@ -88,7 +88,7 @@
                 标记 {{ slots[memDlg].mem.marker ?? "—" }}
               </span>
             </div>
-            <div class="md-row">
+            <div class="md-row" v-if="slots[memDlg].mem.gameType !== 0">
               <span class="md-k">账号</span>
               <span class="md-v">{{ slots[memDlg].mem.account || "—" }}</span>
             </div>
@@ -141,7 +141,7 @@ const CFG = "Setting\\launcher.json";
 const MAX_LOG = 200;
 const LOC_NAMES = { 0: "地面", 1: "背包", 2: "腰带", 3: "装备", 4: "仓库", 5: "盒子" };
 
-const emptyMem = () => ({ marker: null, account: "", charIndex: null, charName: "", bag: [], stash: null, error: "" });
+const emptyMem = () => ({ marker: null, account: "", charIndex: null, charName: "", gameType: null, bag: [], stash: null, error: "" });
 const emptySlot = () => ({ label: "", dir: "", params: "", title: "", script: "", pid: 0, mem: emptyMem() });
 
 export default {
@@ -407,6 +407,7 @@ export default {
                 s.mem.error = "";
                 s.mem.marker = m["界面标记"] ?? null;
                 s.mem.account = m["登录的战网账号"] || "";
+                s.mem.gameType = m["游戏类型"] ?? null;
                 s.mem.charIndex = m["人物位置索引"] ?? null;
                 s.mem.charName = m["人物名称"] || "";
                 s.mem.bag = Array.isArray(m["背包物品"]) ? m["背包物品"] : [];

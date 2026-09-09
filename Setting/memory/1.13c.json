@@ -23,6 +23,13 @@
     "type": "dword"
   },
   {
+    "name": "游戏类型",
+    "module": "D2Client.dll",
+    "offset": "0x11C394",
+    "offsets": [],
+    "type": "dword"
+  },
+  {
     "name": "人物指针",
     "module": "D2CLIENT.DLL",
     "offset": "0x11B800",
