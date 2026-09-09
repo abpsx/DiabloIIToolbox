@@ -165,7 +165,6 @@
                     <div v-for="(c, k) in ctrlList" :key="k" class="ctrl-item" :class="{ disabled: ctrlDisabled(c), noclick: ctrlDisabled(c) }" @click="ctrlClick(c)">
                       <span class="ci-no">#{{ k }}</span>
                       <el-tag size="small" effect="plain" :type="c.type === 6 ? 'primary' : 'info'" class="ci-type" :class="{ strike: ctrlDisabled(c) }">{{ c.type_name }}</el-tag>
-                      <el-tag v-if="c.type === 6 && ctrlDisabled(c)" size="small" type="danger" effect="dark" title="dwDisabled@0x08 bit0: 0=不可点击 1=可点击">禁用</el-tag>
                       <span class="ci-pos">({{ c.pos[0] }},{{ c.pos[1] }}) {{ c.size[0] }}×{{ c.size[1] }}</span>
                       <span class="ci-txt" :class="{ 'ci-dis': c.type === 6 && ctrlDisabled(c) }">{{ (c.texts || []).join("\n") || "—" }}</span>
                       <span v-if="c.cb_off" class="ci-cb" :title="'回调 @0x34 相对偏移，同版本下稳定唯一'">{{ c.cb_off }}</span>
