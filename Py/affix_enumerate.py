@@ -33,6 +33,7 @@ TBL_MODSTR = r"C:\Users\abps\Desktop\DiabloIIToolbox\temp\dict_tbl_modstr.json"
 STAT_KEY = {
     110: "ModStr1h",       # 攻击准确率 (AR)
     112: "ModStr3f",       # 照亮范围 (Light Radius)
+    303: "ModStr1u",       # 生命 (Life)（of the Jackal 实测 = hp）
     304: "strModAllResistances",  # 所有抗性+%d
     27: "ModStr2z",        # 生命于击中时偷取 (LL)
     28: "ModStr2y",        # 法力于击中时偷取 (LM)
