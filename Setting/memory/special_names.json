@@ -1,7 +1,7 @@
 {
  "exe": "D2Loader.exe",
- "ts": "2026-09-10 17:54:24",
- "updated_at": "2026-09-10 17:54:24",
+ "ts": "2026-09-10 18:42:44",
+ "updated_at": "2026-09-10 18:42:44",
  "tables": [
   {
    "rec0": 311949826,
@@ -12,7 +12,774 @@
  "unique_table_addr": "0x1297FA02",
  "unique_count": 135,
  "notes_addr": "0x4BD7926",
- "set_names_addr": "0x1916E8",
+ "set_names_addr": "0x1932D4",
+ "sgpt_offset": "0x99E1C",
+ "set_table_addr": "0x12EFD0E0",
+ "set_count": 127,
+ "set_items": {
+  "0": {
+   "code": "lrg",
+   "desc": "Civerb's Ward",
+   "set_idx": 0,
+   "wloc": 10122
+  },
+  "1": {
+   "code": "amu",
+   "desc": "Civerb's Icon",
+   "set_idx": 0,
+   "wloc": 10123
+  },
+  "2": {
+   "code": "gsc",
+   "desc": "Civerb's Cudgel",
+   "set_idx": 0,
+   "wloc": 10124
+  },
+  "3": {
+   "code": "mbt",
+   "desc": "Hsarus' Iron Heel",
+   "set_idx": 1,
+   "wloc": 10125
+  },
+  "4": {
+   "code": "buc",
+   "desc": "Hsarus' Iron Fist",
+   "set_idx": 1,
+   "wloc": 10126
+  },
+  "5": {
+   "code": "mbl",
+   "desc": "Hsarus' Iron Stay",
+   "set_idx": 1,
+   "wloc": 10127
+  },
+  "6": {
+   "code": "lsd",
+   "desc": "Cleglaw's Tooth",
+   "set_idx": 2,
+   "wloc": 10128
+  },
+  "7": {
+   "code": "sml",
+   "desc": "Cleglaw's Claw",
+   "set_idx": 2,
+   "wloc": 10129
+  },
+  "8": {
+   "code": "mgl",
+   "desc": "Cleglaw's Pincers",
+   "set_idx": 2,
+   "wloc": 10130
+  },
+  "9": {
+   "code": "amu",
+   "desc": "Iratha's Collar",
+   "set_idx": 3,
+   "wloc": 10134
+  },
+  "10": {
+   "code": "tgl",
+   "desc": "Iratha's Cuff",
+   "set_idx": 3,
+   "wloc": 10133
+  },
+  "11": {
+   "code": "crn",
+   "desc": "Iratha's Coil",
+   "set_idx": 3,
+   "wloc": 10132
+  },
+  "12": {
+   "code": "tbl",
+   "desc": "Iratha's Cord",
+   "set_idx": 3,
+   "wloc": 10131
+  },
+  "13": {
+   "code": "bsd",
+   "desc": "Isenhart's Lightbrand",
+   "set_idx": 4,
+   "wloc": 10138
+  },
+  "14": {
+   "code": "gts",
+   "desc": "Isenhart's Parry",
+   "set_idx": 4,
+   "wloc": 10137
+  },
+  "15": {
+   "code": "brs",
+   "desc": "Isenhart's Case",
+   "set_idx": 4,
+   "wloc": 10136
+  },
+  "16": {
+   "code": "fhl",
+   "desc": "Isenhart's Horns",
+   "set_idx": 4,
+   "wloc": 10135
+  },
+  "17": {
+   "code": "lbb",
+   "desc": "Vidala's Barb",
+   "set_idx": 5,
+   "wloc": 10142
+  },
+  "18": {
+   "code": "tbt",
+   "desc": "Vidala's Fetlock",
+   "set_idx": 5,
+   "wloc": 10141
+  },
+  "19": {
+   "code": "lea",
+   "desc": "Vidala's Ambush",
+   "set_idx": 5,
+   "wloc": 10140
+  },
+  "20": {
+   "code": "amu",
+   "desc": "Vidala's Snare",
+   "set_idx": 5,
+   "wloc": 10139
+  },
+  "21": {
+   "code": "kit",
+   "desc": "Milabrega's Orb",
+   "set_idx": 6,
+   "wloc": 10146
+  },
+  "22": {
+   "code": "wsp",
+   "desc": "Milabrega's Rod",
+   "set_idx": 6,
+   "wloc": 10145
+  },
+  "23": {
+   "code": "crn",
+   "desc": "Milabrega's Diadem",
+   "set_idx": 6,
+   "wloc": 10144
+  },
+  "24": {
+   "code": "aar",
+   "desc": "Milabrega's Robe",
+   "set_idx": 6,
+   "wloc": 10143
+  },
+  "25": {
+   "code": "bst",
+   "desc": "Cathan's Rule",
+   "set_idx": 7,
+   "wloc": 10151
+  },
+  "26": {
+   "code": "chn",
+   "desc": "Cathan's Mesh",
+   "set_idx": 7,
+   "wloc": 10150
+  },
+  "27": {
+   "code": "msk",
+   "desc": "Cathan's Visage",
+   "set_idx": 7,
+   "wloc": 10149
+  },
+  "28": {
+   "code": "amu",
+   "desc": "Cathan's Sigil",
+   "set_idx": 7,
+   "wloc": 10148
+  },
+  "29": {
+   "code": "rin",
+   "desc": "Cathan's Seal",
+   "set_idx": 7,
+   "wloc": 10147
+  },
+  "30": {
+   "code": "mpi",
+   "desc": "Tancred's Crowbill",
+   "set_idx": 8,
+   "wloc": 10152
+  },
+  "31": {
+   "code": "ful",
+   "desc": "Tancred's Spine",
+   "set_idx": 8,
+   "wloc": 10153
+  },
+  "32": {
+   "code": "lbt",
+   "desc": "Tancred's Hobnails",
+   "set_idx": 8,
+   "wloc": 10154
+  },
+  "33": {
+   "code": "amu",
+   "desc": "Tancred's Weird",
+   "set_idx": 8,
+   "wloc": 10155
+  },
+  "34": {
+   "code": "bhm",
+   "desc": "Tancred's Skull",
+   "set_idx": 8,
+   "wloc": 10156
+  },
+  "35": {
+   "code": "hgl",
+   "desc": "Sigon's Gage",
+   "set_idx": 9,
+   "wloc": 10159
+  },
+  "36": {
+   "code": "ghm",
+   "desc": "Sigon's Visor",
+   "set_idx": 9,
+   "wloc": 10157
+  },
+  "37": {
+   "code": "gth",
+   "desc": "Sigon's Shelter",
+   "set_idx": 9,
+   "wloc": 10158
+  },
+  "38": {
+   "code": "hbt",
+   "desc": "Sigon's Sabot",
+   "set_idx": 9,
+   "wloc": 10160
+  },
+  "39": {
+   "code": "hbl",
+   "desc": "Sigon's Wrap",
+   "set_idx": 9,
+   "wloc": 10161
+  },
+  "40": {
+   "code": "tow",
+   "desc": "Sigon's Guard",
+   "set_idx": 9,
+   "wloc": 10162
+  },
+  "41": {
+   "code": "cap",
+   "desc": "Infernal Cranium",
+   "set_idx": 10,
+   "wloc": 10163
+  },
+  "42": {
+   "code": "gwn",
+   "desc": "Infernal Torch",
+   "set_idx": 10,
+   "wloc": 10164
+  },
+  "43": {
+   "code": "tbl",
+   "desc": "Infernal Sign",
+   "set_idx": 10,
+   "wloc": 10165
+  },
+  "44": {
+   "code": "hlm",
+   "desc": "Berserker's Headgear",
+   "set_idx": 11,
+   "wloc": 10166
+  },
+  "45": {
+   "code": "spl",
+   "desc": "Berserker's Hauberk",
+   "set_idx": 11,
+   "wloc": 10167
+  },
+  "46": {
+   "code": "2ax",
+   "desc": "Berserker's Hatchet",
+   "set_idx": 11,
+   "wloc": 10168
+  },
+  "47": {
+   "code": "lgl",
+   "desc": "Death's Hand",
+   "set_idx": 12,
+   "wloc": 10169
+  },
+  "48": {
+   "code": "lbl",
+   "desc": "Death's Guard",
+   "set_idx": 12,
+   "wloc": 10170
+  },
+  "49": {
+   "code": "wsd",
+   "desc": "Death's Touch",
+   "set_idx": 12,
+   "wloc": 10171
+  },
+  "50": {
+   "code": "sbr",
+   "desc": "Angelic Sickle",
+   "set_idx": 13,
+   "wloc": 10172
+  },
+  "51": {
+   "code": "rng",
+   "desc": "Angelic Mantle",
+   "set_idx": 13,
+   "wloc": 10173
+  },
+  "52": {
+   "code": "rin",
+   "desc": "Angelic Halo",
+   "set_idx": 13,
+   "wloc": 10174
+  },
+  "53": {
+   "code": "amu",
+   "desc": "Angelic Wings",
+   "set_idx": 13,
+   "wloc": 10175
+  },
+  "54": {
+   "code": "swb",
+   "desc": "Arctic Horn",
+   "set_idx": 14,
+   "wloc": 10176
+  },
+  "55": {
+   "code": "qui",
+   "desc": "Arctic Furs",
+   "set_idx": 14,
+   "wloc": 10177
+  },
+  "56": {
+   "code": "vbl",
+   "desc": "Arctic Binding",
+   "set_idx": 14,
+   "wloc": 10178
+  },
+  "57": {
+   "code": "tgl",
+   "desc": "Arctic Mitts",
+   "set_idx": 14,
+   "wloc": 10179
+  },
+  "58": {
+   "code": "amu",
+   "desc": "Arcanna's Sign",
+   "set_idx": 15,
+   "wloc": 10180
+  },
+  "59": {
+   "code": "wst",
+   "desc": "Arcanna's Deathwand",
+   "set_idx": 15,
+   "wloc": 10181
+  },
+  "60": {
+   "code": "skp",
+   "desc": "Arcanna's Head",
+   "set_idx": 15,
+   "wloc": 10182
+  },
+  "61": {
+   "code": "ltp",
+   "desc": "Arcanna's Flesh",
+   "set_idx": 15,
+   "wloc": 10183
+  },
+  "62": {
+   "code": "xh9",
+   "desc": "Natalya's Totem",
+   "set_idx": 16,
+   "wloc": 21668
+  },
+  "63": {
+   "code": "7qr",
+   "desc": "Natalya's Mark",
+   "set_idx": 16,
+   "wloc": 21669
+  },
+  "64": {
+   "code": "ucl",
+   "desc": "Natalya's Shadow",
+   "set_idx": 16,
+   "wloc": 21670
+  },
+  "65": {
+   "code": "xmb",
+   "desc": "Natalya's Soul",
+   "set_idx": 16,
+   "wloc": 21671
+  },
+  "66": {
+   "code": "dr8",
+   "desc": "Aldur's Stony Gaze",
+   "set_idx": 17,
+   "wloc": 21697
+  },
+  "67": {
+   "code": "uul",
+   "desc": "Aldur's Deception",
+   "set_idx": 17,
+   "wloc": 21698
+  },
+  "68": {
+   "code": "9mt",
+   "desc": "Aldur's Gauntlet",
+   "set_idx": 17,
+   "wloc": 21847
+  },
+  "69": {
+   "code": "xtb",
+   "desc": "Aldur's Advance",
+   "set_idx": 17,
+   "wloc": 21700
+  },
+  "70": {
+   "code": "ba5",
+   "desc": "Immortal King's Will",
+   "set_idx": 18,
+   "wloc": 21845
+  },
+  "71": {
+   "code": "uar",
+   "desc": "Immortal King's Soul Cage ",
+   "set_idx": 18,
+   "wloc": 21844
+  },
+  "72": {
+   "code": "zhb",
+   "desc": "Immortal King's Detail",
+   "set_idx": 18,
+   "wloc": 21843
+  },
+  "73": {
+   "code": "xhg",
+   "desc": "Immortal King's Forge",
+   "set_idx": 18,
+   "wloc": 21842
+  },
+  "74": {
+   "code": "xhb",
+   "desc": "Immortal King's Pillar",
+   "set_idx": 18,
+   "wloc": 21841
+  },
+  "75": {
+   "code": "7m7",
+   "desc": "Immortal King's Stone Crusher",
+   "set_idx": 18,
+   "wloc": 21840
+  },
+  "76": {
+   "code": "zmb",
+   "desc": "Tal Rasha's Fire-Spun Cloth",
+   "set_idx": 19,
+   "wloc": 21816
+  },
+  "77": {
+   "code": "amu",
+   "desc": "Tal Rasha's Adjudication",
+   "set_idx": 19,
+   "wloc": 21817
+  },
+  "78": {
+   "code": "oba",
+   "desc": "Tal Rasha's Lidless Eye",
+   "set_idx": 19,
+   "wloc": 21819
+  },
+  "79": {
+   "code": "uth",
+   "desc": "Tal Rasha's Howling Wind",
+   "set_idx": 19,
+   "wloc": 21818
+  },
+  "80": {
+   "code": "xsk",
+   "desc": "Tal Rasha's Horadric Crest",
+   "set_idx": 19,
+   "wloc": 21820
+  },
+  "81": {
+   "code": "urn",
+   "desc": "Griswold's Valor",
+   "set_idx": 20,
+   "wloc": 21676
+  },
+  "82": {
+   "code": "xar",
+   "desc": "Griswold's Heart",
+   "set_idx": 20,
+   "wloc": 21675
+  },
+  "83": {
+   "code": "7ws",
+   "desc": "Griswolds's Redemption",
+   "set_idx": 20,
+   "wloc": 21673
+  },
+  "84": {
+   "code": "paf",
+   "desc": "Griswold's Honor",
+   "set_idx": 20,
+   "wloc": 21674
+  },
+  "85": {
+   "code": "uh9",
+   "desc": "Trang-Oul's Guise",
+   "set_idx": 21,
+   "wloc": 21661
+  },
+  "86": {
+   "code": "xul",
+   "desc": "Trang-Oul's Scales",
+   "set_idx": 21,
+   "wloc": 21664
+  },
+  "87": {
+   "code": "ne9",
+   "desc": "Trang-Oul's Wing",
+   "set_idx": 21,
+   "wloc": 21662
+  },
+  "88": {
+   "code": "xmg",
+   "desc": "Trang-Oul's Claws",
+   "set_idx": 21,
+   "wloc": 21665
+  },
+  "89": {
+   "code": "utc",
+   "desc": "Trang-Oul's Girth",
+   "set_idx": 21,
+   "wloc": 21666
+  },
+  "90": {
+   "code": "ci3",
+   "desc": "M'avina's True Sight",
+   "set_idx": 22,
+   "wloc": 21702
+  },
+  "91": {
+   "code": "uld",
+   "desc": "M'avina's Embrace",
+   "set_idx": 22,
+   "wloc": 21703
+  },
+  "92": {
+   "code": "xtg",
+   "desc": "M'avina's Icy Clutch",
+   "set_idx": 22,
+   "wloc": 21704
+  },
+  "93": {
+   "code": "zvb",
+   "desc": "M'avina's Tenet",
+   "set_idx": 22,
+   "wloc": 21705
+  },
+  "94": {
+   "code": "amc",
+   "desc": "M'avina's Caster",
+   "set_idx": 22,
+   "wloc": 21706
+  },
+  "95": {
+   "code": "amu",
+   "desc": "Telling of Beads",
+   "set_idx": 23,
+   "wloc": 21717
+  },
+  "96": {
+   "code": "ulg",
+   "desc": "Laying of Hands",
+   "set_idx": 23,
+   "wloc": 21718
+  },
+  "97": {
+   "code": "xlb",
+   "desc": "Rite of Passage",
+   "set_idx": 23,
+   "wloc": 21719
+  },
+  "98": {
+   "code": "uui",
+   "desc": "Spiritual Custodian",
+   "set_idx": 23,
+   "wloc": 21720
+  },
+  "99": {
+   "code": "umc",
+   "desc": "Credendum",
+   "set_idx": 23,
+   "wloc": 21721
+  },
+  "100": {
+   "code": "7ma",
+   "desc": "Dangoon's Teaching",
+   "set_idx": 24,
+   "wloc": 21823
+  },
+  "101": {
+   "code": "uts",
+   "desc": "Heaven's Taebaek",
+   "set_idx": 24,
+   "wloc": 21825
+  },
+  "102": {
+   "code": "xrs",
+   "desc": "Haemosu's Adament",
+   "set_idx": 24,
+   "wloc": 21826
+  },
+  "103": {
+   "code": "uhm",
+   "desc": "Ondal's Almighty",
+   "set_idx": 24,
+   "wloc": 21824
+  },
+  "104": {
+   "code": "xhm",
+   "desc": "Guillaume's Face",
+   "set_idx": 25,
+   "wloc": 21731
+  },
+  "105": {
+   "code": "ztb",
+   "desc": "Wilhelm's Pride",
+   "set_idx": 25,
+   "wloc": 21839
+  },
+  "106": {
+   "code": "xvg",
+   "desc": "Magnus' Skin",
+   "set_idx": 25,
+   "wloc": 21733
+  },
+  "107": {
+   "code": "xml",
+   "desc": "Wihtstan's Guard",
+   "set_idx": 25,
+   "wloc": 21734
+  },
+  "108": {
+   "code": "xrn",
+   "desc": "Hwanin's Splendor",
+   "set_idx": 26,
+   "wloc": 21713
+  },
+  "109": {
+   "code": "xcl",
+   "desc": "Hwanin's Refuge",
+   "set_idx": 26,
+   "wloc": 21714
+  },
+  "110": {
+   "code": "mbl",
+   "desc": "Hwanin's Seal",
+   "set_idx": 26,
+   "wloc": 21821
+  },
+  "111": {
+   "code": "9vo",
+   "desc": "Hwanin's Justice",
+   "set_idx": 26,
+   "wloc": 21712
+  },
+  "112": {
+   "code": "7ls",
+   "desc": "Sazabi's Cobalt Redeemer",
+   "set_idx": 27,
+   "wloc": 21708
+  },
+  "113": {
+   "code": "upl",
+   "desc": "Sazabi's Ghost Liberator",
+   "set_idx": 27,
+   "wloc": 21709
+  },
+  "114": {
+   "code": "xhl",
+   "desc": "Sazabi's Mental Sheath",
+   "set_idx": 27,
+   "wloc": 21710
+  },
+  "115": {
+   "code": "7gd",
+   "desc": "Bul-Kathos' Sacred Charge",
+   "set_idx": 28,
+   "wloc": 21688
+  },
+  "116": {
+   "code": "7wd",
+   "desc": "Bul-Kathos' Tribal Guardian",
+   "set_idx": 28,
+   "wloc": 21689
+  },
+  "117": {
+   "code": "xap",
+   "desc": "Cow King's Horns",
+   "set_idx": 29,
+   "wloc": 21723
+  },
+  "118": {
+   "code": "stu",
+   "desc": "Cow King's Hide",
+   "set_idx": 29,
+   "wloc": 21724
+  },
+  "119": {
+   "code": "vbt",
+   "desc": "Cow King's Hoofs",
+   "set_idx": 29,
+   "wloc": 21725
+  },
+  "120": {
+   "code": "6cs",
+   "desc": "Naj's Puzzler",
+   "set_idx": 30,
+   "wloc": 21640
+  },
+  "121": {
+   "code": "ult",
+   "desc": "Naj's Light Plate",
+   "set_idx": 30,
+   "wloc": 21831
+  },
+  "122": {
+   "code": "ci0",
+   "desc": "Naj's Circlet",
+   "set_idx": 30,
+   "wloc": 21832
+  },
+  "123": {
+   "code": "cap",
+   "desc": "McAuley's Paragon",
+   "set_idx": 31,
+   "wloc": 21878
+  },
+  "124": {
+   "code": "vbt",
+   "desc": "McAuley's Riprap",
+   "set_idx": 31,
+   "wloc": 21877
+  },
+  "125": {
+   "code": "vgl",
+   "desc": "McAuley's Taboo",
+   "set_idx": 31,
+   "wloc": 21876
+  },
+  "126": {
+   "code": "bwn",
+   "desc": "McAuley's Superstition",
+   "set_idx": 31,
+   "wloc": 21875
+  }
+ },
  "notes": {
   "Athena's Wrath": "阿西娜的忿怒",
   "Pierre Tombale Couant": "考恩特",
@@ -1899,6 +2666,10 @@
   [
    "Tal Rasha's Adjudication",
    "塔-拉夏的判决"
+  ],
+  [
+   "Tal Rasha's Fine-Spun C",
+   "塔-拉夏的纤细衣服"
   ],
   [
    "Tal Rasha's Guardianship",

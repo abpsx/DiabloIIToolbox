@@ -34,6 +34,52 @@ def dword(pid, h, a):
     r = mem.read(pid, h, a, 4)
     return int.from_bytes(r, "little") if r else 0
 
+# ---------- setitems 数据表（hackmap d2structs.h / D2CallStub.cpp，1.13c） ----------
+#   p_D2DataTables @ D2Common+0x99E1C（d2ptrs.h D2VARPTR2，1.13c 分支 b1=0x6FDE9E1C）
+#   → [var] = sgptDataTables → +0xC18=pSetItemsTxt、+0xC1C=nSetItems
+#   记录 0x1B8/条：dwIndex@+00、szDesc[32]@+02、wLocaleTxtNo@+24、szCode[4]@+28、dwSetIdx@+2C
+SGPT_OFFSET = 0x99E1C
+SET_REC_SIZE = 0x1B8
+
+
+def locate_set_table(pid, h):
+    """返回 (pSetItemsTxt, nSetItems)；找不到返回 (0, 0)。"""
+    base = mem.module_base(pid, "D2Common.dll")
+    if not base:
+        return 0, 0
+    sgpt = dword(pid, h, base + SGPT_OFFSET)
+    if not (0x1000000 <= sgpt < 0x80000000):
+        return 0, 0
+    pSet = dword(pid, h, sgpt + 0xC18)
+    nSet = dword(pid, h, sgpt + 0xC1C)
+    if not pSet or not (0 < nSet < 2000):
+        return 0, 0
+    # 校验首记录：dwIndex==0 且 desc 为可打印 ASCII
+    b = mem.read(pid, h, pSet, 0x2C)
+    if not b or len(b) != 0x2C or int.from_bytes(b[0:2], "little") != 0:
+        return 0, 0
+    desc = b[2:34].split(b"\x00")[0]
+    if not desc or not all(0x20 <= x < 0x7F for x in desc[:4]):
+        return 0, 0
+    return pSet, nSet
+
+
+def dump_set_items(pid, h, pSet, nSet):
+    """遍历 setitems 表 → {dwIndex: {code, desc, set_idx, wloc}}。"""
+    out = {}
+    for i in range(nSet):
+        r = pSet + i * SET_REC_SIZE
+        b = mem.read(pid, h, r, 0x30)
+        if not b or len(b) != 0x30:
+            continue
+        dw_idx = int.from_bytes(b[0:2], "little")
+        desc = b[2:34].split(b"\x00")[0].decode("latin-1", "ignore")
+        wloc = int.from_bytes(b[0x24:0x26], "little")
+        code = b[0x28:0x2C].rstrip(b"\x00 ").decode("latin-1", "ignore")
+        set_idx = int.from_bytes(b[0x2C:0x30], "little") & 0xFFFF
+        out[dw_idx] = {"code": code, "desc": desc, "set_idx": set_idx, "wloc": wloc}
+    return out
+
 def scan_mem(pid, h, pat: bytes) -> list[int]:
     """全内存搜索模式串, 返回命中地址列表。"""
     found = []
@@ -71,11 +117,39 @@ class SpecialName:
         self.unique_tables = []     # [(记录首, 记录数)]
         self.note_map = {}          # 英文名 -> 中文名
         self.notes_anchor = 0       # 注释池锚点（UTF-8 "巫师之刺" 命中）
-        self.set_names = []         # [(中文, 英文)] 套装部件名对
+        self.set_names = []         # [(英文, 中文)] 套装部件名对
         self.set_anchor = 0         # 套装名 String 表锚点
+        self.set_table_addr = 0     # pSetItemsTxt（hackmap sgptDataTables 链路）
+        self.set_count = 0          # nSetItems
         self._locate_unique_tables()
         self._locate_notes()
         self._locate_set_names()
+        self._locate_set_table()
+
+    # ---------- setitems 数据表（套装部件名，hackmap 权威偏移） ----------
+    def _locate_set_table(self):
+        self.set_table_addr, self.set_count = locate_set_table(self.pid, self.h)
+
+    def set_special_name(self, dw_file_index: int) -> str:
+        """dwFileIndex（ItemData+0x28，setitems 表行号）→ "中文 英文" 套装部件名。
+
+        表地址失效时重定位；双语名取自 set_names 池（英文 desc 精确匹配）。
+        """
+        if not (0 <= dw_file_index < self.set_count) or not self.set_table_addr:
+            return ""
+        b = mem.read(self.pid, self.h,
+                     self.set_table_addr + dw_file_index * SET_REC_SIZE, 0x30)
+        if not b or len(b) != 0x30:
+            return ""
+        desc = b[2:34].split(b"\x00")[0].decode("latin-1", "ignore")
+        if not desc:
+            return ""
+        cn = ""
+        for en, c in self.set_names:
+            if en == desc:
+                cn = c
+                break
+        return ("%s %s" % (cn, desc)).strip() if cn else desc
 
     # ---------- unique 名表 ----------
     def _locate_unique_tables(self):
@@ -248,6 +322,10 @@ def main():
             "unique_count": sn.unique_tables[0][1] if sn.unique_tables else 0,
             "notes_addr": ("0x%X" % sn.notes_anchor) if sn.notes_anchor else "",
             "set_names_addr": ("0x%X" % sn.set_anchor) if sn.set_anchor else "",
+            "sgpt_offset": ("0x%X" % SGPT_OFFSET),
+            "set_table_addr": ("0x%X" % sn.set_table_addr) if sn.set_table_addr else "",
+            "set_count": sn.set_count,
+            "set_items": dump_set_items(pid, h, sn.set_table_addr, sn.set_count),
             "notes": sn.note_map,
             "set_names": [[en, cn] for en, cn in sn.set_names],
         }
@@ -256,7 +334,7 @@ def main():
         with open(p, "w", encoding="utf-8") as f:
             json.dump(out, f, ensure_ascii=False, indent=1)
         print("已写入", p, "tables:", len(out["tables"]), "notes:", len(out["notes"]),
-              "set_names:", len(out["set_names"]))
+              "set_names:", len(out["set_names"]), "set_items:", len(out["set_items"]))
         return 0
 
     if args.test:

@@ -253,6 +253,82 @@ _SN_NAME = 0x26       # 名字字段宽度
 _SN_CODE = 0x26       # code 字段偏移
 
 
+# ---------- setitems 表（套装部件名；hackmap d2ptrs.h/d2structs.h，1.13c） ----------
+#   p_D2DataTables @ D2Common+0x99E1C → [var]=sgptDataTables → +0xC18=pSetItemsTxt、+0xC1C=nSetItems
+#   记录 0x1B8/条：dwIndex@+00、szDesc[32]@+02、wLocaleTxtNo@+24、szCode[4]@+28
+_SGPT_OFFSET = 0x99E1C
+_SET_REC = 0x1B8
+_set_cache: dict = {"path": "", "pSet": 0, "nSet": 0, "items": {}, "names": {}}
+
+
+def _set_lookup(pid: int, h: int, dw_file_index: int, config_dir: str) -> str:
+    """套装物品（quality==5）dwFileIndex → "中文 英文" 套装部件名；无则空串。
+
+    表地址来自 special_names.json 的 set_table_addr（会话级）；失效时经
+    D2Common+0x99E1C 链路重定位并回写 json。
+    """
+    global _set_cache
+    if not _set_cache["path"] or _set_cache["path"] != config_dir:
+        _set_cache["path"] = config_dir
+        p = os.path.join(config_dir, "special_names.json")
+        try:
+            with open(p, encoding="utf-8") as f:
+                d = json.load(f)
+            _set_cache["pSet"] = int(d.get("set_table_addr", "0"), 16)
+            _set_cache["nSet"] = int(d.get("set_count", 0))
+            _set_cache["items"] = d.get("set_items", {})
+            _set_cache["names"] = {en: cn for en, cn in d.get("set_names", [])}
+        except Exception:
+            _set_cache["pSet"], _set_cache["nSet"] = 0, 0
+            _set_cache["items"], _set_cache["names"] = {}, {}
+
+    pSet, nSet = _set_cache["pSet"], _set_cache["nSet"]
+
+    def _read_desc(rec: int) -> str:
+        b = read(pid, h, rec, 0x30)
+        if not b or len(b) != 0x30:
+            return ""
+        return b[2:34].split(b"\x00")[0].decode("latin-1", "ignore")
+
+    if pSet and 0 <= dw_file_index < nSet:
+        desc = _read_desc(pSet + dw_file_index * _SET_REC)
+        if desc:
+            cn = _set_cache["names"].get(desc, "")
+            return ("%s %s" % (cn, desc)).strip() if cn else desc
+
+    # 缓存失效/缺表 → 重定位（D2Common+0x99E1C 链路）并回写
+    try:
+        from special_name import locate_set_table, dump_set_items
+        base = resolve_base(pid, "D2Common.dll+0")
+        if base:
+            pSet2, nSet2 = locate_set_table(pid, h)
+            if pSet2 and nSet2:
+                _set_cache["pSet"], _set_cache["nSet"] = pSet2, nSet2
+                _set_cache["items"] = dump_set_items(pid, h, pSet2, nSet2)
+                try:
+                    p = os.path.join(config_dir, "special_names.json")
+                    out = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
+                    out.update({
+                        "updated_at": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
+                        "sgpt_offset": ("0x%X" % _SGPT_OFFSET),
+                        "set_table_addr": ("0x%X" % pSet2),
+                        "set_count": nSet2,
+                        "set_items": _set_cache["items"],
+                    })
+                    with open(p, "w", encoding="utf-8") as f:
+                        json.dump(out, f, ensure_ascii=False, indent=1)
+                except Exception:
+                    pass
+                if 0 <= dw_file_index < nSet2:
+                    desc = _read_desc(pSet2 + dw_file_index * _SET_REC)
+                    if desc:
+                        cn = _set_cache["names"].get(desc, "")
+                        return ("%s %s" % (cn, desc)).strip() if cn else desc
+    except Exception:
+        pass
+    return ""
+
+
 def _sn_lookup(pid: int, h: int, code_str: str, config_dir: str) -> str:
     """物品缩写（如 7dg）→ 特殊名（"巫师之刺 Wizardspike"）；无则空串。"""
     global _sn_cache
@@ -387,7 +463,7 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
                 name = txt_to_name(pid, h, txt)[0]
             except Exception:
                 name = ""
-        # 特殊名（unique: quality==7；其余品质后续扩展）
+        # 特殊名（unique: quality==7；set 套装: quality==5 → ItemData+0x28=dwFileIndex）
         quality = read_dword(pid, h, idat + 0x00) if idat else 0
         special = ""
         if quality == 7:
@@ -397,6 +473,12 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
                     special = _sn_lookup(pid, h, abbr, config_dir)
                 except Exception:
                     special = ""
+        elif quality == 5:
+            try:
+                dw_file = read_dword(pid, h, idat + 0x28)
+                special = _set_lookup(pid, h, dw_file, config_dir)
+            except Exception:
+                special = ""
         entries.append({
             "abbr": code_map.get(txt, f"<{txt}>"),
             "code": txt,
