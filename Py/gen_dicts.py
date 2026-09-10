@@ -27,20 +27,13 @@ def clean(s: str) -> str:
 
 
 def main() -> None:
-    # 套装部件 by_code → 完整列表项（name_set 来源，含判断字段 index/wloc/set_idx/desc）
+    # special_names 一次读取共享（dict_set_items / dict_unique_items / dict_set_names / dict_notes）
     sn = load("special_names.json")
-    si = sn.get("set_items", {})
-    set_list: dict[str, list] = {}
-    for k, v in si.items():
-        c = clean(v.get("code"))
-        if c:
-            set_list.setdefault(c, []).append(
-                {"index": k, "set_idx": v.get("set_idx"), "desc": v.get("desc"),
-                 "wloc": v.get("wloc"), "zh": v.get("zh", "")})
 
     # ---- 1. 物品码表（索引指向 items 下标，键值对瘦身） ----
     ic = load("item_codes.json")
     items, by_id, by_code = [], {}, {}
+    type_map: dict[str, str] = {}
     for it in ic["items"]:
         cid, code = it.get("id"), it.get("code")
         if cid is None or not code:
@@ -50,18 +43,23 @@ def main() -> None:
             "id": cid, "code": code,
             "name": it.get("name_clean") or it.get("name", ""),
             "name_raw": it.get("name_raw", ""),
-            "type": it.get("type"),                # itemtypes 行索引（数字）
-            "type_code": it.get("type_code", ""),  # itemtypes code（axe/scro…）
-            "quality": it.get("quality"),          # 品质等级 qlvl
+            "type": it.get("type"),          # itemtypes 行索引（数字）
             "invw": it.get("invw"), "invh": it.get("invh"),  # 占格宽/高
-            "name_set": set_list.get(code, []),   # 套装部件（含 index/wloc 等判断字段）
         })
         by_id[str(cid)] = idx
         by_code.setdefault(code, idx)
+        # type → type_code 映射表（itemtypes 行索引 → 类型 code 字符串）
+        t = it.get("type")
+        tc = (it.get("type_code") or "").strip()
+        if t is not None and tc and str(t) not in type_map:
+            type_map[str(t)] = tc
     dump("dict_item_codes.json", {"items": items, "by_id": by_id, "by_code": by_code})
     print("dict_item_codes: items=%d by_id=%d by_code=%d" % (len(items), len(by_id), len(by_code)))
+    dump("dict_item_types.json", type_map)
+    print("dict_item_types: %d" % len(type_map))
 
     # ---- 2. 套装部件 ----
+    si = sn.get("set_items", {})
     si_idx, si_code = {}, {}
     for k, v in si.items():
         si_idx[k] = v
