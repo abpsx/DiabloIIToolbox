@@ -69,6 +69,7 @@ NAME_ZH_OVERRIDE = {
     "of the Locust": ("生命偷取", "lifesteal"), "of the Bat": ("法力偷取", "manasteal"),
     "of the Vampire": ("法力偷取", "manasteal"),
     "Snake's": ("法力", "mana"), "Serpent's": ("法力", "mana"),
+    "Summoner's": ("召唤技能", "skilltab"),
 }
 
 # 名池扫描区域（会话地址；重启后按 tbl 加载重取，此处为探查确认值）
