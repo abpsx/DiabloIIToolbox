@@ -27,6 +27,16 @@ def clean(s: str) -> str:
 
 
 def main() -> None:
+    # 套装部件 by_code → zh（name_set 来源；special_names 一次读取共享）
+    sn = load("special_names.json")
+    si = sn.get("set_items", {})
+    set_zh: dict[str, list] = {}
+    for k, v in si.items():
+        c = clean(v.get("code"))
+        zh = (v.get("zh") or "").strip()
+        if c and zh:
+            set_zh.setdefault(c, []).append(zh)
+
     # ---- 1. 物品码表（索引指向 items 下标，键值对瘦身） ----
     ic = load("item_codes.json")
     items, by_id, by_code = [], {}, {}
@@ -39,9 +49,11 @@ def main() -> None:
             "id": cid, "code": code,
             "name": it.get("name_clean") or it.get("name", ""),
             "name_raw": it.get("name_raw", ""),
-            "type": it.get("type", ""),          # 物品类型（itemtypes code）
-            "quality": it.get("quality"),        # 品质等级 qlvl
+            "type": it.get("type"),                # itemtypes 行索引（数字）
+            "type_code": it.get("type_code", ""),  # itemtypes code（axe/scro…）
+            "quality": it.get("quality"),          # 品质等级 qlvl
             "invw": it.get("invw"), "invh": it.get("invh"),  # 占格宽/高
+            "name_set": set_zh.get(code, []),      # 套装部件中文名（同 code 多条）
         })
         by_id[str(cid)] = idx
         by_code.setdefault(code, idx)
@@ -49,8 +61,6 @@ def main() -> None:
     print("dict_item_codes: items=%d by_id=%d by_code=%d" % (len(items), len(by_id), len(by_code)))
 
     # ---- 2. 套装部件 ----
-    sn = load("special_names.json")
-    si = sn.get("set_items", {})
     si_idx, si_code = {}, {}
     for k, v in si.items():
         si_idx[k] = v

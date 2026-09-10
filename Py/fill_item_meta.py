@@ -49,14 +49,16 @@ def main() -> None:
             ntype = row["ntype"]
             tcode = mem.read(pid, h, pit + ntype * 0xE4, 8).split(b"\x00")[0]
             tcode = tcode[:4].decode("latin-1").strip()
+            # type=itemtypes 行索引（数字）；type_code=类型 code（字符串）
             new = {
-                "type": tcode,
+                "type": ntype,
+                "type_code": tcode,
                 "quality": row["qlvl"],
                 "invw": row["xsize"],
                 "invh": row["ysize"],
             }
             for k, v in new.items():
-                if k not in it:
+                if k == "type" or k not in it:
                     it[k] = v
                     added += 1
         text = json.dumps(ic, ensure_ascii=False)
