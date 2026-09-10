@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""词缀映射：运行时内存枚举（无固化对照表）。
+"""词缀映射：运行时内存枚举（纯内存链路，词条中文来自 tbl 描述池）。
 
 数据源全部来自内存：
   1. 扩展表（[D2Common+0x9FBBC]，1452 行，行宽 0x90）——枚举全部词缀行
      name(行首) / level(+0x24) / min(+0x2C) / max(+0x30) / stat枚举(+0x5C)
+     / 技能组(+0x64 高16位)
   2. tbl 名池——词缀中文名（name_zh）
-  3. stat 枚举中文标签——内嵌常量（词缀系统自有枚举，无内存名表，一次性提炼）
+  3. tbl 描述池（temp\\dict_tbl_modstr.json，由 _tbl_dump.py 生成）——词条中文描述
+     stat → 描述 key 映射见 STAT_KEY；技能组 → 描述 key 见 GROUP_KEY
 
 用法：
   python affix_enumerate.py            # 枚举并打印统计
@@ -23,9 +25,38 @@ import sys
 sys.path.insert(0, r"C:\Users\abps\Desktop\DiabloIIToolbox\Py")
 import mem_read as mr
 
+TBL_MODSTR = r"C:\Users\abps\Desktop\DiabloIIToolbox\temp\dict_tbl_modstr.json"
+
 # ============================================================
-# stat 枚举 -> 中文词条（词缀系统自有枚举，一次性提炼自 txt 交叉标注，内嵌固化）
+# stat 枚举 -> tbl 描述池 key（词条中文来自 tbl，非 txt）
 # ============================================================
+STAT_KEY = {
+    110: "ModStr1h",       # 攻击准确率 (AR)
+    112: "ModStr3f",       # 照亮范围 (Light Radius)
+    304: "strModAllResistances",  # 所有抗性+%d
+    27: "ModStr2z",        # 生命于击中时偷取 (LL)
+    28: "ModStr2y",        # 法力于击中时偷取 (LM)
+    18: "ModStr4p",        # 快速打击恢复 (FHR)
+    44: "ItemExpansiveChancX",  # 攻击时有 %d%% 机会施展等级 %d %s
+}
+# 技能组（+0x64 高16位）-> 描述池 key
+# 锚点实测：0xFF02(Summoner's) 盾牌=圣骑士技能、0xFF03(Monk's) 项链=圣骑士技能
+# 其余组（ama/sor/bar）按原版职业对应；0xFF05/0xFF06(dru/ass) anhei tbl 无描述，待实测
+GROUP_KEY = {
+    0xFF00: "ModStr3a",  # 亚马逊技能等级
+    0xFF01: "ModStr3d",  # 法师技能等级
+    0xFF02: "ModStr3b",  # 圣骑士技能等级（anhei 实测）
+    0xFF03: "ModStr3b",  # 圣骑士技能等级
+    0xFF04: "ModStr3e",  # 野蛮人技能等级
+    0xFF05: None,        # anhei tbl 无德鲁伊描述
+    0xFF06: None,        # anhei tbl 无刺客描述
+}
+GROUP_ORIG = {  # 组原版职业（标注用）
+    0xFF00: "ama", 0xFF01: "sor", 0xFF02: "nec", 0xFF03: "pal",
+    0xFF04: "bar", 0xFF05: "dru", 0xFF06: "ass",
+}
+
+# fallback（描述池缺 key 时）：stat 枚举 -> 中文
 STAT_ZH = {
     1: "伤害减少", 2: "魔法伤害减少", 3: "元素伤害吸收", 4: "对远程防御", 5: "反伤",
     6: "攻击速度", 7: "攻击/格挡速度", 8: "格挡几率", 9: "冰冷伤害", 10: "冰冷伤害",
@@ -62,21 +93,16 @@ STAT_CODE = {
     128: "sor", 129: "bar", 132: "mana-kill", 137: "cold", 138: "fire",
     139: "ltng", 140: "dmg-pois", 141: "stack", 142: "dmg-undead",
 }
-# 词缀名特例：技能系/抗性系细分（词缀名 -> 词条中文, mod code）
-NAME_ZH_OVERRIDE = {
-    "Monk's": ("圣骑士技能", "pal"), "Slayer's": ("野蛮人技能", "bar"),
-    "Garnet": ("火焰抗性", "res-fire"), "of Life": ("生命", "hp"),
-    "of the Locust": ("生命偷取", "lifesteal"), "of the Bat": ("法力偷取", "manasteal"),
-    "of the Vampire": ("法力偷取", "manasteal"),
-    "Snake's": ("法力", "mana"), "Serpent's": ("法力", "mana"),
-    "Summoner's": ("圣骑士技能", "pal"),  # anhei mod 实测：Summoner's 词条为圣骑士技能
-    "Magekiller's": ("刺客技能", "ass"),
-    "Prismatic": ("全抗", "res-all"),
-}
 
 # 名池扫描区域（会话地址；重启后按 tbl 加载重取，此处为探查确认值）
 POOLS = (0x12800000, 0x12804000, 0x127FE000, 0x1344F000)
 POOL_SIZE = 0x9000
+
+_COL = re.compile(r"\xffc[0-9a-zA-Z;]")
+
+
+def clean(s: str) -> str:
+    return _COL.sub("", s).strip()
 
 
 def scan_names(pid: int, h: int, beg: int, size: int) -> dict:
@@ -127,11 +153,21 @@ def table_base(pid: int, h: int) -> int | None:
     return mr.read_ptr(pid, h, d2c + 0x9FBBC)
 
 
+def load_desc_pool() -> dict:
+    """加载 tbl 描述池（_tbl_dump.py 生成；游戏重启后重跑一次即可）"""
+    try:
+        with open(TBL_MODSTR, encoding="utf-8") as f:
+            return json.load(f).get("items", {})
+    except Exception:
+        return {}
+
+
 def enumerate_affixes(pid: int, h: int) -> dict:
     """枚举扩展表全部词缀行 → {id: {row,name,name_zh,type,level,stat,mod}}"""
     sP = table_base(pid, h)
     if not sP:
         return {}
+    pool = load_desc_pool()
     en2zh = {}
     for beg in POOLS:
         en2zh.update(scan_names(pid, h, beg, POOL_SIZE))
@@ -150,13 +186,20 @@ def enumerate_affixes(pid: int, h: int) -> dict:
         lvl = mr.read_value(pid, h, b + 0x24, "word")
         mn = mr.read_value(pid, h, b + 0x2C, "word")
         mx = mr.read_value(pid, h, b + 0x30, "word")
-        # 词条中文：词缀名特例优先，否则 stat 枚举
-        ov = NAME_ZH_OVERRIDE.get(name)
-        if ov:
-            zh, code = ov
+        grp = mr.read_value(pid, h, b + 0x64, "dword") >> 16
+        # 词条中文：技能类按组查描述池；否则按 stat 查描述池；fallback STAT_ZH
+        code = STAT_CODE.get(stat, "?")
+        if stat == 125 and grp in GROUP_KEY:
+            key = GROUP_KEY[grp]
+            zh = clean(pool.get(key, "")) if key else ""
+            if not zh:
+                zh = f"技能({GROUP_ORIG.get(grp, '?')}组待确认)"
+            code = "skilltab+" + GROUP_ORIG.get(grp, "?")
         else:
-            zh = STAT_ZH.get(stat, "?")
-            code = STAT_CODE.get(stat, "?")
+            key = STAT_KEY.get(stat)
+            zh = clean(pool.get(key, "")) if key else STAT_ZH.get(stat, "?")
+            if not zh:
+                zh = STAT_ZH.get(stat, "?")
         aff[str(rid)] = {
             "row": rid,
             "name": name,
@@ -164,13 +207,14 @@ def enumerate_affixes(pid: int, h: int) -> dict:
             "type": "S" if name.startswith("of ") else "P",
             "level": lvl,
             "stat": stat,
+            "grp": grp,
             "mod": {"zh": zh, "code": code, "min": mn, "max": mx},
         }
     return aff
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="词缀映射：运行时内存枚举")
+    ap = argparse.ArgumentParser(description="词缀映射：运行时内存枚举（词条来自 tbl 描述池）")
     ap.add_argument("--dump", type=int, default=0, help="打印前 N 行")
     ap.add_argument("--ids", type=str, default="", help="查指定词缀 id，逗号分隔")
     ap.add_argument("--out", type=str, default="", help="写 JSON 文件（可选）")
