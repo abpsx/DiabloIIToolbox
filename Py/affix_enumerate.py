@@ -70,6 +70,7 @@ NAME_ZH_OVERRIDE = {
     "of the Vampire": ("法力偷取", "manasteal"),
     "Snake's": ("法力", "mana"), "Serpent's": ("法力", "mana"),
     "Summoner's": ("圣骑士技能", "pal"),  # anhei mod 实测：Summoner's 词条为圣骑士技能
+    "Magekiller's": ("刺客技能", "ass"),
     "Prismatic": ("全抗", "res-all"),
 }
 
