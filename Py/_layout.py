@@ -71,7 +71,7 @@ def get(pid, h):
     cands = _scan(pid, h)
     stash = [c for c in cands if (c[0], c[1]) == (10, 10)]
     invs = [c for c in cands if (c[0], c[1]) == (10, 4)]
-    cubes = [c for c in cands if (c[0], c[1]) == (6, 4)]
+    cubes = [c for c in cands if (c[0], c[1]) == (10, 8)]  # 盒子 10x8 (实测确认)
     r = {}
     if stash:
         c = max(stash, key=lambda x: x[2] * x[3])
