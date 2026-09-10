@@ -289,12 +289,16 @@ def read_utf16(pid, h, addr, maxlen=256):
 
 
 def clean_name(s: str) -> str:
+    """清洗物品名：只去颜色码，保留换行/星号等全部内容（mod 多行文本）。
+    每行去两端空白与装饰符（≡△▽◣◢◥◤▷◁⬢□■◆◇●○），首尾空行删除。"""
     s = re.sub(r"\u00ffc[0-9a-fA-F/]", "", s)   # 颜色码 ÿcX / ÿc/
-    s = re.sub(r"[\uff0a]+", "", s)             # 星号装饰 ＊＊＊
-    s = s.replace("\n", "")
-    # 一次性去掉两端 空白/全角空格/图标/装饰符（≡△▽◣◢◥◤▷◁⬢□■◆◇●○）
-    s = s.strip(" \t\u3000\u2261\u25b3\u25bd\u25e3\u25e2\u25e5\u25e4\u25b7\u25c1\u2b22\u25a1\u25a0\u25c6\u25c7\u25cf\u25cb\u00ff")
-    return s
+    lines = [ln.strip(" \t\u3000\u2261\u25b3\u25bd\u25e3\u25e2\u25e5\u25e4\u25b7\u25c1\u2b22\u25a1\u25a0\u25c6\u25c7\u25cf\u25cb\u00ff")
+             for ln in s.split("\n")]
+    while lines and not lines[0]:
+        lines.pop(0)
+    while lines and not lines[-1]:
+        lines.pop()
+    return "\n".join(lines)
 
 
 def read_item_row(pid, h, base, txt_id):
@@ -320,18 +324,28 @@ def read_item_row(pid, h, base, txt_id):
     }
 
 
-def txt_to_name(pid, h, txt_id):
-    """TXT id -> 清洗后物品名；返回 (name_clean, row)。失败 name 为空串。"""
+def txt_to_name_full(pid, h, txt_id):
+    """TXT id -> (清洗后物品名, 原始UTF-16文本, row)。失败时 name/raw 为空串。
+
+    raw 保留色码/星号/换行等全部原始内容（含 \n 多行结构）。
+    """
     base = find_itemtxt_base(pid, h)
     if not base:
-        return "", None
+        return "", "", None
     row = read_item_row(pid, h, base, txt_id)
     if not row:
-        return "", None
+        return "", "", None
     disp = find_locale_dispatch(pid, h)
     if not disp:
-        return "", row
+        return "", "", row
     ptr = get_locale_text(pid, h, disp, row["locale"])
     if not ptr:
-        return "", row
-    return clean_name(read_utf16(pid, h, ptr)), row
+        return "", "", row
+    raw = read_utf16(pid, h, ptr)
+    return clean_name(raw), raw, row
+
+
+def txt_to_name(pid, h, txt_id):
+    """TXT id -> 清洗后物品名；返回 (name_clean, row)。失败 name 为空串。"""
+    name, _raw, row = txt_to_name_full(pid, h, txt_id)
+    return name, row

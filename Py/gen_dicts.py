@@ -33,9 +33,11 @@ def main() -> None:
         cid, code = it.get("id"), it.get("code")
         if cid is None or not code:
             continue
-        rec = {"code": code, "name": it.get("name_clean") or it.get("name", "")}
+        nm = it.get("name_clean") or it.get("name", "")
+        # name=完整多行清洗文本; name_raw=原始UTF-16文本(含色码/换行)
+        rec = {"code": code, "name": nm, "name_raw": it.get("name_raw", "")}
         by_id[str(cid)] = rec
-        by_code.setdefault(code, {"id": cid, "name": rec["name"]})
+        by_code.setdefault(code, {"id": cid, "name": nm, "name_raw": rec["name_raw"]})
     dump("dict_item_codes.json", {"by_id": by_id, "by_code": by_code})
     print("dict_item_codes: by_id=%d by_code=%d" % (len(by_id), len(by_code)))
 
