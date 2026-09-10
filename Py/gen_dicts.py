@@ -39,6 +39,9 @@ def main() -> None:
             "id": cid, "code": code,
             "name": it.get("name_clean") or it.get("name", ""),
             "name_raw": it.get("name_raw", ""),
+            "type": it.get("type", ""),          # 物品类型（itemtypes code）
+            "quality": it.get("quality"),        # 品质等级 qlvl
+            "invw": it.get("invw"), "invh": it.get("invh"),  # 占格宽/高
         })
         by_id[str(cid)] = idx
         by_code.setdefault(code, idx)

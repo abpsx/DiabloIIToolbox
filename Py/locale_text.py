@@ -316,11 +316,13 @@ def read_item_row(pid, h, base, txt_id):
         "invfile": s(0x20, 96),
         "code": s(0x80, 20).strip(),
         "locale": int.from_bytes(raw[0xF4:0xF6], "little"),
-        "ntype": raw[0x11E],
+        "rarity": raw[0xFC],   # items.txt rarity（稀有度）
+        "qlvl": raw[0xFD],     # items.txt level（品质等级）
+        "ntype": raw[0x11E],   # itemtypes.txt 行索引 → 物品类型
         "fquest": raw[0x12A],
         "socket": raw[0x138],
-        "xsize": raw[0xFC],   # 占格宽（格数）
-        "ysize": raw[0xFD],   # 占格高（格数）
+        "xsize": raw[0x10F],   # 占格宽（格数，nInvwidth）
+        "ysize": raw[0x110],   # 占格高（格数，nInvheight）
     }
 
 
