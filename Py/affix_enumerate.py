@@ -31,13 +31,27 @@ TBL_MODSTR = r"C:\Users\abps\Desktop\DiabloIIToolbox\temp\dict_tbl_modstr.json"
 # stat 枚举 -> tbl 描述池 key（词条中文来自 tbl，非 txt）
 # ============================================================
 STAT_KEY = {
-    110: "ModStr1h",       # 攻击准确率 (AR)
-    112: "ModStr3f",       # 照亮范围 (Light Radius)
-    303: "ModStr1u",       # 生命 (Life)（of the Jackal 实测 = hp）
+    17: "ModStr1b",       # 敏捷 (DEX)
+    23: "ModStr1d",       # 精力 (ENG)
+    24: "ModStr1e",       # 法力 (Mana)
+    26: "ModStr1u",       # 生命 (Life)
+    31: "ModStr1a",       # 力量 (STR)
+    110: "ModStr1h",      # 攻击准确率 (AR)
+    112: "ModStr3f",      # 照亮范围 (Light Radius)
+    115: "ModStr1e",      # 法力 (Mana)
+    116: "strModAllResistances",  # 所有抗性+%d
+    117: "ModStr1k",      # 抗寒 (CR)
+    118: "ModStr1j",      # 抗火 (FR)
+    119: "ModStr1l",      # 抗闪电 (LR)
+    120: "ModStr1n",      # 抗毒 (PR)
+    121: "ModStr1k",      # 抗寒 (CR)
+    122: "ModStr1j",      # 抗火 (FR)
+    124: "ModStr1n",      # 抗毒 (PR)
+    303: "ModStr1u",      # 生命 (Life)
     304: "strModAllResistances",  # 所有抗性+%d
-    27: "ModStr2z",        # 生命于击中时偷取 (LL)
-    28: "ModStr2y",        # 法力于击中时偷取 (LM)
-    18: "ModStr4p",        # 快速打击恢复 (FHR)
+    27: "ModStr2z",       # 生命于击中时偷取 (LL)
+    28: "ModStr2y",       # 法力于击中时偷取 (LM)
+    18: "ModStr4p",       # 快速打击恢复 (FHR)
     44: "ItemExpansiveChancX",  # 攻击时有 %d%% 机会施展等级 %d %s
 }
 # 技能组（+0x64 高16位）-> 描述池 key
