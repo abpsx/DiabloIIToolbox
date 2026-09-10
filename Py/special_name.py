@@ -34,6 +34,75 @@ def dword(pid, h, a):
     r = mem.read(pid, h, a, 4)
     return int.from_bytes(r, "little") if r else 0
 
+def word(pid, h, a):
+    r = mem.read(pid, h, a, 2)
+    return int.from_bytes(r, "little") if r else 0
+
+# ---------- D2Lang GetLocaleText（1.13c，D2Lang+0x9450 → +0x9050 查找） ----------
+#   数据段（模块偏移）：+0x10A64=回退表结构、+0x10A68=回退文本数组、
+#   +0x10A6C=主表文本数组、+0x10A70=扩展文本数组、+0x10A80=主表结构、+0x10A84=扩展表结构
+#   GetLocaleText(n)：n>=0x4E20 → 扩展表(n-0x4E20)；10000<=n<20000 → 主表(n-0x2710)；
+#   表空/失败 → 回退表(n)。
+#   0x9050：结构+0x02=索引数、+0x15 起 word 索引区[索引]=条目号（索引>=数时用 0x1F4）、
+#   数据条目校验（首字节==1）后 文本数组[条目号]=UTF-16 文本指针。
+_LOCALE_OFFS = (0x10A64, 0x10A68, 0x10A6C, 0x10A70, 0x10A80, 0x10A84)
+
+
+def locate_locale_tables(pid, h):
+    """返回 (回退表, 回退数组, 主表数组, 扩展数组, 主表结构, 扩展表结构)；D2Lang 未加载返回全 0。"""
+    base = mem.module_base(pid, "D2Lang.dll")
+    if not base:
+        return (0, 0, 0, 0, 0, 0)
+    return tuple(dword(pid, h, base + off) for off in _LOCALE_OFFS)
+
+
+def get_locale_text(pid, h, n, tables=None):
+    """模拟 D2Lang GetLocaleText(n) 返回 UTF-16 文本；取不到返回 None。"""
+    if tables is None:
+        tables = locate_locale_tables(pid, h)
+    fallback_tbl, fallback_arr, main_arr, exp_arr, main_tbl, exp_tbl = tables
+    if n >= 0x4E20:
+        tbl, arr, idx = exp_tbl, exp_arr, n - 0x4E20
+    else:
+        tbl, arr, idx = main_tbl, main_arr, n - 0x2710
+    if not tbl or not arr:
+        tbl, arr, idx = fallback_tbl, fallback_arr, n
+    if not tbl or not arr:
+        return None
+    n_idx = word(pid, h, tbl + 2)
+    if idx >= n_idx:
+        idx = 0x1F4
+    entry = word(pid, h, tbl + idx * 2 + 0x15)
+    if entry >= dword(pid, h, tbl + 4):
+        return None
+    esi = tbl + n_idx * 2 + 0x15
+    edx = esi + entry * 16 + entry
+    if edx >= tbl + dword(pid, h, tbl + 0x11):
+        return None
+    if mem.read(pid, h, edx, 1) != b"\x01":
+        return None
+    p = dword(pid, h, arr + entry * 4)
+    if not p:
+        return None
+    raw = mem.read(pid, h, p, 120 * 2)
+    return raw.decode("utf-16-le", "ignore").split("\x00")[0] if raw else None
+
+
+def clean_locale_name(t, is_exp):
+    """扩展表文本形如 '[MAX:..]\\n[自助回收..]\\nÿc2中文 English' → 中文；主表纯中文原样。"""
+    if not t:
+        return ""
+    if is_exp:
+        i = t.rfind("\n")            # 中文名在最后一行（可能带 ÿcX 色码）
+        if i >= 0:
+            t = t[i + 1:]
+        t = re.sub(r"\xffc.", "", t)  # 去 ÿcX 色码
+        for j in range(len(t)):      # 剥离 ' 英文' 后缀（空格+ASCII 字母）
+            if t[j] == " " and j + 1 < len(t) and t[j + 1].isascii() and t[j + 1].isalpha():
+                return t[:j]
+    return t
+
+
 # ---------- setitems 数据表（hackmap d2structs.h / D2CallStub.cpp，1.13c） ----------
 #   p_D2DataTables @ D2Common+0x99E1C（d2ptrs.h D2VARPTR2，1.13c 分支 b1=0x6FDE9E1C）
 #   → [var] = sgptDataTables → +0xC18=pSetItemsTxt、+0xC1C=nSetItems
@@ -64,8 +133,11 @@ def locate_set_table(pid, h):
     return pSet, nSet
 
 
-def dump_set_items(pid, h, pSet, nSet):
-    """遍历 setitems 表 → {dwIndex: {code, desc, set_idx, wloc}}。"""
+def dump_set_items(pid, h, pSet, nSet, tables=None):
+    """遍历 setitems 表 → {dwIndex: {code, desc, set_idx, wloc, zh}}。
+
+    zh 为 GetLocaleText(wLocaleTxtNo) 权威中文名（无则空串）。
+    """
     out = {}
     for i in range(nSet):
         r = pSet + i * SET_REC_SIZE
@@ -77,7 +149,8 @@ def dump_set_items(pid, h, pSet, nSet):
         wloc = int.from_bytes(b[0x24:0x26], "little")
         code = b[0x28:0x2C].rstrip(b"\x00 ").decode("latin-1", "ignore")
         set_idx = int.from_bytes(b[0x2C:0x30], "little") & 0xFFFF
-        out[dw_idx] = {"code": code, "desc": desc, "set_idx": set_idx, "wloc": wloc}
+        zh = clean_locale_name(get_locale_text(pid, h, wloc, tables), wloc >= 0x4E20)
+        out[dw_idx] = {"code": code, "desc": desc, "set_idx": set_idx, "wloc": wloc, "zh": zh}
     return out
 
 
@@ -111,8 +184,11 @@ def locate_unique_items_txt(pid, h):
     return pUni, nUni
 
 
-def dump_unique_items(pid, h, pUni, nUni):
-    """遍历 uniqueitems 表 → {dwIndex: {code, name}}。"""
+def dump_unique_items(pid, h, pUni, nUni, tables=None):
+    """遍历 uniqueitems 表 → {dwIndex: {code, name, wloc, zh}}。
+
+    zh 为 GetLocaleText(wLocaleTxtNo) 权威中文名（无则空串）。
+    """
     out = {}
     for i in range(nUni):
         r = pUni + i * UNI_REC_SIZE
@@ -122,7 +198,9 @@ def dump_unique_items(pid, h, pUni, nUni):
         dw_idx = int.from_bytes(b[0:2], "little")
         name = b[2:2 + UNI_NAME_LEN].split(b"\x00")[0].decode("latin-1", "ignore")
         code = b[UNI_CODE_OFF:UNI_CODE_OFF + 4].rstrip(b"\x00 ").decode("latin-1", "ignore")
-        out[dw_idx] = {"code": code, "name": name}
+        wloc = int.from_bytes(b[0x22:0x24], "little")
+        zh = clean_locale_name(get_locale_text(pid, h, wloc, tables), wloc >= 0x4E20)
+        out[dw_idx] = {"code": code, "name": name, "wloc": wloc, "zh": zh}
     return out
 
 def scan_mem(pid, h, pat: bytes) -> list[int]:
@@ -383,6 +461,19 @@ def main():
         return 0
 
     if args.dump_json:
+        tables = locate_locale_tables(pid, h)
+        set_items = dump_set_items(pid, h, sn.set_table_addr, sn.set_count, tables)
+        uni_items = dump_unique_items(pid, h, sn.uni_txt_addr, sn.uni_count, tables)
+        # set_names 双语池：保留原池（unique 等），套装 desc 用 GetLocaleText 权威中文覆盖
+        sn_map = {en: cn for en, cn in sn.set_names}
+        for it in set_items.values():
+            if it.get("zh"):
+                sn_map[it["desc"]] = it["zh"]
+        # notes 注释池：unique 缺失中文用 GetLocaleText 补齐（不覆盖已有条目）
+        notes2 = dict(sn.note_map)
+        for it in uni_items.values():
+            if it.get("zh") and it["name"] not in notes2:
+                notes2[it["name"]] = it["zh"]
         out = {
             "exe": "D2Loader.exe",
             "ts": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
@@ -395,12 +486,12 @@ def main():
             "sgpt_offset": ("0x%X" % SGPT_OFFSET),
             "set_table_addr": ("0x%X" % sn.set_table_addr) if sn.set_table_addr else "",
             "set_count": sn.set_count,
-            "set_items": dump_set_items(pid, h, sn.set_table_addr, sn.set_count),
+            "set_items": set_items,
             "unique_items_txt_addr": ("0x%X" % sn.uni_txt_addr) if sn.uni_txt_addr else "",
             "unique_items_count": sn.uni_count,
-            "unique_items": dump_unique_items(pid, h, sn.uni_txt_addr, sn.uni_count),
-            "notes": sn.note_map,
-            "set_names": [[en, cn] for en, cn in sn.set_names],
+            "unique_items": uni_items,
+            "notes": notes2,
+            "set_names": [[en, cn] for en, cn in sn_map.items()],
         }
         p = r"C:\Users\abps\Desktop\DiabloIIToolbox\Setting\memory\special_names.json"
         json = __import__("json")
@@ -409,6 +500,9 @@ def main():
         print("已写入", p, "tables:", len(out["tables"]), "notes:", len(out["notes"]),
               "set_names:", len(out["set_names"]), "set_items:", len(out["set_items"]),
               "unique_items:", len(out["unique_items"]))
+        # 校验 520：套装项链 Tancred's Weird 应显示 坦克雷的怪诞
+        hit = set_items.get(33, {})
+        print("校验 set[33]:", hit.get("desc"), "->", hit.get("zh"))
         return 0
 
     if args.test:
