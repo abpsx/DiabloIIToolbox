@@ -245,6 +245,70 @@ def _load_code_table(path: str) -> dict:
     return m
 
 
+# ---------- 特殊名（unique 名表 + mod 注释池） ----------
+# 缓存由 special_name.py --dump-json 生成（表地址会话级，失效时自动重定位）
+_sn_cache: dict = {"tables": [], "notes": {}, "path": ""}
+_SN_REC = 0x14C       # unique 名表记录大小
+_SN_NAME = 0x26       # 名字字段宽度
+_SN_CODE = 0x26       # code 字段偏移
+
+
+def _sn_lookup(pid: int, h: int, code_str: str, config_dir: str) -> str:
+    """物品缩写（如 7dg）→ 特殊名（"巫师之刺 Wizardspike"）；无则空串。"""
+    global _sn_cache
+    if not _sn_cache["path"] or _sn_cache["path"] != config_dir:
+        _sn_cache["path"] = config_dir
+        p = os.path.join(config_dir, "special_names.json")
+        try:
+            with open(p, encoding="utf-8") as f:
+                d = json.load(f)
+            _sn_cache["tables"] = d.get("tables", [])
+            _sn_cache["notes"] = d.get("notes", {})
+        except Exception:
+            _sn_cache["tables"], _sn_cache["notes"] = [], {}
+
+    code_b = code_str.encode("ascii", "ignore")
+    # 表地址有效性：表头名 "Elite Uniques" @ 记录首-0x14C
+    good = []
+    for t in _sn_cache["tables"]:
+        rec0 = int(t.get("rec0", 0))
+        if rec0 and read(pid, h, rec0 - _SN_REC, 12).startswith(b"Elite"):
+            good.append(t)
+    if not good and _sn_cache["tables"]:
+        # 缓存失效（游戏重启）→ 重定位并回写
+        try:
+            from special_name import SpecialName
+            sn = SpecialName(pid, h)
+            if sn.unique_tables:
+                _sn_cache["tables"] = [{"rec0": r, "count": c, "first": f}
+                                       for r, c, f in sn.unique_tables]
+                _sn_cache["notes"] = sn.note_map
+                good = _sn_cache["tables"]
+                try:
+                    out = {"ts": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
+                           "tables": _sn_cache["tables"], "notes": _sn_cache["notes"]}
+                    with open(os.path.join(config_dir, "special_names.json"), "w",
+                              encoding="utf-8") as f:
+                        json.dump(out, f, ensure_ascii=False, indent=1)
+                except Exception:
+                    pass
+        except Exception:
+            good = []
+    if not good:
+        return ""
+    for t in good:
+        rec0, cnt = int(t["rec0"]), int(t.get("count", 135))
+        for i in range(min(cnt, 2000)):
+            b = read(pid, h, rec0 + i * _SN_REC, _SN_NAME + 4)
+            if not b:
+                break
+            if b[_SN_CODE:_SN_CODE + 4].rstrip(b"\x00 ") == code_b:
+                en = b[:_SN_NAME].split(b"\x00")[0].decode("latin-1", "ignore")
+                cn = _sn_cache["notes"].get(en, "")
+                return ("%s %s" % (cn, en)).strip() if cn else en
+    return ""
+
+
 def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
     """背包物品列表（UnitInventory 链表，实证结构）。
 
@@ -312,10 +376,22 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
                 name = txt_to_name(pid, h, txt)[0]
             except Exception:
                 name = ""
+        # 特殊名（unique: quality==7；其余品质后续扩展）
+        quality = read_dword(pid, h, idat + 0x00) if idat else 0
+        special = ""
+        if quality == 7:
+            abbr = code_map.get(txt, "")
+            if abbr:
+                try:
+                    special = _sn_lookup(pid, h, abbr, config_dir)
+                except Exception:
+                    special = ""
         entries.append({
             "abbr": code_map.get(txt, f"<{txt}>"),
             "code": txt,
             "name": name,
+            "special": special,
+            "quality": quality,
             "loc": loc,
             "slots": [idx],
         })
