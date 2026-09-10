@@ -24,6 +24,13 @@ import mem_read as mem
 ROW = 0x1A8
 _CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_tables_cache.json")
 
+# items.txt 表基静态指针（GetItemTxt 反汇编提取，1.13c 实证）：
+#   D2Common+0x719A0:  cmp eax,[D2Common+0x9FB94]  越界检查(条数)
+#                      mov ecx,[D2Common+0x9FB98]  表基
+#                      imul eax,eax,0x1A8 ; add eax,ecx → 表基 + itemno*ROW
+ITEMS_TXT_N_OFF = 0x9FB94   # [D2Common+0x9FB94] 条目数
+ITEMS_TXT_P_OFF = 0x9FB98   # [D2Common+0x9FB98] items.txt 表基
+
 # 进程内缓存（单次调用多 PID 复用）
 _CACHE: dict = {"base": None, "base_pid": None, "disp": None, "disp_pid": None}
 
@@ -126,8 +133,19 @@ def _scan_base(pid: int, h: int) -> int | None:
         addr = base + size
 
 
+def _static_base(pid: int, h: int) -> int | None:
+    """静态指针路径：items.txt 表基 = [D2Common+0x9FB98]，带行0/行529 校验。"""
+    d2c = mem.module_base(pid, "D2Common.dll")
+    if not d2c:
+        return None
+    base = mem.read_ptr(pid, h, d2c + ITEMS_TXT_P_OFF)
+    if base and _verify_base(pid, h, base):
+        return base
+    return None
+
+
 def find_itemtxt_base(pid: int, h: int) -> int | None:
-    """定位 ItemTxt 表基：进程内缓存 → 文件缓存（校验）→ 全扫。"""
+    """定位 ItemTxt 表基：进程内缓存 → 文件缓存（校验）→ 静态指针 → 全扫兜底。"""
     if _CACHE["base"] and _CACHE["base_pid"] == pid:
         return _CACHE["base"]
     fc = _load_file_cache()
@@ -136,7 +154,7 @@ def find_itemtxt_base(pid: int, h: int) -> int | None:
         base = int(str(v), 16) if isinstance(v, str) else int(v)
         _CACHE["base"], _CACHE["base_pid"] = base, pid
         return base
-    base = _scan_base(pid, h)
+    base = _static_base(pid, h) or _scan_base(pid, h)
     if base:
         _CACHE["base"], _CACHE["base_pid"] = base, pid
         _save_file_cache(base, _CACHE["disp"] or (fc or {}).get("dispatch"))
@@ -179,8 +197,32 @@ def _scan_dispatch(pid: int, h: int) -> dict | None:
     return disp
 
 
+def _static_dispatch(pid: int, h: int) -> dict | None:
+    """静态直读分派表（GetLocaleText 反汇编实证，与 special_name.py 同源）：
+
+    D2Lang 数据段 +0x10A64..0x10A84 各存一个指针：
+      +0x10A64 回退表结构  +0x10A68 回退文本数组
+      +0x10A6C 主表文本数组 +0x10A70 扩展文本数组
+      +0x10A80 主表结构    +0x10A84 扩展表结构
+    """
+    lang = mem.module_base(pid, "D2Lang.dll")
+    if not lang:
+        return None
+    disp = {
+        "p_a64": f"{lang + 0x10A64:#x}",
+        "p_a68": f"{lang + 0x10A68:#x}",
+        "p_a6c": f"{lang + 0x10A6C:#x}",
+        "p_a70": f"{lang + 0x10A70:#x}",
+        "p_a80": f"{lang + 0x10A80:#x}",
+        "p_a84": f"{lang + 0x10A84:#x}",
+    }
+    if _verify_dispatch(pid, h, disp):
+        return disp
+    return None
+
+
 def find_locale_dispatch(pid: int, h: int) -> dict | None:
-    """定位 GetLocaleText 分派表：进程内缓存 → 文件缓存（校验）→ 扫描代码。"""
+    """定位 GetLocaleText 分派表：进程内缓存 → 文件缓存（校验）→ 静态直读 → 扫描兜底。"""
     if _CACHE["disp"] and _CACHE["disp_pid"] == pid:
         return _CACHE["disp"]
     fc = _load_file_cache()
@@ -188,7 +230,9 @@ def find_locale_dispatch(pid: int, h: int) -> dict | None:
         disp = fc["dispatch"]
         _CACHE["disp"], _CACHE["disp_pid"] = disp, pid
         return disp
-    disp = _scan_dispatch(pid, h)
+    disp = _static_dispatch(pid, h)
+    if not disp:
+        disp = _scan_dispatch(pid, h)
     if disp and _verify_dispatch(pid, h, disp):
         _CACHE["disp"], _CACHE["disp_pid"] = disp, pid
         _save_file_cache(_CACHE["base"] or (fc or {}).get("itemtxt_base"), disp)
