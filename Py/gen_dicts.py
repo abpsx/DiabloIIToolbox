@@ -61,7 +61,7 @@ def main() -> None:
     dump("dict_item_types_CN.json", TYPE_CN)
     print("dict_item_types_CN: %d" % len(TYPE_CN))
 
-    # ---- 2. 套装部件（顶层 code → 条目列表，无需双索引容器） ----
+    # ---- 2. 套装部件（顶层 code → 条目列表；zh 通过 desc 查 dict_notes） ----
     si = sn.get("set_items", {})
     set_items: dict[str, list] = {}
     for k, v in si.items():
@@ -70,19 +70,20 @@ def main() -> None:
             # index=行号(dwIndex, 游戏内 dwFileIndex 直接索引); wloc=名称唯一文本号
             set_items.setdefault(c, []).append(
                 {"index": k, "set_idx": v.get("set_idx"), "desc": v.get("desc"),
-                 "wloc": v.get("wloc"), "zh": v.get("zh", "")})
+                 "wloc": v.get("wloc")})
     dump("dict_set_items.json", set_items)
     print("dict_set_items: %d code" % len(set_items))
 
-    # ---- 3. 暗金表 ----
+    # ---- 3. 暗金表（字段与 set 对齐：desc；zh 通过 desc 查 dict_notes） ----
     ui = sn.get("unique_items", {})
     ui_idx, ui_code = {}, {}
     for k, v in ui.items():
-        ui_idx[k] = v
+        ui_idx[k] = {"index": k, "code": clean(v.get("code")),
+                     "desc": v.get("name"), "wloc": v.get("wloc")}
         c = clean(v.get("code"))
         if c:  # 过滤 "Elite Uniques"/"Rings"/空 等占位行
             ui_code.setdefault(c, []).append(
-                {"index": k, "name": v.get("name"), "wloc": v.get("wloc"), "zh": v.get("zh", "")})
+                {"index": k, "desc": v.get("name"), "wloc": v.get("wloc")})
     dump("dict_unique_items.json", {"by_index": ui_idx, "by_code": ui_code})
     print("dict_unique_items: by_index=%d by_code=%d(过滤占位行)" % (len(ui_idx), len(ui_code)))
 
@@ -91,8 +92,11 @@ def main() -> None:
     dump("dict_set_names.json", set_names)
     print("dict_set_names: %d" % len(set_names))
 
-    # ---- 5. 注释池 ----
+    # ---- 5. 注释池（并入 set_names 缺失项：保证 set/unique 的 desc 全部可反查中文） ----
     notes = dict(sn.get("notes", {}))
+    for en, zh in sn.get("set_names", []):
+        if en not in notes and (zh or "").strip():
+            notes[en] = zh
     dump("dict_notes.json", notes)
     print("dict_notes: %d" % len(notes))
 
