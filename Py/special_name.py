@@ -63,8 +63,10 @@ def get_locale_text(pid, h, n, tables=None):
     fallback_tbl, fallback_arr, main_arr, exp_arr, main_tbl, exp_tbl = tables
     if n >= 0x4E20:
         tbl, arr, idx = exp_tbl, exp_arr, n - 0x4E20
-    else:
+    elif n >= 0x2710:
         tbl, arr, idx = main_tbl, main_arr, n - 0x2710
+    else:
+        tbl, arr, idx = fallback_tbl, fallback_arr, n
     if not tbl or not arr:
         tbl, arr, idx = fallback_tbl, fallback_arr, n
     if not tbl or not arr:
