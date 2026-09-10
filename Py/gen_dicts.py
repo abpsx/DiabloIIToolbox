@@ -27,15 +27,16 @@ def clean(s: str) -> str:
 
 
 def main() -> None:
-    # 套装部件 by_code → zh（name_set 来源；special_names 一次读取共享）
+    # 套装部件 by_code → 完整列表项（name_set 来源，含判断字段 index/wloc/set_idx/desc）
     sn = load("special_names.json")
     si = sn.get("set_items", {})
-    set_zh: dict[str, list] = {}
+    set_list: dict[str, list] = {}
     for k, v in si.items():
         c = clean(v.get("code"))
-        zh = (v.get("zh") or "").strip()
-        if c and zh:
-            set_zh.setdefault(c, []).append(zh)
+        if c:
+            set_list.setdefault(c, []).append(
+                {"index": k, "set_idx": v.get("set_idx"), "desc": v.get("desc"),
+                 "wloc": v.get("wloc"), "zh": v.get("zh", "")})
 
     # ---- 1. 物品码表（索引指向 items 下标，键值对瘦身） ----
     ic = load("item_codes.json")
@@ -53,7 +54,7 @@ def main() -> None:
             "type_code": it.get("type_code", ""),  # itemtypes code（axe/scro…）
             "quality": it.get("quality"),          # 品质等级 qlvl
             "invw": it.get("invw"), "invh": it.get("invh"),  # 占格宽/高
-            "name_set": set_zh.get(code, []),      # 套装部件中文名（同 code 多条）
+            "name_set": set_list.get(code, []),   # 套装部件（含 index/wloc 等判断字段）
         })
         by_id[str(cid)] = idx
         by_code.setdefault(code, idx)
