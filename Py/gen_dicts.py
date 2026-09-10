@@ -2,7 +2,8 @@
 """生成全部对照字典 json → temp\\（数据源：Setting\\memory\\*.json）。
 
 产物（均为查询友好字典）：
-  dict_item_codes.json   物品码表: by_id(物品码→{code,name}) + by_code(缩写→{id,name})
+  dict_item_codes.json   物品码表: items(唯一列表{id,code,name,name_raw}) +
+                        by_id(物品码→{code}) + by_code(缩写→{id}) 纯索引瘦身
   dict_set_items.json    套装部件: by_index(行号→原样) + by_code(缩写→列表)
   dict_unique_items.json 暗金表:   by_index(行号→原样) + by_code(缩写→列表, 过滤空code占位行)
   dict_set_names.json    套装组名: {英文: 中文}
@@ -26,20 +27,22 @@ def clean(s: str) -> str:
 
 
 def main() -> None:
-    # ---- 1. 物品码表 ----
+    # ---- 1. 物品码表（瘦身索引：数据只存一份 items，by_id/by_code 仅映射） ----
     ic = load("item_codes.json")
-    by_id, by_code = {}, {}
+    items, by_id, by_code = [], {}, {}
     for it in ic["items"]:
         cid, code = it.get("id"), it.get("code")
         if cid is None or not code:
             continue
-        nm = it.get("name_clean") or it.get("name", "")
-        # name=完整多行清洗文本; name_raw=原始UTF-16文本(含色码/换行)
-        rec = {"code": code, "name": nm, "name_raw": it.get("name_raw", "")}
-        by_id[str(cid)] = rec
-        by_code.setdefault(code, {"id": cid, "name": nm, "name_raw": rec["name_raw"]})
-    dump("dict_item_codes.json", {"by_id": by_id, "by_code": by_code})
-    print("dict_item_codes: by_id=%d by_code=%d" % (len(by_id), len(by_code)))
+        items.append({
+            "id": cid, "code": code,
+            "name": it.get("name_clean") or it.get("name", ""),
+            "name_raw": it.get("name_raw", ""),
+        })
+        by_id[str(cid)] = {"code": code}
+        by_code.setdefault(code, {"id": cid})
+    dump("dict_item_codes.json", {"items": items, "by_id": by_id, "by_code": by_code})
+    print("dict_item_codes: items=%d by_id=%d by_code=%d" % (len(items), len(by_id), len(by_code)))
 
     # ---- 2. 套装部件 ----
     sn = load("special_names.json")
