@@ -349,11 +349,18 @@ export default {
         const k = b.loc == null ? 1 : b.loc;
         if (!groups[k]) groups[k] = new Map();
         const m = groups[k];
-        const key = b.abbr || String(b.code);
+        const key = (b.abbr || String(b.code)) + "|" + (b.special || "");
         if (!m.has(key)) m.set(key, { ...b, count: 0 });
         m.get(key).count++;
       });
       return groups;
+    },
+    // 合并显示：特殊名 / 基础名（都空时回退缩写）
+    itemLabel(b) {
+      const parts = [];
+      if (b.special) parts.push(b.special);
+      if (b.name) parts.push(b.name);
+      return parts.join(" / ") || b.abbr;
     },
     bagText(bag) {
       const g = this.groupBag(bag);
@@ -361,7 +368,7 @@ export default {
         .sort((a, b) => a - b)
         .map((k) => {
           const items = [...g[k].values()]
-            .map((b) => `${b.name || b.abbr}×${b.count}`)
+            .map((b) => `${this.itemLabel(b)}×${b.count}`)
             .join(" ");
           return `${LOC_NAMES[k] || "?"}[${items}]`;
         });
@@ -373,7 +380,7 @@ export default {
         .sort((a, b) => a - b)
         .map((k) => {
           const items = [...g[k].values()]
-            .map((b) => `${b.name || b.abbr} ×${b.count}`)
+            .map((b) => `${this.itemLabel(b)} ×${b.count}`)
             .join("，");
           return `${LOC_NAMES[k] || "?"}[${items}]`;
         });
@@ -383,7 +390,7 @@ export default {
     stashText(bag) {
       const g = this.groupBag(bag);
       const items = [...(g[4] || new Map()).values()]
-        .map((b) => `${b.name || b.abbr}×${b.count}`)
+        .map((b) => `${this.itemLabel(b)}×${b.count}`)
         .join("，");
       return items || "";
     },
