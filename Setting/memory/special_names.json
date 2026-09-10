@@ -1,7 +1,7 @@
 {
  "exe": "D2Loader.exe",
- "ts": "2026-09-10 17:48:51",
- "updated_at": "2026-09-10 17:48:51",
+ "ts": "2026-09-10 17:54:24",
+ "updated_at": "2026-09-10 17:54:24",
  "tables": [
   {
    "rec0": 311949826,
@@ -12,7 +12,7 @@
  "unique_table_addr": "0x1297FA02",
  "unique_count": 135,
  "notes_addr": "0x4BD7926",
- "set_names_addr": "0x12924514",
+ "set_names_addr": "0x1916E8",
  "notes": {
   "Athena's Wrath": "阿西娜的忿怒",
   "Pierre Tombale Couant": "考恩特",
@@ -549,8 +549,12 @@
    "亚瑞特的面容"
   ],
   [
+   "Asheara's Wired Frame",
+   "艾席拉的精神迷幻"
+  ],
+  [
    "Astreon's Iron Ward",
-   "特龙之铁的保护区"
+   "爱斯特龙之铁的保护区"
   ],
   [
    "Athena's Wrath",
@@ -621,8 +625,20 @@
    "血鸟的袭击"
   ],
   [
+   "Bloodletter",
+   "血书"
+  ],
+  [
    "Bloodmoon",
    "血月"
+  ],
+  [
+   "Bloodtree Stump",
+   "血树残株"
+  ],
+  [
+   "Boneflame",
+   "骨焰"
   ],
   [
    "Bonehew",
@@ -637,16 +653,20 @@
    "白骨阴影"
   ],
   [
+   "Bul-Kathos",
+   "布尔凯索斯"
+  ],
+  [
    "Bul-Kathos' Children",
    "布尔凯索的孩子"
   ],
   [
    "Bul-Kathos' Sacred Charge",
-   "尔凯索的神圣代价"
+   "布尔凯索的神圣代价"
   ],
   [
    "Bul-Kathos' Tribal Guardian",
-   "尔凯索的部族守护"
+   "布尔凯索的部族守护"
   ],
   [
    "Bul-Kathos' Warden",
@@ -654,7 +674,7 @@
   ],
   [
    "Buriza-Do Kyanon",
-   "凯南"
+   "布理撒-多-凯南"
   ],
   [
    "Bush Wacker",
@@ -671,6 +691,10 @@
   [
    "Cairn Shard",
    "石冢碎片"
+  ],
+  [
+   "Carrion Wind",
+   "腐肉之风"
   ],
   [
    "Catgut",
@@ -757,6 +781,14 @@
    "死亡之网"
   ],
   [
+   "Deathbit",
+   "死亡碎片"
+  ],
+  [
+   "Demon Machine",
+   "恶魔机器"
+  ],
+  [
    "Demonhorn's Edge",
    "恶魔号角的边缘"
   ],
@@ -801,6 +833,10 @@
    "都瑞尔的壳"
   ],
   [
+   "Dust Storm",
+   "沙尘暴"
+  ],
+  [
    "Dwarf Star",
    "矮人之星"
   ],
@@ -814,7 +850,7 @@
   ],
   [
    "El Espiritu",
-   "衣斯普利特"
+   "爱尔-衣斯普利特"
   ],
   [
    "El Infierno",
@@ -869,6 +905,10 @@
    "夫罗卡德的毛皮"
   ],
   [
+   "Flowkrad's Grin",
+   "夫罗卡德之牙"
+  ],
+  [
    "Flowkrad's Paws",
    "夫罗卡德的脚掌"
   ],
@@ -879,6 +919,14 @@
   [
    "Foci of the Vizjerei",
    "费斯杰利的焦点"
+  ],
+  [
+   "Fuego Del Sol",
+   "夫得勾-迪尔-索"
+  ],
+  [
+   "Gaia's Wrath",
+   "盖亚之怒"
   ],
   [
    "Gaya Wand",
@@ -901,6 +949,10 @@
    "鬼魂解放者"
   ],
   [
+   "Ghostflame",
+   "鬼火焰"
+  ],
+  [
    "Ghoulhide",
    "食尸鬼外皮"
   ],
@@ -915,6 +967,10 @@
   [
    "Gimmershred",
    "碎片贪婪者"
+  ],
+  [
+   "Glimmershred",
+   "微光碎片"
   ],
   [
    "Globe of the Vizjerei",
@@ -946,15 +1002,15 @@
   ],
   [
    "Griswold's Legacy",
-   "瑞斯华尔德的传奇"
+   "格瑞斯华尔德的传奇"
   ],
   [
    "Griswold's Redemption",
-   "瑞斯华尔德的救赎"
+   "格瑞斯华尔德的救赎"
   ],
   [
    "Griswold's Valor",
-   "瑞斯华尔德的勇气"
+   "格瑞斯华尔德的勇气"
   ],
   [
    "Guardian Naga",
@@ -963,6 +1019,10 @@
   [
    "Gul",
    "古尔"
+  ],
+  [
+   "Gulletwound",
+   "咽喉之伤"
   ],
   [
    "Gut Siphon",
@@ -985,6 +1045,10 @@
    "谐角之冠"
   ],
   [
+   "Heart Carver",
+   "刻心者"
+  ],
+  [
    "Heaven's Brethren",
    "天堂的信徒"
   ],
@@ -999,6 +1063,10 @@
   [
    "Hell Warden's Husk",
    "地狱刑长之壳"
+  ],
+  [
+   "Hell Whisper",
+   "地狱呢喃者"
   ],
   [
    "Hellmouth",
@@ -1058,7 +1126,7 @@
   ],
   [
    "Immortal King's Soul Cage",
-   "朽之王的灵魂牢笼"
+   "不朽之王的灵魂牢笼"
   ],
   [
    "Immortal King's Stone Crusher",
@@ -1071,6 +1139,10 @@
   [
    "Indiego's Fancy",
    "印地哥的幻想"
+  ],
+  [
+   "Iron Pelt",
+   "掷铁"
   ],
   [
    "Ist",
@@ -1102,7 +1174,7 @@
   ],
   [
    "Langer Briser",
-   "布里瑟"
+   "兰格-布里瑟"
   ],
   [
    "Larzuk's Champion",
@@ -1139,6 +1211,10 @@
   [
    "Lycander's Aim",
    "雷山德的指标"
+  ],
+  [
+   "Lycander's Flank",
+   "雷山德的侧腹"
   ],
   [
    "M'avina's Caster",
@@ -1217,6 +1293,10 @@
    "摩尼"
   ],
   [
+   "Moon Shadow",
+   "月之影"
+  ],
+  [
    "Moonfall",
    "落月"
   ],
@@ -1269,6 +1349,10 @@
    "娜塔亚的非难"
   ],
   [
+   "Natalya's Shadow",
+   "娜塔亚的影子"
+  ],
+  [
    "Natalya's Soul",
    "娜塔亚的灵魂"
   ],
@@ -1297,6 +1381,10 @@
    "厌恶"
   ],
   [
+   "Ogun's Fierce Visage",
+   "奥岗的残暴面孔"
+  ],
+  [
    "Ogun's Vengeance",
    "奥岗的复仇"
   ],
@@ -1317,12 +1405,20 @@
    "奥玛斯的长袍"
   ],
   [
+   "Orphan's Call",
+   "孤儿的呼唤"
+  ],
+  [
    "Ort",
    "欧特"
   ],
   [
    "Osk",
    "奥斯卡"
+  ],
+  [
+   "Palo Grande",
+   "派罗大公"
   ],
   [
    "Parkersor's Calm",
@@ -1354,7 +1450,7 @@
   ],
   [
    "Pierre Tombale Couant",
-   "考恩特"
+   "皮尔-通把-考恩特"
   ],
   [
    "Piety",
@@ -1485,8 +1581,16 @@
    "指环"
   ],
   [
+   "Riphook",
+   "撕裂之钩"
+  ],
+  [
    "Rite of Passage",
    "仪式的走道"
+  ],
+  [
+   "Robin's Yolk",
+   "知更之蛋"
   ],
   [
    "Rockstopper",
@@ -1497,8 +1601,16 @@
    "符文大师"
   ],
   [
+   "Rune Slayer",
+   "符文杀手"
+  ],
+  [
    "Sacred Charge",
    "神圣突击"
+  ],
+  [
+   "Samuel's Caretaker",
+   "山姆的管理员"
   ],
   [
    "Samurai Justice",
@@ -1534,7 +1646,7 @@
   ],
   [
    "Sazabi's Ghost Liberator",
-   "撒璧的鬼魂释放者"
+   "沙撒璧的鬼魂释放者"
   ],
   [
    "Schaefer's Hammer",
@@ -1621,6 +1733,10 @@
    "骷髅收集者"
   ],
   [
+   "Skulltred",
+   "史古塔得"
+  ],
+  [
    "Skystrike",
    "天击"
   ],
@@ -1681,6 +1797,10 @@
    "星光"
   ],
   [
+   "Stealskull",
+   "偷取骷髅"
+  ],
+  [
    "Stealth",
    "隐密"
   ],
@@ -1719,6 +1839,10 @@
   [
    "Stone Rattle",
    "自响之石"
+  ],
+  [
+   "Stonerage",
+   "石之狂怒"
   ],
   [
    "Stoneraven",
@@ -1761,6 +1885,10 @@
    "尖啸冰霜"
   ],
   [
+   "Swordguard",
+   "剑卫"
+  ],
+  [
    "Taebaek's Glory",
    "泰比克的光荣"
   ],
@@ -1770,15 +1898,19 @@
   ],
   [
    "Tal Rasha's Adjudication",
-   "拉夏的判决"
+   "塔-拉夏的判决"
   ],
   [
    "Tal Rasha's Guardianship",
-   "拉夏的守护"
+   "塔-拉夏的守护"
+  ],
+  [
+   "Tal Rasha's Horadric Crest",
+   "塔-拉夏的赫拉迪克纹章"
   ],
   [
    "Tal Rasha's Lidless Eye",
-   "拉夏的警戒之眼"
+   "塔-拉夏的警戒之眼"
   ],
   [
    "Tang's Battle Standard",
@@ -1787,6 +1919,10 @@
   [
    "Tang's Fore-Fathers",
    "坦的祖先"
+  ],
+  [
+   "Tang's Imperial Robes",
+   "坦的皇者之袍"
   ],
   [
    "Tang's Throne",
@@ -1833,8 +1969,16 @@
    "猫眼"
   ],
   [
+   "The Cranium Basher",
+   "碎脑锤"
+  ],
+  [
    "The Disciple",
    "门徒"
+  ],
+  [
+   "The Gladiator's Bane",
+   "斗士的祸根"
   ],
   [
    "The Harbinger",
@@ -1853,8 +1997,20 @@
    "牛头怪"
   ],
   [
+   "The Oculus",
+   "眼球"
+  ],
+  [
+   "The Prowler",
+   "游荡者"
+  ],
+  [
    "The Reaper's Toll",
    "死神的丧钟"
+  ],
+  [
+   "The Spirit Shroud",
+   "灵魂帷幕"
   ],
   [
    "The Swashbuckler",
@@ -1914,7 +2070,7 @@
   ],
   [
    "Todesfaelle Flamme",
-   "芙法米"
+   "特迪斯法雷-芙法米"
   ],
   [
    "Tradition",
@@ -1977,6 +2133,10 @@
    "维斯尔坦特"
   ],
   [
+   "Wallace's Tear",
+   "华莱士之泪"
+  ],
+  [
    "Warlord's Trust",
    "战爵之证"
   ],
@@ -2009,12 +2169,20 @@
    "风之力"
   ],
   [
+   "Windhammer",
+   "风之锤"
+  ],
+  [
    "Wings of Hope",
    "希望之翼"
   ],
   [
    "Wisdom",
    "智慧"
+  ],
+  [
+   "Wizardspike",
+   "巫师之刺"
   ],
   [
    "Woe",

@@ -148,36 +148,46 @@ class SpecialName:
         return {"ok": True, "code": code, "en": en, "cn": cn,
                 "display": ("%s %s" % (cn, en)).strip() if cn else en}
 
-    # ---------- 套装部件名池（D2Lang String 表，双语 UTF-16LE） ----------
-    # 套装部件名在 String 表为 "中文(UTF-16)\x00英文(UTF-16)\x00" 对。
-    # 锚定已知套装部件名（华宁的祝福/正义），dump 其上下区域解析全部部件名对。
+    # ---------- 套装部件名池（D2Lang String 表/注释池，双语 UTF-16LE） ----------
+    # 套装部件名为 "中文 UTF-16 + 空格 + 英文 UTF-16" 单串，多处镜像：
+    #   - String 表区（"华宁的祝福"@0x12924514 一带，含部分套装部件名）
+    #   - mod 注释池区（"塔-拉夏的赫拉迪克纹章 Tal Rasha's Horadric Crest"@0x191700 一带）
+    # 锚定已知套装部件名后 dump 其上下窗口，解析全部 "中文 英文" 对。
     # 注意：set 物品 → 部件名的映射仍需 setitems 数据表（mod 偏移失效，待 CE 定位）；
-    # 本方法产出候选列表供后续接入，并供 mem_read 在 setitems 可用前展示部件名。
+    # 本方法产出候选列表供后续接入。
     def _locate_set_names(self):
-        anchor = None
-        for pat in ("华宁的祝福".encode("utf-16-le"), "华宁的正义".encode("utf-16-le"),
-                    "华宁的光辉".encode("utf-16-le")):
+        anchors = []
+        for pat in ("塔-拉夏的赫拉迪克纹章".encode("utf-16-le"),
+                    "Tal Rasha's Horadric Crest".encode("utf-16-le"),
+                    "华宁的祝福".encode("utf-16-le"),
+                    "华宁的正义".encode("utf-16-le")):
             hits = scan_mem(self.pid, self.h, pat)
             if hits:
-                anchor = hits[0]
-                break
-        if not anchor:
+                anchors.append(hits[0])
+        if not anchors:
             return
-        self.set_anchor = anchor
-        lo = (anchor - 0x8000) & ~0xFFF
-        hi = anchor + 0x16000
-        buf = b""
-        for base in range(lo, hi, 0x8000):
-            chunk = mem.read(self.pid, self.h, base, 0x8000)
-            if chunk:
-                buf += chunk
-        txt = buf.decode("utf-16-le", "ignore")
+        self.set_anchor = anchors[0]
         pairs = {}
-        # 双语串为 "中文(2-8字) 英文(2-40字符)"（UTF-16 单串），英文需大写字母开头
-        for cn, en in re.findall(r"([\u4e00-\u9fff\u3400-\u4dbf]{2,8}) ([A-Z][A-Za-z '&;:\-]{2,40})(?=\x00)", txt):
-            en = en.strip()
-            if en and (en not in pairs or len(cn) > len(pairs[en])):
-                pairs[en] = cn
+        seen_win = set()
+        for anchor in anchors[:4]:
+            lo = (anchor - 0x8000) & ~0xFFF
+            hi = anchor + 0x8000
+            win = (lo, hi)
+            if win in seen_win:
+                continue
+            seen_win.add(win)
+            buf = b""
+            for base in range(lo, hi, 0x8000):
+                chunk = mem.read(self.pid, self.h, base, 0x8000)
+                if chunk:
+                    buf += chunk
+            txt = buf.decode("utf-16-le", "ignore")
+            # "中文(2-14字,可含-) 英文(2-45字符)"，英文需大写字母开头（排除对话/数值）
+            for cn, en in re.findall(
+                    r"([\u4e00-\u9fff\u3400-\u4dbf\-]{2,14}) ([A-Z][A-Za-z '&;:\-]{2,45})(?=\x00)", txt):
+                en = en.strip()
+                if en and (en not in pairs or len(cn) > len(pairs[en])):
+                    pairs[en] = cn
         self.set_names = sorted(pairs.items())
 
 

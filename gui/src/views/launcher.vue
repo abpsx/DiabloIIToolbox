@@ -120,13 +120,13 @@
                   </div>
                   <div class="md-row">
                     <span class="md-k">背包</span>
-                    <span class="md-v pre" :title="bagDetail(slots[extraDlg].mem.bag)">{{ bagText(slots[extraDlg].mem.bag) }}</span>
+                    <span class="md-v pre" :title="bagDetail(slots[extraDlg].mem.bag)" v-html="bagText(slots[extraDlg].mem.bag)"></span>
                   </div>
                   <div class="md-row">
                     <span class="md-k">仓库</span>
                     <span class="md-v pre">
                       <template v-if="slots[extraDlg].mem.stash && slots[extraDlg].mem.stash.stash_open">
-                        第{{ slots[extraDlg].mem.stash.page }}页<template v-if="stashText(slots[extraDlg].mem.bag)"> · {{ stashText(slots[extraDlg].mem.bag) }}</template>
+                        第{{ slots[extraDlg].mem.stash.page }}页<template v-if="stashText(slots[extraDlg].mem.bag)"> · <span v-html="stashText(slots[extraDlg].mem.bag)"></span></template>
                       </template>
                       <template v-else>未打开</template>
                     </span>
@@ -201,7 +201,7 @@
                   <span class="md-k">仓库</span>
                   <span class="md-v pre">
                     <template v-if="slots[extraDlg].mem.stash && slots[extraDlg].mem.stash.stash_open">
-                      第{{ slots[extraDlg].mem.stash.page }}页<template v-if="stashText(slots[extraDlg].mem.bag)"> · {{ stashText(slots[extraDlg].mem.bag) }}</template>
+                      第{{ slots[extraDlg].mem.stash.page }}页<template v-if="stashText(slots[extraDlg].mem.bag)"> · <span v-html="stashText(slots[extraDlg].mem.bag)"></span></template>
                     </template>
                     <template v-else>未打开</template>
                   </span>
@@ -355,12 +355,36 @@ export default {
       });
       return groups;
     },
-    // 合并显示：特殊名 / 基础名（都空时回退缩写）
-    itemLabel(b) {
+    // quality → 物品颜色（暗黑2经典配色：1灰 2白 3白粗 4蓝 5绿 6黄 7暗黄 8橙）
+    qualityColor(q) {
+      switch (q) {
+        case 1: return "#9E9E9E";   // 劣质 灰
+        case 2: return "#FFFFFF";   // 普通 白
+        case 3: return "#FFFFFF";   // 超强 白（加粗）
+        case 4: return "#4D9FFF";   // 魔法 蓝
+        case 5: return "#3DD68C";   // 套装 绿
+        case 6: return "#FFD666";   // 稀有 黄
+        case 7: return "#D4A017";   // 暗金 暗黄
+        case 8: return "#FF8C00";   // 手工 橙
+        default: return "";
+      }
+    },
+    escapeHtml(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    },
+    // 合并显示：特殊名 / 基础名（都空时回退缩写）；asHtml 时按 quality 上色
+    itemLabel(b, asHtml = false) {
       const parts = [];
       if (b.special) parts.push(b.special);
       if (b.name) parts.push(b.name);
-      return parts.join(" / ") || b.abbr;
+      const text = parts.join(" / ") || b.abbr;
+      if (!asHtml) return text;
+      const color = this.qualityColor(b.quality);
+      if (!color) return this.escapeHtml(text);
+      const bold = b.quality === 3 ? "font-weight:600;" : "";
+      return `<span style="color:${color};${bold}">${this.escapeHtml(text)}</span>`;
     },
     bagText(bag) {
       const g = this.groupBag(bag);
@@ -368,7 +392,7 @@ export default {
         .sort((a, b) => a - b)
         .map((k) => {
           const items = [...g[k].values()]
-            .map((b) => `${this.itemLabel(b)}×${b.count}`)
+            .map((b) => `${this.itemLabel(b, true)}×${b.count}`)
             .join(" ");
           return `${LOC_NAMES[k] || "?"}[${items}]`;
         });
@@ -390,7 +414,7 @@ export default {
     stashText(bag) {
       const g = this.groupBag(bag);
       const items = [...(g[4] || new Map()).values()]
-        .map((b) => `${this.itemLabel(b)}×${b.count}`)
+        .map((b) => `${this.itemLabel(b, true)}×${b.count}`)
         .join("，");
       return items || "";
     },
