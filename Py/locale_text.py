@@ -84,7 +84,12 @@ def _verify_dispatch(pid: int, h: int, disp) -> bool:
 
 
 def _scan_base(pid: int, h: int) -> int | None:
-    """VirtualQuery 枚举可读区，搜 'flphax'(行0 szFlippyfile) 定位 ItemTxt 表基。"""
+    """全内存搜 'flphax'(行0 szFlippyfile) 定位 ItemTxt 表基。
+
+    使用与 special_name.scan_mem 一致的枚举方式（State 位运算 +
+    Protect 白名单 + addr=base+size 推进），避开 VirtualQueryEx 大区
+    枚举在 mod 进程上不稳定的问题。
+    """
     import ctypes
     from ctypes import wintypes
     kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
@@ -94,33 +99,31 @@ def _scan_base(pid: int, h: int) -> int | None:
                     ("AllocationProtect", wintypes.DWORD), ("RegionSize", ctypes.c_size_t),
                     ("State", wintypes.DWORD), ("Protect", wintypes.DWORD), ("Type", wintypes.DWORD)]
 
-    regions = []
-    addr = 0x10000
+    needle = b"flphax"  # 定宽字段后不一定是 \x00，不能带结尾匹配
+    addr = 0
+    mbi = MBI()
     while addr < 0x7FFFFFFF:
-        mbi = MBI()
-        if not kernel32.VirtualQueryEx(h, ctypes.c_void_p(addr), ctypes.byref(mbi), ctypes.sizeof(mbi)):
+        if not kernel32.VirtualQueryEx(h, ctypes.c_void_p(addr), ctypes.byref(mbi),
+                                       ctypes.sizeof(mbi)):
             break
-        if mbi.State == 0x1000 and (mbi.Protect & 0xFF) & 0xFE:
-            regions.append((int(mbi.BaseAddress), int(mbi.RegionSize)))
-        addr = (int(mbi.BaseAddress) + int(mbi.RegionSize) + 0xFFFF) & ~0xFFFF
-
-    needle = b"flphax\x00"
-    for lo, size in regions:
-        chunk = 0x10000
-        for off in range(0, size, chunk):
-            buf = mem.read(pid, h, lo + off, min(chunk, size - off))
-            if not buf:
-                continue
-            p = 0
-            while True:
-                i = buf.find(needle, p)
-                if i < 0:
-                    break
-                base = lo + off + i
-                if _verify_base(pid, h, base):
-                    return base
-                p = i + 1
-    return None
+        base = int(mbi.BaseAddress or 0)
+        size = int(mbi.RegionSize)
+        if size > 0 and (mbi.State & 0x1000) and (mbi.Protect & 0xFF) in (
+                0x04, 0x02, 0x08, 0x10, 0x20, 0x40):
+            buf = ctypes.create_string_buffer(size)
+            n = ctypes.c_size_t(0)
+            if kernel32.ReadProcessMemory(h, ctypes.c_void_p(base), buf, size,
+                                          ctypes.byref(n)):
+                data = buf.raw[:n.value]
+                p = 0
+                while True:
+                    i = data.find(needle, p)
+                    if i < 0:
+                        break
+                    if _verify_base(pid, h, base + i):
+                        return base + i
+                    p = i + 1
+        addr = base + size
 
 
 def find_itemtxt_base(pid: int, h: int) -> int | None:
