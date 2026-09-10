@@ -77,9 +77,28 @@ def grid_seq(cols, rows, n):
 
 def main():
     dry = "--dry" in sys.argv
-    pid = mem.find_process("D2Loader.exe")
+    pid = None
+    locs = [0, 4]  # 默认整理背包+仓库
+    out = None
+    i = 1
+    while i < len(sys.argv):
+        a = sys.argv[i]
+        if a == "--pid" and i + 1 < len(sys.argv):
+            pid = int(sys.argv[i + 1]); i += 2; continue
+        if a == "--loc" and i + 1 < len(sys.argv):
+            locs = [int(sys.argv[i + 1])]; i += 2; continue
+        if a == "--out" and i + 1 < len(sys.argv):
+            out = sys.argv[i + 1]; i += 2; continue
+        i += 1
+    if not pid:
+        pid = mem.find_process("D2Loader.exe")
     if not pid:
         print("D2Loader.exe 未运行"); return 1
+    if out:
+        try:
+            sys.stdout = open(out, "w", encoding="utf-8-sig")
+        except Exception:
+            pass
     h = mem.open_process_readonly(pid)
     try:
         lays = _layout.get(pid, h)
@@ -91,7 +110,10 @@ def main():
                     "grid": (lays["stash"][2], lays["stash"][3])},
             })
         hwnd = find_hwnd(pid)
-        for loc, P in PANELS.items():
+        for loc in locs:
+            if loc not in PANELS:
+                continue
+            P = PANELS[loc]
             items, pInv = get_items(pid, h, loc)
             if not items:
                 print(f"[{P['name']}] 无物品"); continue
@@ -153,6 +175,10 @@ def main():
             for it in sorted(items2, key=lambda x: x["txt"]):
                 print(f"    txt={it['txt']} 格({it['gx']},{it['gy']})")
     finally:
+        try:
+            sys.stdout.flush()
+        except Exception:
+            pass
         ctypes.windll.kernel32.CloseHandle(h)
     return 0
 

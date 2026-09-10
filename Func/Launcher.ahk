@@ -181,6 +181,30 @@ LauncherClick(pid, x, y) {
     return { ok: true, hwnd: hwnd, x: Integer(x), y: Integer(y), y_off: yOff }
 }
 
+; ---------------- 仓库/背包整理排序 ----------------
+; pid : 进程 ID（槽位实际 PID）
+; loc : 4=仓库  0=背包  空=全部
+; 返回: { ok, text } —— _sort_panel.py 的完整 stdout（UTF-8 BOM）
+LauncherSortStash(pid, loc := "") {
+    if !pid or !ProcessExist(pid)
+        return { ok: false, error: "进程不存在 (PID " pid ")" }
+    pyPath := A_ScriptDir "\Py\_sort_panel.py"
+    tmpPath := A_ScriptDir "\Py\_sort_out.json"
+    args := ' --pid ' pid
+    if loc != ""
+        args .= ' --loc ' loc
+    args .= ' --out "' tmpPath '"'
+    try {
+        RunWait('"' "python" '" "' pyPath '"' args, A_ScriptDir "\Py", "Hide")
+    } catch as e {
+        return { ok: false, error: "排序执行失败: " e.Message }
+    }
+    if !FileExist(tmpPath)
+        return { ok: false, error: "排序无输出" }
+    raw := FileRead(tmpPath)
+    return { ok: true, text: raw }
+}
+
 ; ---------------- 文件/目录选择（复用现有功能） ----------------
 LauncherSelectExe(title := "选择启动文件（exe / lnk）") {
     return FileSelect(1, , title, "可执行文件 (*.exe;*.lnk)|*.exe;*.lnk")

@@ -76,6 +76,7 @@
           <div class="extra-side">
             <div class="extra-nav" :class="{ active: extraTab === 'mem' }" @click="extraTab = 'mem'">内存</div>
             <div class="extra-nav" :class="{ active: extraTab === 'ctrl' }" @click="switchCtrl()">控件</div>
+            <div class="extra-nav" :class="{ active: extraTab === 'stash' }" @click="extraTab = 'stash'">仓库管理</div>
           </div>
           <div class="extra-main">
             <!-- ========== 内存页 ========== -->
@@ -189,6 +190,31 @@
                 </div>
               </div>
             </template>
+            <!-- ========== 仓库管理页 ========== -->
+            <template v-else-if="extraTab === 'stash'">
+              <div class="stash-dlg">
+                <div class="md-row">
+                  <span class="md-k">槽位</span>
+                  <span class="md-v">#{{ extraDlg + 1 }} {{ slots[extraDlg].label || slots[extraDlg].dir || "" }}</span>
+                </div>
+                <div class="md-row">
+                  <span class="md-k">仓库</span>
+                  <span class="md-v pre">
+                    <template v-if="slots[extraDlg].mem.stash && slots[extraDlg].mem.stash.stash_open">
+                      第{{ slots[extraDlg].mem.stash.page }}页<template v-if="stashText(slots[extraDlg].mem.bag)"> · {{ stashText(slots[extraDlg].mem.bag) }}</template>
+                    </template>
+                    <template v-else>未打开</template>
+                  </span>
+                </div>
+                <div class="md-row">
+                  <span class="md-k">操作</span>
+                  <span class="md-v">
+                    <el-button size="small" type="primary" :loading="sorting" @click="sortStash(4)">整理仓库</el-button>
+                  </span>
+                </div>
+                <div class="md-tip">按物品码升序整理仓库（自动处理占格冲突）；整理期间请勿操作游戏，完成后自动刷新显示。</div>
+              </div>
+            </template>
           </div>
         </div>
       </template>
@@ -266,6 +292,7 @@ export default {
       ctrlHideDisabled: (() => {
         try { return localStorage.getItem("d2it_ctrl_hide_disabled") === "1"; } catch (e) { return false; }
       })(),
+      sorting: false, // 仓库整理进行中
     };
   },
   computed: {
@@ -500,6 +527,57 @@ export default {
     clearScript(i) {
       this.slots[i].script = "";
       this.save();
+    },
+    // ---------------- 仓库整理（后台调用 _sort_panel.py） ----------------
+    async sortStash(loc) {
+      const s = this.slots[this.extraDlg];
+      if (!s || !s.pid) {
+        this.log("整理失败: 槽位无运行进程", "warn");
+        return;
+      }
+      this.sorting = true;
+      try {
+        const r = this.ahkL().SortStash(String(s.pid), String(loc));
+        if (r && r.ok) {
+          this.log(`仓库整理完成 #${this.extraDlg + 1}（PID ${s.pid}）`, "info");
+          if (r.text) {
+            r.text.split("\n").slice(0, 25).forEach((ln) => ln.trim() && this.log(ln.trim(), "info"));
+          }
+          await this.refreshMem(this.extraDlg);
+        } else {
+          this.log("仓库整理失败: " + ((r && r.error) || "无返回"), "error");
+        }
+      } catch (e) {
+        this.log("仓库整理异常: " + e.message, "error");
+      } finally {
+        this.sorting = false;
+      }
+    },
+    // 单槽位内存刷新（整理后更新显示）
+    async refreshMem(i) {
+      const s = this.slots[i];
+      if (!s || !s.pid) return;
+      try {
+        const r = this.ahkL().Mem(String(s.pid));
+        if (!r || !r.ok) {
+          this.log("内存刷新失败: " + ((r && r.error) || "无返回"), "warn");
+          return;
+        }
+        const data = JSON.parse(r.json);
+        const m = data.results && data.results[String(s.pid)];
+        if (!m) return;
+        if (m._error) { s.mem.error = m._error; return; }
+        s.mem.error = "";
+        s.mem.marker = m["界面标记"] ?? null;
+        s.mem.account = m["登录的战网账号"] || "";
+        s.mem.gameType = m["游戏类型"] ?? null;
+        s.mem.charIndex = m["人物位置索引"] ?? null;
+        s.mem.charName = m["人物名称"] || "";
+        s.mem.bag = Array.isArray(m["背包物品"]) ? m["背包物品"] : [];
+        s.mem.stash = m["仓库状态"] ?? null;
+      } catch (e) {
+        this.log("内存刷新异常: " + e.message, "warn");
+      }
     },
     pickExe(i) {
       const p = this.ahkL().SelectExe("选择启动文件 #" + (i + 1));
@@ -806,7 +884,8 @@ export default {
   overflow-y: auto;   /* 内容超高时内容区滚动 */
 }
 .extra-main .mem-dlg,
-.extra-main .ctrl-dlg {
+.extra-main .ctrl-dlg,
+.extra-main .stash-dlg {
   max-height: none;
 }
 /* 指针监听弹窗 */
@@ -843,6 +922,12 @@ export default {
   margin-top: 4px;
   font-size: 12px;
   color: #777;
+}
+/* 仓库管理弹窗 */
+.stash-dlg {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 /* 控件信息弹窗 */
 .ctrl-dlg {
