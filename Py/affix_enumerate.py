@@ -41,19 +41,23 @@ STAT_KEY = {
 }
 # 技能组（+0x64 高16位）-> 描述池 key
 # 锚点实测：0xFF02(Summoner's) 盾牌=圣骑士技能、0xFF03(Monk's) 项链=圣骑士技能
-# 其余组（ama/sor/bar）按原版职业对应；0xFF05/0xFF06(dru/ass) anhei tbl 无描述，待实测
+# 0xFF06(Magekiller's)=刺客技能（用户实测；anhei tbl 无该描述，fallback 手写）
+# 其余组（ama/sor/bar）按原版职业对应；0xFF05(dru) 未实测
 GROUP_KEY = {
     0xFF00: "ModStr3a",  # 亚马逊技能等级
     0xFF01: "ModStr3d",  # 法师技能等级
-    0xFF02: "ModStr3b",  # 圣骑士技能等级（anhei 实测）
+    0xFF02: "ModStr3b",  # 圣骑士技能等级（anhei 实测：原 nec 组被改）
     0xFF03: "ModStr3b",  # 圣骑士技能等级
     0xFF04: "ModStr3e",  # 野蛮人技能等级
-    0xFF05: None,        # anhei tbl 无德鲁伊描述
-    0xFF06: None,        # anhei tbl 无刺客描述
+    0xFF05: None,        # anhei tbl 无德鲁伊描述（fallback）
+    0xFF06: None,        # anhei tbl 无刺客描述（fallback）
 }
 GROUP_ORIG = {  # 组原版职业（标注用）
     0xFF00: "ama", 0xFF01: "sor", 0xFF02: "nec", 0xFF03: "pal",
     0xFF04: "bar", 0xFF05: "dru", 0xFF06: "ass",
+}
+GROUP_FB = {  # 组 fallback 中文（tbl 无描述时；0xFF06 用户实测=刺客技能）
+    0xFF05: "德鲁伊技能", 0xFF06: "刺客技能",
 }
 
 # fallback（描述池缺 key 时）：stat 枚举 -> 中文
@@ -193,7 +197,7 @@ def enumerate_affixes(pid: int, h: int) -> dict:
             key = GROUP_KEY[grp]
             zh = clean(pool.get(key, "")) if key else ""
             if not zh:
-                zh = f"技能({GROUP_ORIG.get(grp, '?')}组待确认)"
+                zh = GROUP_FB.get(grp, f"技能({GROUP_ORIG.get(grp, '?')}组)")
             code = "skilltab+" + GROUP_ORIG.get(grp, "?")
         else:
             key = STAT_KEY.get(stat)
