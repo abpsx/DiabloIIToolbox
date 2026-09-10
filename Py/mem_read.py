@@ -329,8 +329,14 @@ def _set_lookup(pid: int, h: int, dw_file_index: int, config_dir: str) -> str:
     return ""
 
 
-def _sn_lookup(pid: int, h: int, code_str: str, config_dir: str) -> str:
-    """物品缩写（如 7dg）→ 特殊名（"巫师之刺 Wizardspike"）；无则空串。"""
+def _sn_lookup(pid: int, h: int, dw_file_index: int, config_dir: str) -> str:
+    """暗金物品（quality==7）dwFileIndex（uniqueitems 行号）→ "中文 英文" 暗金名。
+
+    表 = sgptDataTables 链路的 pUniqueItemsTxt（hackmap UniqueItemTxt，rec=0x14C/条，
+    dwIndex@+00、szDesc[32]@+02、code@+28），按行号直接索引，避免同 code 多暗金误配。
+    表地址来自 special_names.json 的 unique_items_txt_addr（会话级）；失效时经
+    D2Common+0x99E1C 链路重定位并回写 json。
+    """
     global _sn_cache
     if not _sn_cache["path"] or _sn_cache["path"] != config_dir:
         _sn_cache["path"] = config_dir
@@ -338,61 +344,58 @@ def _sn_lookup(pid: int, h: int, code_str: str, config_dir: str) -> str:
         try:
             with open(p, encoding="utf-8") as f:
                 d = json.load(f)
-            _sn_cache["tables"] = d.get("tables", [])
+            _sn_cache["tables"] = []                      # 旧 Elite 表不再用于查询
             _sn_cache["notes"] = d.get("notes", {})
+            _sn_cache["uni_addr"] = int(d.get("unique_items_txt_addr", "0"), 16)
+            _sn_cache["uni_count"] = int(d.get("unique_items_count", 0))
+            _sn_cache["uni_items"] = d.get("unique_items", {})
         except Exception:
-            _sn_cache["tables"], _sn_cache["notes"] = [], {}
+            _sn_cache["notes"] = {}
+            _sn_cache["uni_addr"], _sn_cache["uni_count"] = 0, 0
+            _sn_cache["uni_items"] = {}
 
-    code_b = code_str.encode("ascii", "ignore")
-    # 表地址有效性：表头名 "Elite Uniques" @ 记录首-0x14C
-    good = []
-    for t in _sn_cache["tables"]:
-        rec0 = int(t.get("rec0", 0))
-        if rec0 and read(pid, h, rec0 - _SN_REC, 12).startswith(b"Elite"):
-            good.append(t)
-    if not good and _sn_cache["tables"]:
-        # 缓存失效（游戏重启）→ 重定位并回写
-        try:
-            from special_name import SpecialName
-            sn = SpecialName(pid, h)
-            if sn.unique_tables:
-                _sn_cache["tables"] = [{"rec0": r, "count": c, "first": f}
-                                       for r, c, f in sn.unique_tables]
-                _sn_cache["notes"] = sn.note_map
-                good = _sn_cache["tables"]
-                try:
-                    # 保留既有元数据/套装字段，仅刷新 tables/notes
-                    p = os.path.join(config_dir, "special_names.json")
-                    out = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
-                    out.update({
-                        "exe": "D2Loader.exe",
-                        "ts": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
-                        "updated_at": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
-                        "tables": _sn_cache["tables"], "notes": _sn_cache["notes"],
-                        "unique_table_addr": ("0x%X" % sn.unique_tables[0][0]) if sn.unique_tables else "",
-                        "unique_count": sn.unique_tables[0][1] if sn.unique_tables else 0,
-                        "notes_addr": ("0x%X" % sn.notes_anchor) if sn.notes_anchor else "",
-                        "set_names_addr": ("0x%X" % sn.set_anchor) if sn.set_anchor else "",
-                        "set_names": [[en, cn] for en, cn in sn.set_names],
-                    })
-                    with open(p, "w", encoding="utf-8") as f:
-                        json.dump(out, f, ensure_ascii=False, indent=1)
-                except Exception:
-                    pass
-        except Exception:
-            good = []
-    if not good:
-        return ""
-    for t in good:
-        rec0, cnt = int(t["rec0"]), int(t.get("count", 135))
-        for i in range(min(cnt, 2000)):
-            b = read(pid, h, rec0 + i * _SN_REC, _SN_NAME + 4)
-            if not b:
-                break
-            if b[_SN_CODE:_SN_CODE + 4].rstrip(b"\x00 ") == code_b:
-                en = b[:_SN_NAME].split(b"\x00")[0].decode("latin-1", "ignore")
-                cn = _sn_cache["notes"].get(en, "")
-                return ("%s %s" % (cn, en)).strip() if cn else en
+    uni_addr, uni_count = _sn_cache.get("uni_addr", 0), _sn_cache.get("uni_count", 0)
+
+    def _read_uni_name(rec: int) -> str:
+        b = read(pid, h, rec, _SN_NAME + 4)
+        if not b or len(b) < 6:
+            return ""
+        return b[2:34].split(b"\x00")[0].decode("latin-1", "ignore")
+
+    if uni_addr and 0 <= dw_file_index < uni_count:
+        en = _read_uni_name(uni_addr + dw_file_index * _SN_REC)
+        if en:
+            cn = _sn_cache["notes"].get(en, "")
+            return ("%s %s" % (cn, en)).strip() if cn else en
+
+    # 缓存失效/缺表 → 重定位（sgptDataTables 链路）并回写
+    try:
+        from special_name import locate_unique_items_txt, dump_unique_items
+        pUni, nUni = locate_unique_items_txt(pid, h)
+        if pUni and nUni:
+            _sn_cache["uni_addr"], _sn_cache["uni_count"] = pUni, nUni
+            _sn_cache["uni_items"] = dump_unique_items(pid, h, pUni, nUni)
+            try:
+                p = os.path.join(config_dir, "special_names.json")
+                out = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
+                out.update({
+                    "updated_at": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
+                    "sgpt_offset": ("0x%X" % _SGPT_OFFSET),
+                    "unique_items_txt_addr": ("0x%X" % pUni),
+                    "unique_items_count": nUni,
+                    "unique_items": _sn_cache["uni_items"],
+                })
+                with open(p, "w", encoding="utf-8") as f:
+                    json.dump(out, f, ensure_ascii=False, indent=1)
+            except Exception:
+                pass
+            if 0 <= dw_file_index < nUni:
+                en = _read_uni_name(pUni + dw_file_index * _SN_REC)
+                if en:
+                    cn = _sn_cache["notes"].get(en, "")
+                    return ("%s %s" % (cn, en)).strip() if cn else en
+    except Exception:
+        pass
     return ""
 
 
@@ -463,20 +466,17 @@ def read_bag(pid: int, h: int, item: dict, config_dir: str) -> list:
                 name = txt_to_name(pid, h, txt)[0]
             except Exception:
                 name = ""
-        # 特殊名（unique: quality==7；set 套装: quality==5 → ItemData+0x28=dwFileIndex）
+        # 特殊名（unique: quality==7 → ItemData+0x28=dwFileIndex 索引 uniqueitems 表；
+        #               set 套装: quality==5 → 同字段索引 setitems 表）
         quality = read_dword(pid, h, idat + 0x00) if idat else 0
         special = ""
-        if quality == 7:
-            abbr = code_map.get(txt, "")
-            if abbr:
-                try:
-                    special = _sn_lookup(pid, h, abbr, config_dir)
-                except Exception:
-                    special = ""
-        elif quality == 5:
+        if quality in (5, 7) and idat:
+            dw_file = read_dword(pid, h, idat + 0x28)
             try:
-                dw_file = read_dword(pid, h, idat + 0x28)
-                special = _set_lookup(pid, h, dw_file, config_dir)
+                if quality == 7:
+                    special = _sn_lookup(pid, h, dw_file, config_dir)
+                else:
+                    special = _set_lookup(pid, h, dw_file, config_dir)
             except Exception:
                 special = ""
         entries.append({

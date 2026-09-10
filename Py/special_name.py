@@ -80,6 +80,51 @@ def dump_set_items(pid, h, pSet, nSet):
         out[dw_idx] = {"code": code, "desc": desc, "set_idx": set_idx, "wloc": wloc}
     return out
 
+
+# ---------- uniqueitems 数据表（hackmap UniqueItemTxt，1.13c） ----------
+#   p_D2DataTables @ D2Common+0x99E1C → [var]=sgptDataTables → +0xC24=pUniqueItemsTxt、+0xC28=nUniqueItems
+#   记录 0x14C/条：dwIndex@+00、szDesc[32]@+02、wLocaleTxtNo@+22、szCode[4]@+28
+UNI_REC_SIZE = 0x14C
+UNI_NAME_LEN = 0x20       # szDesc[32]
+UNI_CODE_OFF = 0x28
+
+
+def locate_unique_items_txt(pid, h):
+    """返回 (pUniqueItemsTxt, nUniqueItems)；找不到返回 (0, 0)。"""
+    base = mem.module_base(pid, "D2Common.dll")
+    if not base:
+        return 0, 0
+    sgpt = dword(pid, h, base + SGPT_OFFSET)
+    if not (0x1000000 <= sgpt < 0x80000000):
+        return 0, 0
+    pUni = dword(pid, h, sgpt + 0xC24)
+    nUni = dword(pid, h, sgpt + 0xC28)
+    if not pUni or not (0 < nUni < 5000):
+        return 0, 0
+    # 校验首记录：dwIndex==0 且 szDesc 可打印 ASCII
+    b = mem.read(pid, h, pUni, UNI_NAME_LEN + 4)
+    if not b or len(b) < 6 or int.from_bytes(b[0:2], "little") != 0:
+        return 0, 0
+    desc = b[2:34].split(b"\x00")[0]
+    if not desc or not all(0x20 <= x < 0x7F for x in desc[:4]):
+        return 0, 0
+    return pUni, nUni
+
+
+def dump_unique_items(pid, h, pUni, nUni):
+    """遍历 uniqueitems 表 → {dwIndex: {code, name}}。"""
+    out = {}
+    for i in range(nUni):
+        r = pUni + i * UNI_REC_SIZE
+        b = mem.read(pid, h, r, UNI_NAME_LEN + 4)
+        if not b or len(b) < UNI_NAME_LEN + 4:
+            continue
+        dw_idx = int.from_bytes(b[0:2], "little")
+        name = b[2:2 + UNI_NAME_LEN].split(b"\x00")[0].decode("latin-1", "ignore")
+        code = b[UNI_CODE_OFF:UNI_CODE_OFF + 4].rstrip(b"\x00 ").decode("latin-1", "ignore")
+        out[dw_idx] = {"code": code, "name": name}
+    return out
+
 def scan_mem(pid, h, pat: bytes) -> list[int]:
     """全内存搜索模式串, 返回命中地址列表。"""
     found = []
@@ -121,10 +166,35 @@ class SpecialName:
         self.set_anchor = 0         # 套装名 String 表锚点
         self.set_table_addr = 0     # pSetItemsTxt（hackmap sgptDataTables 链路）
         self.set_count = 0          # nSetItems
+        self.uni_txt_addr = 0       # pUniqueItemsTxt（sgptDataTables 链路，权威 unique 表）
+        self.uni_count = 0          # nUniqueItems
         self._locate_unique_tables()
         self._locate_notes()
         self._locate_set_names()
         self._locate_set_table()
+        self._locate_unique_items_txt()
+
+    # ---------- uniqueitems 数据表（暗金名，hackmap 权威偏移） ----------
+    def _locate_unique_items_txt(self):
+        self.uni_txt_addr, self.uni_count = locate_unique_items_txt(self.pid, self.h)
+
+    def unique_special_name(self, dw_file_index: int) -> str:
+        """dwFileIndex（ItemData+0x28，uniqueitems 行号）→ "中文 英文" 暗金名。
+
+        按索引直接定位 rec[dwFileIndex]（表按行号顺序）；中文名查注释池。
+        """
+        if not (0 <= dw_file_index < self.uni_count) or not self.uni_txt_addr:
+            return ""
+        b = mem.read(self.pid, self.h,
+                     self.uni_txt_addr + dw_file_index * UNI_REC_SIZE,
+                     UNI_NAME_LEN + 4)
+        if not b or len(b) < UNI_NAME_LEN + 4:
+            return ""
+        en = b[2:2 + UNI_NAME_LEN].split(b"\x00")[0].decode("latin-1", "ignore")
+        if not en:
+            return ""
+        cn = self.note_map.get(en, "")
+        return ("%s %s" % (cn, en)).strip() if cn else en
 
     # ---------- setitems 数据表（套装部件名，hackmap 权威偏移） ----------
     def _locate_set_table(self):
@@ -326,6 +396,9 @@ def main():
             "set_table_addr": ("0x%X" % sn.set_table_addr) if sn.set_table_addr else "",
             "set_count": sn.set_count,
             "set_items": dump_set_items(pid, h, sn.set_table_addr, sn.set_count),
+            "unique_items_txt_addr": ("0x%X" % sn.uni_txt_addr) if sn.uni_txt_addr else "",
+            "unique_items_count": sn.uni_count,
+            "unique_items": dump_unique_items(pid, h, sn.uni_txt_addr, sn.uni_count),
             "notes": sn.note_map,
             "set_names": [[en, cn] for en, cn in sn.set_names],
         }
@@ -334,7 +407,8 @@ def main():
         with open(p, "w", encoding="utf-8") as f:
             json.dump(out, f, ensure_ascii=False, indent=1)
         print("已写入", p, "tables:", len(out["tables"]), "notes:", len(out["notes"]),
-              "set_names:", len(out["set_names"]), "set_items:", len(out["set_items"]))
+              "set_names:", len(out["set_names"]), "set_items:", len(out["set_items"]),
+              "unique_items:", len(out["unique_items"]))
         return 0
 
     if args.test:

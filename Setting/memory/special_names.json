@@ -1,7 +1,7 @@
 {
  "exe": "D2Loader.exe",
- "ts": "2026-09-10 18:42:44",
- "updated_at": "2026-09-10 18:42:44",
+ "ts": "2026-09-10 18:50:25",
+ "updated_at": "2026-09-10 18:50:25",
  "tables": [
   {
    "rec0": 311949826,
@@ -12,7 +12,7 @@
  "unique_table_addr": "0x1297FA02",
  "unique_count": 135,
  "notes_addr": "0x4BD7926",
- "set_names_addr": "0x1932D4",
+ "set_names_addr": "0x12941EB0",
  "sgpt_offset": "0x99E1C",
  "set_table_addr": "0x12EFD0E0",
  "set_count": 127,
@@ -780,6 +780,2162 @@
    "wloc": 21875
   }
  },
+ "unique_items_txt_addr": "0x1296B860",
+ "unique_items_count": 538,
+ "unique_items": {
+  "0": {
+   "code": "",
+   "name": "The Gnasher"
+  },
+  "1": {
+   "code": "",
+   "name": "Deathspade"
+  },
+  "2": {
+   "code": "",
+   "name": "Bladebone"
+  },
+  "3": {
+   "code": "",
+   "name": "Mindrend"
+  },
+  "4": {
+   "code": "",
+   "name": "Rakescar"
+  },
+  "5": {
+   "code": "",
+   "name": "Fechmars Axe"
+  },
+  "6": {
+   "code": "",
+   "name": "Goreshovel"
+  },
+  "7": {
+   "code": "",
+   "name": "The Chieftan"
+  },
+  "8": {
+   "code": "",
+   "name": "Brainhew"
+  },
+  "9": {
+   "code": "",
+   "name": "The Humongous"
+  },
+  "10": {
+   "code": "",
+   "name": "Iros Torch"
+  },
+  "11": {
+   "code": "",
+   "name": "Maelstromwrath"
+  },
+  "12": {
+   "code": "",
+   "name": "Gravenspine"
+  },
+  "13": {
+   "code": "",
+   "name": "Umes Lament"
+  },
+  "14": {
+   "code": "",
+   "name": "Felloak"
+  },
+  "15": {
+   "code": "",
+   "name": "Knell Striker"
+  },
+  "16": {
+   "code": "",
+   "name": "Rusthandle"
+  },
+  "17": {
+   "code": "",
+   "name": "Stormeye"
+  },
+  "18": {
+   "code": "",
+   "name": "Stoutnail"
+  },
+  "19": {
+   "code": "",
+   "name": "Crushflange"
+  },
+  "20": {
+   "code": "",
+   "name": "Bloodrise"
+  },
+  "21": {
+   "code": "",
+   "name": "The Generals Tan Do Li Ga"
+  },
+  "22": {
+   "code": "",
+   "name": "Ironstone"
+  },
+  "23": {
+   "code": "",
+   "name": "Bonesob"
+  },
+  "24": {
+   "code": "",
+   "name": "Steeldriver"
+  },
+  "25": {
+   "code": "",
+   "name": "Rixots Keen"
+  },
+  "26": {
+   "code": "",
+   "name": "Blood Crescent"
+  },
+  "27": {
+   "code": "",
+   "name": "Krintizs Skewer"
+  },
+  "28": {
+   "code": "",
+   "name": "Gleamscythe"
+  },
+  "29": {
+   "code": "",
+   "name": "Azurewrath"
+  },
+  "30": {
+   "code": "",
+   "name": "Griswolds Edge"
+  },
+  "31": {
+   "code": "",
+   "name": "Hellplague"
+  },
+  "32": {
+   "code": "",
+   "name": "Culwens Point"
+  },
+  "33": {
+   "code": "",
+   "name": "Shadowfang"
+  },
+  "34": {
+   "code": "",
+   "name": "Soulflay"
+  },
+  "35": {
+   "code": "",
+   "name": "Kinemils Awl"
+  },
+  "36": {
+   "code": "",
+   "name": "Blacktongue"
+  },
+  "37": {
+   "code": "",
+   "name": "Ripsaw"
+  },
+  "38": {
+   "code": "",
+   "name": "The Patriarch"
+  },
+  "39": {
+   "code": "",
+   "name": "Gull"
+  },
+  "40": {
+   "code": "",
+   "name": "The Diggler"
+  },
+  "41": {
+   "code": "",
+   "name": "The Jade Tan Do"
+  },
+  "42": {
+   "code": "",
+   "name": "Irices Shard"
+  },
+  "43": {
+   "code": "",
+   "name": "The Dragon Chang"
+  },
+  "44": {
+   "code": "",
+   "name": "Razortine"
+  },
+  "45": {
+   "code": "",
+   "name": "Bloodthief"
+  },
+  "46": {
+   "code": "",
+   "name": "Lance of Yaggai"
+  },
+  "47": {
+   "code": "",
+   "name": "The Tannr Gorerod"
+  },
+  "48": {
+   "code": "",
+   "name": "Dimoaks Hew"
+  },
+  "49": {
+   "code": "",
+   "name": "Steelgoad"
+  },
+  "50": {
+   "code": "",
+   "name": "Soul Harvest"
+  },
+  "51": {
+   "code": "",
+   "name": "The Battlebranch"
+  },
+  "52": {
+   "code": "",
+   "name": "Woestave"
+  },
+  "53": {
+   "code": "",
+   "name": "The Grim Reaper"
+  },
+  "54": {
+   "code": "",
+   "name": "Bane Ash"
+  },
+  "55": {
+   "code": "",
+   "name": "Serpent Lord"
+  },
+  "56": {
+   "code": "",
+   "name": "Lazarus Spire"
+  },
+  "57": {
+   "code": "",
+   "name": "The Salamander"
+  },
+  "58": {
+   "code": "",
+   "name": "The Iron Jang Bong"
+  },
+  "59": {
+   "code": "",
+   "name": "Pluckeye"
+  },
+  "60": {
+   "code": "",
+   "name": "Witherstring"
+  },
+  "61": {
+   "code": "",
+   "name": "Rimeraven"
+  },
+  "62": {
+   "code": "",
+   "name": "Piercerib"
+  },
+  "63": {
+   "code": "",
+   "name": "Pullspite"
+  },
+  "64": {
+   "code": "",
+   "name": "Wizendraw"
+  },
+  "65": {
+   "code": "",
+   "name": "Hellclap"
+  },
+  "66": {
+   "code": "",
+   "name": "Blastbark"
+  },
+  "67": {
+   "code": "",
+   "name": "Leadcrow"
+  },
+  "68": {
+   "code": "",
+   "name": "Ichorsting"
+  },
+  "69": {
+   "code": "",
+   "name": "Hellcast"
+  },
+  "70": {
+   "code": "",
+   "name": "Doomspittle"
+  },
+  "71": {
+   "code": "",
+   "name": "War Bonnet"
+  },
+  "72": {
+   "code": "",
+   "name": "Tarnhelm"
+  },
+  "73": {
+   "code": "",
+   "name": "Coif of Glory"
+  },
+  "74": {
+   "code": "",
+   "name": "Duskdeep"
+  },
+  "75": {
+   "code": "",
+   "name": "Wormskull"
+  },
+  "76": {
+   "code": "",
+   "name": "Howltusk"
+  },
+  "77": {
+   "code": "",
+   "name": "Undead Crown"
+  },
+  "78": {
+   "code": "",
+   "name": "The Face of Horror"
+  },
+  "79": {
+   "code": "",
+   "name": "Greyform"
+  },
+  "80": {
+   "code": "",
+   "name": "Blinkbats Form"
+  },
+  "81": {
+   "code": "",
+   "name": "The Centurion"
+  },
+  "82": {
+   "code": "",
+   "name": "Twitchthroe"
+  },
+  "83": {
+   "code": "",
+   "name": "Darkglow"
+  },
+  "84": {
+   "code": "",
+   "name": "Hawkmail"
+  },
+  "85": {
+   "code": "",
+   "name": "Sparking Mail"
+  },
+  "86": {
+   "code": "",
+   "name": "Venomsward"
+  },
+  "87": {
+   "code": "",
+   "name": "Iceblink"
+  },
+  "88": {
+   "code": "",
+   "name": "Boneflesh"
+  },
+  "89": {
+   "code": "",
+   "name": "Rockfleece"
+  },
+  "90": {
+   "code": "",
+   "name": "Rattlecage"
+  },
+  "91": {
+   "code": "",
+   "name": "Goldskin"
+  },
+  "92": {
+   "code": "",
+   "name": "Victors Silk"
+  },
+  "93": {
+   "code": "",
+   "name": "Heavenly Garb"
+  },
+  "94": {
+   "code": "",
+   "name": "Pelta Lunata"
+  },
+  "95": {
+   "code": "",
+   "name": "Umbral Disk"
+  },
+  "96": {
+   "code": "",
+   "name": "Stormguild"
+  },
+  "97": {
+   "code": "",
+   "name": "Wall of the Eyeless"
+  },
+  "98": {
+   "code": "",
+   "name": "Swordback Hold"
+  },
+  "99": {
+   "code": "",
+   "name": "Steelclash"
+  },
+  "100": {
+   "code": "",
+   "name": "Bverrit Keep"
+  },
+  "101": {
+   "code": "",
+   "name": "The Ward"
+  },
+  "102": {
+   "code": "",
+   "name": "The Hand of Broc"
+  },
+  "103": {
+   "code": "",
+   "name": "Bloodfist"
+  },
+  "104": {
+   "code": "",
+   "name": "Chance Guards"
+  },
+  "105": {
+   "code": "",
+   "name": "Magefist"
+  },
+  "106": {
+   "code": "",
+   "name": "Frostburn"
+  },
+  "107": {
+   "code": "",
+   "name": "Hotspur"
+  },
+  "108": {
+   "code": "",
+   "name": "Gorefoot"
+  },
+  "109": {
+   "code": "",
+   "name": "Treads of Cthon"
+  },
+  "110": {
+   "code": "",
+   "name": "Goblin Toe"
+  },
+  "111": {
+   "code": "",
+   "name": "Tearhaunch"
+  },
+  "112": {
+   "code": "",
+   "name": "Lenyms Cord"
+  },
+  "113": {
+   "code": "",
+   "name": "Snakecord"
+  },
+  "114": {
+   "code": "",
+   "name": "Nightsmoke"
+  },
+  "115": {
+   "code": "",
+   "name": "Goldwrap"
+  },
+  "116": {
+   "code": "",
+   "name": "Bladebuckle"
+  },
+  "117": {
+   "code": "",
+   "name": "Nokozan Relic"
+  },
+  "118": {
+   "code": "",
+   "name": "The Eye of Etlich"
+  },
+  "119": {
+   "code": "",
+   "name": "The Mahim-Oak Curio"
+  },
+  "120": {
+   "code": "",
+   "name": "Nagelring"
+  },
+  "121": {
+   "code": "",
+   "name": "Manald Heal"
+  },
+  "122": {
+   "code": "",
+   "name": "The Stone of Jordan"
+  },
+  "123": {
+   "code": "",
+   "name": "Amulet of the Viper"
+  },
+  "124": {
+   "code": "",
+   "name": "Staff of Kings"
+  },
+  "125": {
+   "code": "",
+   "name": "Horadric Staff"
+  },
+  "126": {
+   "code": "",
+   "name": "Hell Forge Hammer"
+  },
+  "127": {
+   "code": "",
+   "name": "KhalimFlail"
+  },
+  "128": {
+   "code": "",
+   "name": "SuperKhalimFlail"
+  },
+  "129": {
+   "code": "",
+   "name": "Coldkill"
+  },
+  "130": {
+   "code": "",
+   "name": "Butcher's Pupil"
+  },
+  "131": {
+   "code": "",
+   "name": "Islestrike"
+  },
+  "132": {
+   "code": "",
+   "name": "Pompe's Wrath"
+  },
+  "133": {
+   "code": "",
+   "name": "Guardian Naga"
+  },
+  "134": {
+   "code": "",
+   "name": "Warlord's Trust"
+  },
+  "135": {
+   "code": "",
+   "name": "Spellsteel"
+  },
+  "136": {
+   "code": "",
+   "name": "Stormrider"
+  },
+  "137": {
+   "code": "",
+   "name": "Boneslayer Blade"
+  },
+  "138": {
+   "code": "",
+   "name": "The Minataur"
+  },
+  "139": {
+   "code": "",
+   "name": "Suicide Branch"
+  },
+  "140": {
+   "code": "",
+   "name": "Carin Shard"
+  },
+  "141": {
+   "code": "",
+   "name": "Arm of King Leoric"
+  },
+  "142": {
+   "code": "",
+   "name": "Blackhand Key"
+  },
+  "143": {
+   "code": "",
+   "name": "Dark Clan Crusher"
+  },
+  "144": {
+   "code": "",
+   "name": "Zakarum's Hand"
+  },
+  "145": {
+   "code": "",
+   "name": "The Fetid Sprinkler"
+  },
+  "146": {
+   "code": "",
+   "name": "Hand of Blessed Light"
+  },
+  "147": {
+   "code": "",
+   "name": "Fleshrender"
+  },
+  "148": {
+   "code": "",
+   "name": "Sureshrill Frost"
+  },
+  "149": {
+   "code": "",
+   "name": "Moonfall"
+  },
+  "150": {
+   "code": "",
+   "name": "Baezil's Vortex"
+  },
+  "151": {
+   "code": "",
+   "name": "Earthshaker"
+  },
+  "152": {
+   "code": "",
+   "name": "Bloodtree Stump"
+  },
+  "153": {
+   "code": "",
+   "name": "The Gavel of Pain"
+  },
+  "154": {
+   "code": "",
+   "name": "Bloodletter"
+  },
+  "155": {
+   "code": "",
+   "name": "Coldsteel Eye"
+  },
+  "156": {
+   "code": "",
+   "name": "Hexfire"
+  },
+  "157": {
+   "code": "",
+   "name": "Blade of Ali Baba"
+  },
+  "158": {
+   "code": "",
+   "name": "Ginther's Rift"
+  },
+  "159": {
+   "code": "",
+   "name": "Headstriker"
+  },
+  "160": {
+   "code": "",
+   "name": "Plague Bearer"
+  },
+  "161": {
+   "code": "",
+   "name": "The Atlantian"
+  },
+  "162": {
+   "code": "",
+   "name": "Crainte Vomir"
+  },
+  "163": {
+   "code": "",
+   "name": "Bing Sz Wang"
+  },
+  "164": {
+   "code": "",
+   "name": "The Vile Husk"
+  },
+  "165": {
+   "code": "",
+   "name": "Cloudcrack"
+  },
+  "166": {
+   "code": "",
+   "name": "Todesfaelle Flamme"
+  },
+  "167": {
+   "code": "",
+   "name": "Swordguard"
+  },
+  "168": {
+   "code": "",
+   "name": "Spineripper"
+  },
+  "169": {
+   "code": "",
+   "name": "Heart Carver"
+  },
+  "170": {
+   "code": "",
+   "name": "Blackbog's Sharp"
+  },
+  "171": {
+   "code": "",
+   "name": "Stormspike"
+  },
+  "172": {
+   "code": "",
+   "name": "The Impaler"
+  },
+  "173": {
+   "code": "",
+   "name": "Kelpie Snare"
+  },
+  "174": {
+   "code": "",
+   "name": "Soulfeast Tine"
+  },
+  "175": {
+   "code": "",
+   "name": "Hone Sundan"
+  },
+  "176": {
+   "code": "",
+   "name": "Spire of Honor"
+  },
+  "177": {
+   "code": "",
+   "name": "The Meat Scraper"
+  },
+  "178": {
+   "code": "",
+   "name": "Blackleach Blade"
+  },
+  "179": {
+   "code": "",
+   "name": "Athena's Wrath"
+  },
+  "180": {
+   "code": "",
+   "name": "Pierre Tombale Couant"
+  },
+  "181": {
+   "code": "",
+   "name": "Husoldal Evo"
+  },
+  "182": {
+   "code": "",
+   "name": "Grim's Burning Dead"
+  },
+  "183": {
+   "code": "",
+   "name": "Razorswitch"
+  },
+  "184": {
+   "code": "",
+   "name": "Ribcracker"
+  },
+  "185": {
+   "code": "",
+   "name": "Chromatic Ire"
+  },
+  "186": {
+   "code": "",
+   "name": "Warpspear"
+  },
+  "187": {
+   "code": "",
+   "name": "Skullcollector"
+  },
+  "188": {
+   "code": "",
+   "name": "Skystrike"
+  },
+  "189": {
+   "code": "",
+   "name": "Riphook"
+  },
+  "190": {
+   "code": "",
+   "name": "Kuko Shakaku"
+  },
+  "191": {
+   "code": "",
+   "name": "Endlesshail"
+  },
+  "192": {
+   "code": "",
+   "name": "Whichwild String"
+  },
+  "193": {
+   "code": "",
+   "name": "Cliffkiller"
+  },
+  "194": {
+   "code": "",
+   "name": "Magewrath"
+  },
+  "195": {
+   "code": "",
+   "name": "Godstrike Arch"
+  },
+  "196": {
+   "code": "",
+   "name": "Langer Briser"
+  },
+  "197": {
+   "code": "",
+   "name": "Pus Spiter"
+  },
+  "198": {
+   "code": "",
+   "name": "Buriza-Do Kyanon"
+  },
+  "199": {
+   "code": "",
+   "name": "Demon Machine"
+  },
+  "200": {
+   "code": "",
+   "name": "Armor"
+  },
+  "201": {
+   "code": "",
+   "name": "Peasent Crown"
+  },
+  "202": {
+   "code": "",
+   "name": "Rockstopper"
+  },
+  "203": {
+   "code": "",
+   "name": "Stealskull"
+  },
+  "204": {
+   "code": "",
+   "name": "Darksight Helm"
+  },
+  "205": {
+   "code": "",
+   "name": "Valkiry Wing"
+  },
+  "206": {
+   "code": "",
+   "name": "Crown of Thieves"
+  },
+  "207": {
+   "code": "",
+   "name": "Blackhorn's Face"
+  },
+  "208": {
+   "code": "",
+   "name": "Vampiregaze"
+  },
+  "209": {
+   "code": "",
+   "name": "The Spirit Shroud"
+  },
+  "210": {
+   "code": "",
+   "name": "Skin of the Vipermagi"
+  },
+  "211": {
+   "code": "",
+   "name": "Skin of the Flayerd One"
+  },
+  "212": {
+   "code": "",
+   "name": "Ironpelt"
+  },
+  "213": {
+   "code": "",
+   "name": "Spiritforge"
+  },
+  "214": {
+   "code": "",
+   "name": "Crow Caw"
+  },
+  "215": {
+   "code": "",
+   "name": "Shaftstop"
+  },
+  "216": {
+   "code": "",
+   "name": "Duriel's Shell"
+  },
+  "217": {
+   "code": "",
+   "name": "Skullder's Ire"
+  },
+  "218": {
+   "code": "",
+   "name": "Guardian Angel"
+  },
+  "219": {
+   "code": "",
+   "name": "Toothrow"
+  },
+  "220": {
+   "code": "",
+   "name": "Atma's Wail"
+  },
+  "221": {
+   "code": "",
+   "name": "Black Hades"
+  },
+  "222": {
+   "code": "",
+   "name": "Corpsemourn"
+  },
+  "223": {
+   "code": "",
+   "name": "Que-Hegan's Wisdon"
+  },
+  "224": {
+   "code": "",
+   "name": "Visceratuant"
+  },
+  "225": {
+   "code": "",
+   "name": "Mosers Blessed Circle"
+  },
+  "226": {
+   "code": "",
+   "name": "Stormchaser"
+  },
+  "227": {
+   "code": "",
+   "name": "Tiamat's Rebuke"
+  },
+  "228": {
+   "code": "",
+   "name": "Kerke's Sanctuary"
+  },
+  "229": {
+   "code": "",
+   "name": "Radimant's Sphere"
+  },
+  "230": {
+   "code": "",
+   "name": "Lidless Wall"
+  },
+  "231": {
+   "code": "",
+   "name": "Lance Guard"
+  },
+  "232": {
+   "code": "",
+   "name": "Venom Grip"
+  },
+  "233": {
+   "code": "",
+   "name": "Gravepalm"
+  },
+  "234": {
+   "code": "",
+   "name": "Ghoulhide"
+  },
+  "235": {
+   "code": "",
+   "name": "Lavagout"
+  },
+  "236": {
+   "code": "",
+   "name": "Hellmouth"
+  },
+  "237": {
+   "code": "",
+   "name": "Infernostride"
+  },
+  "238": {
+   "code": "",
+   "name": "Waterwalk"
+  },
+  "239": {
+   "code": "",
+   "name": "Silkweave"
+  },
+  "240": {
+   "code": "",
+   "name": "Wartraveler"
+  },
+  "241": {
+   "code": "",
+   "name": "Gorerider"
+  },
+  "242": {
+   "code": "",
+   "name": "String of Ears"
+  },
+  "243": {
+   "code": "",
+   "name": "Razortail"
+  },
+  "244": {
+   "code": "",
+   "name": "Gloomstrap"
+  },
+  "245": {
+   "code": "",
+   "name": "Snowclash"
+  },
+  "246": {
+   "code": "",
+   "name": "Thudergod's Vigor"
+  },
+  "247": {
+   "code": "",
+   "name": "Elite Uniques"
+  },
+  "248": {
+   "code": "",
+   "name": "Harlequin Crest"
+  },
+  "249": {
+   "code": "",
+   "name": "Veil of Steel"
+  },
+  "250": {
+   "code": "",
+   "name": "The Gladiator's Bane"
+  },
+  "251": {
+   "code": "",
+   "name": "Arkaine's Valor"
+  },
+  "252": {
+   "code": "",
+   "name": "Blackoak Shield"
+  },
+  "253": {
+   "code": "",
+   "name": "Stormshield"
+  },
+  "254": {
+   "code": "",
+   "name": "Hellslayer"
+  },
+  "255": {
+   "code": "",
+   "name": "Messerschmidt's Reaver"
+  },
+  "256": {
+   "code": "",
+   "name": "Baranar's Star"
+  },
+  "257": {
+   "code": "",
+   "name": "Schaefer's Hammer"
+  },
+  "258": {
+   "code": "",
+   "name": "The Cranium Basher"
+  },
+  "259": {
+   "code": "",
+   "name": "Lightsabre"
+  },
+  "260": {
+   "code": "",
+   "name": "Doombringer"
+  },
+  "261": {
+   "code": "",
+   "name": "The Grandfather"
+  },
+  "262": {
+   "code": "",
+   "name": "Wizardspike"
+  },
+  "263": {
+   "code": "",
+   "name": "Constricting Ring"
+  },
+  "264": {
+   "code": "",
+   "name": "Stormspire"
+  },
+  "265": {
+   "code": "",
+   "name": "Eaglehorn"
+  },
+  "266": {
+   "code": "",
+   "name": "Windforce"
+  },
+  "267": {
+   "code": "",
+   "name": "Rings"
+  },
+  "268": {
+   "code": "",
+   "name": "Bul Katho's Wedding Band"
+  },
+  "269": {
+   "code": "",
+   "name": "The Cat's Eye"
+  },
+  "270": {
+   "code": "",
+   "name": "The Rising Sun"
+  },
+  "271": {
+   "code": "",
+   "name": "Crescent Moon"
+  },
+  "272": {
+   "code": "",
+   "name": "Mara's Kaleidoscope"
+  },
+  "273": {
+   "code": "",
+   "name": "Atma's Scarab"
+  },
+  "274": {
+   "code": "",
+   "name": "Dwarf Star"
+  },
+  "275": {
+   "code": "",
+   "name": "Raven Frost"
+  },
+  "276": {
+   "code": "",
+   "name": "Highlord's Wrath"
+  },
+  "277": {
+   "code": "",
+   "name": "Saracen's Chance"
+  },
+  "278": {
+   "code": "",
+   "name": "Class Specific"
+  },
+  "279": {
+   "code": "",
+   "name": "Arreat's Face"
+  },
+  "280": {
+   "code": "",
+   "name": "Homunculus"
+  },
+  "281": {
+   "code": "",
+   "name": "Titan's Revenge"
+  },
+  "282": {
+   "code": "",
+   "name": "Lycander's Aim"
+  },
+  "283": {
+   "code": "",
+   "name": "Lycander's Flank"
+  },
+  "284": {
+   "code": "",
+   "name": "The Oculus"
+  },
+  "285": {
+   "code": "",
+   "name": "Herald of Zakarum"
+  },
+  "286": {
+   "code": "",
+   "name": "Cutthroat1"
+  },
+  "287": {
+   "code": "",
+   "name": "Jalal's Mane"
+  },
+  "288": {
+   "code": "",
+   "name": "The Scalper"
+  },
+  "289": {
+   "code": "",
+   "name": "Bloodmoon"
+  },
+  "290": {
+   "code": "",
+   "name": "Djinnslayer"
+  },
+  "291": {
+   "code": "",
+   "name": "Deathbit"
+  },
+  "292": {
+   "code": "",
+   "name": "Warshrike"
+  },
+  "293": {
+   "code": "",
+   "name": "Gutsiphon"
+  },
+  "294": {
+   "code": "",
+   "name": "Razoredge"
+  },
+  "295": {
+   "code": "",
+   "name": "Gore Ripper"
+  },
+  "296": {
+   "code": "",
+   "name": "Demonlimb"
+  },
+  "297": {
+   "code": "",
+   "name": "Steelshade"
+  },
+  "298": {
+   "code": "",
+   "name": "Tomb Reaver"
+  },
+  "299": {
+   "code": "",
+   "name": "Deaths's Web"
+  },
+  "300": {
+   "code": "",
+   "name": "Nature's Peace"
+  },
+  "301": {
+   "code": "",
+   "name": "Azurewrath"
+  },
+  "302": {
+   "code": "",
+   "name": "Seraph's Hymn"
+  },
+  "303": {
+   "code": "",
+   "name": "Zakarum's Salvation"
+  },
+  "304": {
+   "code": "",
+   "name": "Fleshripper"
+  },
+  "305": {
+   "code": "",
+   "name": "Odium"
+  },
+  "306": {
+   "code": "",
+   "name": "Horizon's Tornado"
+  },
+  "307": {
+   "code": "",
+   "name": "Stone Crusher"
+  },
+  "308": {
+   "code": "",
+   "name": "Jadetalon"
+  },
+  "309": {
+   "code": "",
+   "name": "Shadowdancer"
+  },
+  "310": {
+   "code": "",
+   "name": "Cerebus"
+  },
+  "311": {
+   "code": "",
+   "name": "Tyrael's Might"
+  },
+  "312": {
+   "code": "",
+   "name": "Souldrain"
+  },
+  "313": {
+   "code": "",
+   "name": "Runemaster"
+  },
+  "314": {
+   "code": "",
+   "name": "Deathcleaver"
+  },
+  "315": {
+   "code": "",
+   "name": "Executioner's Justice"
+  },
+  "316": {
+   "code": "",
+   "name": "Stoneraven"
+  },
+  "317": {
+   "code": "",
+   "name": "Leviathan"
+  },
+  "318": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "319": {
+   "code": "",
+   "name": "Wisp"
+  },
+  "320": {
+   "code": "",
+   "name": "Gargoyle's Bite"
+  },
+  "321": {
+   "code": "",
+   "name": "Lacerator"
+  },
+  "322": {
+   "code": "",
+   "name": "Mang Song's Lesson"
+  },
+  "323": {
+   "code": "",
+   "name": "Viperfork"
+  },
+  "324": {
+   "code": "",
+   "name": "Ethereal Edge"
+  },
+  "325": {
+   "code": "",
+   "name": "Demonhorn's Edge"
+  },
+  "326": {
+   "code": "",
+   "name": "The Reaper's Toll"
+  },
+  "327": {
+   "code": "",
+   "name": "Spiritkeeper"
+  },
+  "328": {
+   "code": "",
+   "name": "Hellrack"
+  },
+  "329": {
+   "code": "",
+   "name": "Alma Negra"
+  },
+  "330": {
+   "code": "",
+   "name": "Darkforge Spawn"
+  },
+  "331": {
+   "code": "",
+   "name": "Widowmaker"
+  },
+  "332": {
+   "code": "",
+   "name": "Bloodraven's Charge"
+  },
+  "333": {
+   "code": "",
+   "name": "Ghostflame"
+  },
+  "334": {
+   "code": "",
+   "name": "Shadowkiller"
+  },
+  "335": {
+   "code": "",
+   "name": "Gimmershred"
+  },
+  "336": {
+   "code": "",
+   "name": "Griffon's Eye"
+  },
+  "337": {
+   "code": "",
+   "name": "Windhammer"
+  },
+  "338": {
+   "code": "",
+   "name": "Thunderstroke"
+  },
+  "339": {
+   "code": "",
+   "name": "Giantmaimer"
+  },
+  "340": {
+   "code": "",
+   "name": "Demon's Arch"
+  },
+  "341": {
+   "code": "",
+   "name": "Boneflame"
+  },
+  "342": {
+   "code": "",
+   "name": "Steelpillar"
+  },
+  "343": {
+   "code": "",
+   "name": "Nightwing's Veil"
+  },
+  "344": {
+   "code": "",
+   "name": "Crown of Ages"
+  },
+  "345": {
+   "code": "",
+   "name": "Andariel's Visage"
+  },
+  "346": {
+   "code": "",
+   "name": "Darkfear"
+  },
+  "347": {
+   "code": "",
+   "name": "Dragonscale"
+  },
+  "348": {
+   "code": "",
+   "name": "Steel Carapice"
+  },
+  "349": {
+   "code": "",
+   "name": "Medusa's Gaze"
+  },
+  "350": {
+   "code": "",
+   "name": "Ravenlore"
+  },
+  "351": {
+   "code": "",
+   "name": "Boneshade"
+  },
+  "352": {
+   "code": "",
+   "name": "Nethercrow"
+  },
+  "353": {
+   "code": "",
+   "name": "Flamebellow"
+  },
+  "354": {
+   "code": "",
+   "name": "Fathom"
+  },
+  "355": {
+   "code": "",
+   "name": "Wolfhowl"
+  },
+  "356": {
+   "code": "",
+   "name": "Spirit Ward"
+  },
+  "357": {
+   "code": "",
+   "name": "Kira's Guardian"
+  },
+  "358": {
+   "code": "",
+   "name": "Ormus' Robes"
+  },
+  "359": {
+   "code": "",
+   "name": "Gheed's Fortune"
+  },
+  "360": {
+   "code": "",
+   "name": "Stormlash"
+  },
+  "361": {
+   "code": "",
+   "name": "Halaberd's Reign"
+  },
+  "362": {
+   "code": "",
+   "name": "Warriv's Warder"
+  },
+  "363": {
+   "code": "",
+   "name": "Spike Thorn"
+  },
+  "364": {
+   "code": "",
+   "name": "Dracul's Grasp"
+  },
+  "365": {
+   "code": "",
+   "name": "Frostwind"
+  },
+  "366": {
+   "code": "",
+   "name": "Templar's Might"
+  },
+  "367": {
+   "code": "",
+   "name": "Eschuta's temper"
+  },
+  "368": {
+   "code": "",
+   "name": "Firelizard's Talons"
+  },
+  "369": {
+   "code": "",
+   "name": "Sandstorm Trek"
+  },
+  "370": {
+   "code": "",
+   "name": "Marrowwalk"
+  },
+  "371": {
+   "code": "",
+   "name": "Heaven's Light"
+  },
+  "372": {
+   "code": "",
+   "name": "Merman's Speed"
+  },
+  "373": {
+   "code": "",
+   "name": "Arachnid Mesh"
+  },
+  "374": {
+   "code": "",
+   "name": "Nosferatu's Coil"
+  },
+  "375": {
+   "code": "",
+   "name": "Metalgrid"
+  },
+  "376": {
+   "code": "",
+   "name": "Verdugo's Hearty Cord"
+  },
+  "377": {
+   "code": "",
+   "name": "Sigurd's Staunch"
+  },
+  "378": {
+   "code": "",
+   "name": "Carrion Wind"
+  },
+  "379": {
+   "code": "",
+   "name": "Giantskull"
+  },
+  "380": {
+   "code": "",
+   "name": "Ironward"
+  },
+  "381": {
+   "code": "",
+   "name": "Annihilus"
+  },
+  "382": {
+   "code": "",
+   "name": "Arioc's Needle"
+  },
+  "383": {
+   "code": "",
+   "name": "Cranebeak"
+  },
+  "384": {
+   "code": "",
+   "name": "Nord's Tenderizer"
+  },
+  "385": {
+   "code": "",
+   "name": "Earthshifter"
+  },
+  "386": {
+   "code": "",
+   "name": "Wraithflight"
+  },
+  "387": {
+   "code": "",
+   "name": "Bonehew"
+  },
+  "388": {
+   "code": "",
+   "name": "Ondal's Wisdom"
+  },
+  "389": {
+   "code": "",
+   "name": "The Reedeemer"
+  },
+  "390": {
+   "code": "",
+   "name": "Headhunter's Glory"
+  },
+  "391": {
+   "code": "",
+   "name": "Steelrend"
+  },
+  "392": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "393": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "394": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "395": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "396": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "397": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "398": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "399": {
+   "code": "",
+   "name": "Rainbow Facet"
+  },
+  "400": {
+   "code": "",
+   "name": "Hellfire Torch"
+  },
+  "401": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "402": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "403": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "404": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "405": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "406": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "407": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "408": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "409": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "410": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "411": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "412": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "413": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "414": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "415": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "416": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "417": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "418": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "419": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "420": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "421": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "422": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "423": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "424": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "425": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "426": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "427": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "428": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "429": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "430": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "431": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "432": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "433": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "434": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "435": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "436": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "437": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "438": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "439": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "440": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "441": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "442": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "443": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "444": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "445": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "446": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "447": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "448": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "449": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "450": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "451": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "452": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "453": {
+   "code": "",
+   "name": "Larzuk's Champion"
+  },
+  "454": {
+   "code": "",
+   "name": "This Cow Bites"
+  },
+  "455": {
+   "code": "",
+   "name": "ModStr1z"
+  },
+  "456": {
+   "code": "",
+   "name": "ModStr2a"
+  },
+  "457": {
+   "code": "",
+   "name": "ModStr2c"
+  },
+  "458": {
+   "code": "",
+   "name": "ModStr2b"
+  },
+  "459": {
+   "code": "",
+   "name": "talisman"
+  },
+  "460": {
+   "code": "",
+   "name": "aegis"
+  },
+  "461": {
+   "code": "",
+   "name": "guard"
+  },
+  "462": {
+   "code": "",
+   "name": "mantle"
+  },
+  "463": {
+   "code": "",
+   "name": "chant"
+  },
+  "464": {
+   "code": "",
+   "name": "grip"
+  },
+  "465": {
+   "code": "",
+   "name": "Wings"
+  },
+  "466": {
+   "code": "",
+   "name": "Witch Doctor Endugu"
+  },
+  "467": {
+   "code": "",
+   "name": "SandRaider"
+  },
+  "468": {
+   "code": "",
+   "name": "Bloodwitch the Wild"
+  },
+  "469": {
+   "code": "",
+   "name": "MercX102"
+  },
+  "470": {
+   "code": "",
+   "name": "JungleHunter"
+  },
+  "471": {
+   "code": "",
+   "name": "StormCaster"
+  },
+  "472": {
+   "code": "",
+   "name": "Sarina the Battlemaid"
+  },
+  "473": {
+   "code": "",
+   "name": "DarkLord"
+  },
+  "474": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "475": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "476": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "477": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "478": {
+   "code": "",
+   "name": "DemonID"
+  },
+  "479": {
+   "code": "",
+   "name": "TrappDoor"
+  },
+  "480": {
+   "code": "",
+   "name": "steals life"
+  },
+  "481": {
+   "code": "",
+   "name": "merc09"
+  },
+  "482": {
+   "code": "",
+   "name": "ModStr2d"
+  },
+  "483": {
+   "code": "",
+   "name": "Wraith"
+  },
+  "484": {
+   "code": "",
+   "name": "Shocking Hit"
+  },
+  "485": {
+   "code": "",
+   "name": "ModStr2e"
+  },
+  "486": {
+   "code": "",
+   "name": "ShrMsg22"
+  },
+  "487": {
+   "code": "",
+   "name": "Shelter"
+  },
+  "488": {
+   "code": "",
+   "name": "Strong"
+  },
+  "489": {
+   "code": "",
+   "name": "Lord's"
+  },
+  "490": {
+   "code": "",
+   "name": "Angel's"
+  },
+  "491": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "492": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "493": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "494": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "495": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "496": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "497": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "498": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "499": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "500": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "501": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "502": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "503": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "504": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "505": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "506": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "507": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "508": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "509": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "510": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "511": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "512": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "513": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "514": {
+   "code": "",
+   "name": "knuckle"
+  },
+  "515": {
+   "code": "",
+   "name": "jew"
+  },
+  "516": {
+   "code": "",
+   "name": "jew"
+  },
+  "517": {
+   "code": "",
+   "name": "jew"
+  },
+  "518": {
+   "code": "",
+   "name": "jew"
+  },
+  "519": {
+   "code": "",
+   "name": "jew"
+  },
+  "520": {
+   "code": "",
+   "name": "jew"
+  },
+  "521": {
+   "code": "",
+   "name": "jew"
+  },
+  "522": {
+   "code": "",
+   "name": "Annihilus-1"
+  },
+  "523": {
+   "code": "",
+   "name": "Annihilus-2"
+  },
+  "524": {
+   "code": "",
+   "name": "Annihilus-3"
+  },
+  "525": {
+   "code": "",
+   "name": "Annihilus-4"
+  },
+  "526": {
+   "code": "",
+   "name": "Annihilus-5"
+  },
+  "527": {
+   "code": "",
+   "name": "Annihilus-6"
+  },
+  "528": {
+   "code": "",
+   "name": "Annihilus-7"
+  },
+  "529": {
+   "code": "",
+   "name": "Annihilus-8"
+  },
+  "530": {
+   "code": "",
+   "name": "Annihilus-9"
+  },
+  "531": {
+   "code": "",
+   "name": "Annihilus-10"
+  },
+  "532": {
+   "code": "",
+   "name": "Annihilus-11"
+  },
+  "533": {
+   "code": "",
+   "name": "Annihilus-12"
+  },
+  "534": {
+   "code": "",
+   "name": "Annihilus-13"
+  },
+  "535": {
+   "code": "",
+   "name": "Annihilus-14"
+  },
+  "536": {
+   "code": "",
+   "name": "Annihilus-15"
+  },
+  "537": {
+   "code": "",
+   "name": "Annihilus-16"
+  }
+ },
  "notes": {
   "Athena's Wrath": "阿西娜的忿怒",
   "Pierre Tombale Couant": "考恩特",
@@ -1244,6 +3400,10 @@
    "艾克"
   ],
   [
+   "Akarat's Protector",
+   "阿卡拉特的保护者"
+  ],
+  [
    "Aladdin's Eviscerator",
    "古代人的内脏"
   ],
@@ -1254,6 +3414,10 @@
   [
    "Aldur's Deception",
    "艾尔多的欺暪"
+  ],
+  [
+   "Aldur's Gauntlet",
+   "艾尔多的铁手套"
   ],
   [
    "Aldur's Rhythm",
@@ -1268,6 +3432,14 @@
    "艾尔多的守卫"
   ],
   [
+   "Alma Negra",
+   "阿尔玛-尼格拉"
+  ],
+  [
+   "Alma's Reflection",
+   "阿尔玛的回忆"
+  ],
+  [
    "Amn",
    "安姆"
   ],
@@ -1280,6 +3452,22 @@
    "古代之眼"
   ],
   [
+   "Ancients' Pledge",
+   "古代人的契约"
+  ],
+  [
+   "Angel's Song",
+   "天使之歌"
+  ],
+  [
+   "Annihilus",
+   "毁灭"
+  ],
+  [
+   "Apocrypha",
+   "伪经"
+  ],
+  [
    "Apothecary's Tote",
    "药商的计算器"
   ],
@@ -1288,8 +3476,16 @@
    "蜘蛛之网"
   ],
   [
+   "Aragon's Icy Stare",
+   "亚拉岗冰之凝视"
+  ],
+  [
    "Aragon's Masterpiece",
    "亚拉岗的名作"
+  ],
+  [
+   "Aragon's Storm Cloud",
+   "亚拉岗暴风云"
   ],
   [
    "Aragon's Sunfire",
@@ -1300,12 +3496,20 @@
    "大天使的救助"
   ],
   [
+   "Arioc's Needle",
+   "爱理欧克之针"
+  ],
+  [
    "Arkaine's Valor",
    "阿凯尼的荣耀"
   ],
   [
    "Arm of King Leoric",
    "李奥瑞克王的武器"
+  ],
+  [
+   "Armageddon",
+   "毁天灭地"
   ],
   [
    "Armor",
@@ -1328,12 +3532,20 @@
    "阿西娜的忿怒"
   ],
   [
+   "Atma's Scarab",
+   "亚特玛的圣甲虫"
+  ],
+  [
    "Atma's Wail",
    "亚特玛的哭喊"
   ],
   [
    "Aurora's Guard",
    "奥罗拉的守护"
+  ],
+  [
+   "Authority",
+   "权威"
   ],
   [
    "Baezil's Vortex",
@@ -1352,8 +3564,20 @@
    "巴特克的猛击"
   ],
   [
+   "Beast",
+   "野兽"
+  ],
+  [
+   "Beauty",
+   "美貌"
+  ],
+  [
    "Bing Sz Wang",
    "兵之王"
+  ],
+  [
+   "Black",
+   "黑色"
   ],
   [
    "Black Hades",
@@ -1368,6 +3592,10 @@
    "黑手之钥"
   ],
   [
+   "Blackhorn",
+   "黑角"
+  ],
+  [
    "Blackhorn's Face",
    "黑角面具"
   ],
@@ -1376,8 +3604,28 @@
    "黑水之刃"
   ],
   [
+   "Blackoak Shield",
+   "黑橡树盾"
+  ],
+  [
+   "Blade Master",
+   "刀刃之王"
+  ],
+  [
    "Blade of Ali Baba",
    "阿里巴巴之刃"
+  ],
+  [
+   "Bling Bling",
+   "布尔布尔"
+  ],
+  [
+   "Blood",
+   "血腥"
+  ],
+  [
+   "Blood Chalice",
+   "血杯"
   ],
   [
    "Blood Comet",
@@ -1404,6 +3652,10 @@
    "血树残株"
   ],
   [
+   "Bone",
+   "白骨"
+  ],
+  [
    "Boneflame",
    "骨焰"
   ],
@@ -1420,12 +3672,40 @@
    "白骨阴影"
   ],
   [
+   "Boneslayer Blade",
+   "碎骨者之刃"
+  ],
+  [
+   "Bramble",
+   "野蔷薇"
+  ],
+  [
+   "Brand",
+   "烙印"
+  ],
+  [
+   "Breath of the Dying",
+   "死亡呼吸"
+  ],
+  [
+   "Broken Promise",
+   "破碎的誓言"
+  ],
+  [
    "Bul-Kathos",
    "布尔凯索斯"
   ],
   [
    "Bul-Kathos' Children",
    "布尔凯索的孩子"
+  ],
+  [
+   "Bul-Kathos' Custodian",
+   "布尔凯索的管理者"
+  ],
+  [
+   "Bul-Kathos' Might",
+   "布尔凯索之力"
   ],
   [
    "Bul-Kathos' Sacred Charge",
@@ -1438,6 +3718,10 @@
   [
    "Bul-Kathos' Warden",
    "布尔凯索之长"
+  ],
+  [
+   "Bul-Kathos' Wedding Band",
+   "布尔凯索之戒"
   ],
   [
    "Buriza-Do Kyanon",
@@ -1460,6 +3744,18 @@
    "石冢碎片"
   ],
   [
+   "Call to Arms",
+   "战争召唤"
+  ],
+  [
+   "Carin Shard",
+   "凯恩碎片"
+  ],
+  [
+   "Carnage Leaver",
+   "背离屠杀者"
+  ],
+  [
    "Carrion Wind",
    "腐肉之风"
   ],
@@ -1472,12 +3768,32 @@
    "地狱之吻"
   ],
   [
+   "Chains of Honor",
+   "荣耀之链"
+  ],
+  [
    "Cham",
    "查姆"
   ],
   [
+   "Chance",
+   "机会"
+  ],
+  [
+   "Chaos",
+   "混沌"
+  ],
+  [
+   "Charsi's Favor",
+   "恰西的恩惠"
+  ],
+  [
    "Chromatic Ire",
    "五彩的怒气"
+  ],
+  [
+   "Cliffkiller",
+   "岩壁杀手"
   ],
   [
    "Cloudcrack",
@@ -1488,8 +3804,28 @@
    "冷杀"
   ],
   [
+   "Coldsteal Eye",
+   "窃冷之眼"
+  ],
+  [
+   "Coldsteel Eye",
+   "冰钢之眼"
+  ],
+  [
+   "Constricting Ring",
+   "收缩戒指"
+  ],
+  [
+   "Corpsemourn",
+   "尸体的哀伤"
+  ],
+  [
    "Cow King's Hide",
    "牛魔王之皮"
+  ],
+  [
+   "Cow King's Hooves",
+   "牛魔王之蹄"
   ],
   [
    "Cow King's Horns",
@@ -1498,6 +3834,14 @@
   [
    "Cow King's Leathers",
    "牛魔王之皮甲"
+  ],
+  [
+   "Crainte Vomir",
+   "克林铁-弗姆"
+  ],
+  [
+   "Cranebeak",
+   "鹤嘴"
   ],
   [
    "Credendum",
@@ -1528,16 +3872,44 @@
    "丹弓的教导"
   ],
   [
+   "Dark Adherent",
+   "黑暗信徒"
+  ],
+  [
+   "Dark Clan Crusher",
+   "暗族碎灭者"
+  ],
+  [
+   "Darkfear",
+   "黑暗恐惧"
+  ],
+  [
    "Darkforce Spawn",
    "魔力肇生"
+  ],
+  [
+   "Darkness",
+   "黑暗"
   ],
   [
    "Darksight Helm",
    "暗视之盔"
   ],
   [
+   "Darksoul",
+   "幽闇魔灵"
+  ],
+  [
    "Dawn Bringer",
    "黄昏降临者"
+  ],
+  [
+   "Daylight",
+   "白天"
+  ],
+  [
+   "Death",
+   "死神"
   ],
   [
    "Death Cleaver",
@@ -1552,8 +3924,24 @@
    "死亡碎片"
   ],
   [
+   "Deception",
+   "欺暪"
+  ],
+  [
+   "Delerium",
+   "迪勒瑞姆"
+  ],
+  [
+   "Demon Limb",
+   "恶魔爪牙"
+  ],
+  [
    "Demon Machine",
    "恶魔机器"
+  ],
+  [
+   "Demon's Arch",
+   "恶魔之王"
   ],
   [
    "Demonhorn's Edge",
@@ -1564,6 +3952,18 @@
    "恶魔之网"
   ],
   [
+   "Desire",
+   "渴望"
+  ],
+  [
+   "Despair",
+   "失望"
+  ],
+  [
+   "Destruction",
+   "毁灭"
+  ],
+  [
    "Djinn Slayer",
    "魔灵杀手"
   ],
@@ -1572,12 +3972,28 @@
    "多尔"
   ],
   [
+   "Doom",
+   "末日"
+  ],
+  [
    "Doombringer",
    "末日毁灭者"
   ],
   [
    "Doomseer",
    "末日先知"
+  ],
+  [
+   "Doppleganger's Shadow",
+   "变形怪之影"
+  ],
+  [
+   "Dracul's Grasp",
+   "卓古拉之握"
+  ],
+  [
+   "Dragon",
+   "飞龙"
   ],
   [
    "Dragonscale",
@@ -1592,8 +4008,20 @@
    "龙兽之焰"
   ],
   [
+   "Dread",
+   "恐惧"
+  ],
+  [
+   "Dream",
+   "梦境"
+  ],
+  [
    "Drulan's Tongue",
    "杜兰之舌"
+  ],
+  [
+   "Duress",
+   "强制"
   ],
   [
    "Duriel's Shell",
@@ -1608,12 +4036,24 @@
    "矮人之星"
   ],
   [
+   "Eaglehorn",
+   "鹰号角"
+  ],
+  [
    "Eaglewind",
    "老鹰之风"
   ],
   [
+   "Earth Shifter",
+   "大地变形者"
+  ],
+  [
    "Earthshaker",
    "撼地者"
+  ],
+  [
+   "Edge",
+   "边缘"
   ],
   [
    "El Espiritu",
@@ -1624,6 +4064,10 @@
    "妖精地狱火"
   ],
   [
+   "Elation",
+   "兴高彩烈"
+  ],
+  [
    "Eld",
    "艾德"
   ],
@@ -1632,24 +4076,68 @@
    "无休止的冰雹"
   ],
   [
+   "Enigma",
+   "谜团"
+  ],
+  [
+   "Enlightenment",
+   "教化"
+  ],
+  [
+   "Envy",
+   "羡慕"
+  ],
+  [
    "Erion's Bonehandle",
    "爱力恩的骨柄"
+  ],
+  [
+   "Eschuta's Temper",
+   "艾斯屈塔的脾气"
+  ],
+  [
+   "Eternity",
+   "永恒"
   ],
   [
    "Eth",
    "爱斯"
   ],
   [
+   "Ethereal Edge",
+   "永恒边界"
+  ],
+  [
    "Excalibur",
    "石中剑"
+  ],
+  [
+   "Executioner's Justice",
+   "刽子手的裁决"
+  ],
+  [
+   "Exile",
+   "流亡"
+  ],
+  [
+   "Faith",
+   "信心"
   ],
   [
    "Fal",
    "法尔"
   ],
   [
+   "Famine",
+   "饥荒"
+  ],
+  [
    "Firelizard's Talons",
    "火蜥蜴之爪"
+  ],
+  [
+   "Flame",
+   "火焰"
   ],
   [
    "Flamebellow",
@@ -1676,6 +4164,10 @@
    "夫罗卡德之牙"
   ],
   [
+   "Flowkrad's Howl",
+   "夫罗卡德的狂嚎"
+  ],
+  [
    "Flowkrad's Paws",
    "夫罗卡德的脚掌"
   ],
@@ -1688,12 +4180,36 @@
    "费斯杰利的焦点"
   ],
   [
+   "Fortitude",
+   "刚毅"
+  ],
+  [
+   "Fortune",
+   "幸运"
+  ],
+  [
+   "Friendship",
+   "友情"
+  ],
+  [
+   "Frostwind",
+   "冰霜之风"
+  ],
+  [
    "Fuego Del Sol",
    "夫得勾-迪尔-索"
   ],
   [
+   "Fury",
+   "狂怒"
+  ],
+  [
    "Gaia's Wrath",
    "盖亚之怒"
+  ],
+  [
+   "Gargoyle's Bite",
+   "石像鬼之噬"
   ],
   [
    "Gaya Wand",
@@ -1706,6 +4222,10 @@
   [
    "Geronimo's Fury",
    "吉拉尼莫的忿怒"
+  ],
+  [
+   "Gheed's Fortune",
+   "基得的运气"
   ],
   [
    "Ghost Leach",
@@ -1732,8 +4252,16 @@
    "巨骷髅"
   ],
   [
+   "Gillian's Brazier",
+   "吉利安之火盆"
+  ],
+  [
    "Gimmershred",
    "碎片贪婪者"
+  ],
+  [
+   "Ginther's Rift",
+   "金瑟的裂缝"
   ],
   [
    "Glimmershred",
@@ -1744,8 +4272,16 @@
    "费斯杰利之球"
   ],
   [
+   "Gloom",
+   "幽暗"
+  ],
+  [
    "Gloom's Trap",
    "阴影陷阱"
+  ],
+  [
+   "Glory",
+   "荣誉"
   ],
   [
    "Goldstrike Arch",
@@ -1760,12 +4296,24 @@
    "墓穴的抚弄"
   ],
   [
+   "Grief",
+   "悔恨"
+  ],
+  [
+   "Griffon's Eye",
+   "格利风之眼"
+  ],
+  [
    "Grim's Burning Dead",
    "惊怖焰亡灵"
   ],
   [
    "Griswold's Heart",
    "格瑞斯华尔德之心"
+  ],
+  [
+   "Griswold's Honor",
+   "格瑞斯华尔德的荣耀"
   ],
   [
    "Griswold's Legacy",
@@ -1780,8 +4328,16 @@
    "格瑞斯华尔德的勇气"
   ],
   [
+   "Guardian Angel",
+   "守护天使"
+  ],
+  [
    "Guardian Naga",
    "蛇神守护者"
+  ],
+  [
+   "Guillaume's Face",
+   "吉永之脸"
   ],
   [
    "Gul",
@@ -1804,16 +4360,40 @@
    "黑摩苏的坚决"
   ],
   [
+   "Halaberd's Reign",
+   "海拉柏得的国度"
+  ],
+  [
    "Hand of Blessed Light",
    "祝福之光之手"
+  ],
+  [
+   "Hand of Justice",
+   "正义之手"
   ],
   [
    "Harlequin Crest",
    "谐角之冠"
   ],
   [
+   "Harmony",
+   "和谐"
+  ],
+  [
+   "Hatred",
+   "憎恨"
+  ],
+  [
+   "Headstriker",
+   "击头者"
+  ],
+  [
    "Heart Carver",
    "刻心者"
+  ],
+  [
+   "Heart of the Oak",
+   "橡树之心"
   ],
   [
    "Heaven's Brethren",
@@ -1822,6 +4402,10 @@
   [
    "Heaven's Light",
    "天堂之光"
+  ],
+  [
+   "Heaven's Will",
+   "天堂的意识"
   ],
   [
    "Hel",
@@ -1852,6 +4436,10 @@
    "撒卡兰姆使者"
   ],
   [
+   "Hexfire",
+   "六角之火"
+  ],
+  [
    "Highlord's Wrath",
    "大君之怒"
   ],
@@ -1860,12 +4448,48 @@
    "高塔之视"
   ],
   [
+   "Holy Tears",
+   "神圣之泪"
+  ],
+  [
+   "Holy Thunder",
+   "神圣雷击"
+  ],
+  [
    "Homunculus",
    "侏儒"
   ],
   [
+   "Hone Sundan",
+   "宏-森丹"
+  ],
+  [
+   "Honor",
+   "荣耀"
+  ],
+  [
+   "Horazon's Chalice",
+   "赫拉森之杯"
+  ],
+  [
+   "Horizon's Tornado",
+   "地平线的台风"
+  ],
+  [
    "Howling Visage",
    "狂号的面孔"
+  ],
+  [
+   "Humility",
+   "谦恭"
+  ],
+  [
+   "Hunger",
+   "饥饿"
+  ],
+  [
+   "Husoldal Evo",
+   "胡索丹-依弗"
   ],
   [
    "Hwanin's Blessing",
@@ -1880,8 +4504,24 @@
    "华宁的正义"
   ],
   [
+   "Hwanin's Majesty",
+   "华宁的威严"
+  ],
+  [
+   "Hwanin's Refuge",
+   "华宁的保护"
+  ],
+  [
    "Hwanin's Splendor",
    "华宁的光辉"
+  ],
+  [
+   "Iansang's Frenzy",
+   "伊安森的狂怒"
+  ],
+  [
+   "Ice",
+   "冰冻"
   ],
   [
    "Immortal King",
@@ -1890,6 +4530,14 @@
   [
    "Immortal King's Detail",
    "不朽之王的琐事"
+  ],
+  [
+   "Immortal King's Forge",
+   "不朽之王的融炉"
+  ],
+  [
+   "Immortal King's Pillar",
+   "不朽之王之柱"
   ],
   [
    "Immortal King's Soul Cage",
@@ -1908,8 +4556,24 @@
    "印地哥的幻想"
   ],
   [
+   "Infernostride",
+   "地狱阔步"
+  ],
+  [
+   "Infinity",
+   "无限"
+  ],
+  [
+   "Innocence",
+   "纯洁"
+  ],
+  [
    "Iron Pelt",
    "掷铁"
+  ],
+  [
+   "Islestrike",
+   "岛击"
   ],
   [
    "Ist",
@@ -1920,12 +4584,52 @@
    "伊司"
   ],
   [
+   "Jade Talon",
+   "碧玉爪"
+  ],
+  [
+   "Jalal's Mane",
+   "加尔的长发"
+  ],
+  [
+   "Jealousy",
+   "妒忌"
+  ],
+  [
+   "Judgement",
+   "审判"
+  ],
+  [
+   "Kang's Virtue",
+   "坎格的美德"
+  ],
+  [
    "Kelpie Snare",
    "水魔陷阱"
   ],
   [
+   "Khalim's Vengeance",
+   "克林姆的复仇"
+  ],
+  [
+   "King's Grace",
+   "王者的慈悲"
+  ],
+  [
+   "Kingslayer",
+   "拭王者"
+  ],
+  [
    "Kira's Guardian",
    "奇拉的守护"
+  ],
+  [
+   "Knight's Vigil",
+   "骑士的警戒"
+  ],
+  [
+   "Knowledge",
+   "知识"
   ],
   [
    "Kuko Shakaku",
@@ -1936,8 +4640,12 @@
    "库拉斯特之盾"
   ],
   [
+   "Lacerator",
+   "撕裂者"
+  ],
+  [
    "Lance Guard",
-   "长枪守卫"
+   "长枪警卫"
   ],
   [
    "Langer Briser",
@@ -1946,6 +4654,30 @@
   [
    "Larzuk's Champion",
    "拉苏克的斗士"
+  ],
+  [
+   "Last Wish",
+   "最后希望"
+  ],
+  [
+   "Lava Gout",
+   "熔岩角羊"
+  ],
+  [
+   "Law",
+   "法律"
+  ],
+  [
+   "Lawbringer",
+   "执法者"
+  ],
+  [
+   "Laying of Hands",
+   "手掌的安置"
+  ],
+  [
+   "Leaf",
+   "叶子"
   ],
   [
    "Lem",
@@ -1968,12 +4700,36 @@
    "窒息生命"
   ],
   [
+   "Lightning",
+   "闪电"
+  ],
+  [
    "Lightsabre",
    "光之军刀"
   ],
   [
+   "Lionheart",
+   "狮子心"
+  ],
+  [
+   "Lore",
+   "知识"
+  ],
+  [
+   "Love",
+   "爱情"
+  ],
+  [
+   "Loyalty",
+   "忠诚"
+  ],
+  [
    "Lum",
    "卢姆"
+  ],
+  [
+   "Lust",
+   "欲望"
   ],
   [
    "Lycander's Aim",
@@ -1984,6 +4740,10 @@
    "雷山德的侧腹"
   ],
   [
+   "M'avina's Battle Hymn",
+   "马维娜之战斗诗歌"
+  ],
+  [
    "M'avina's Caster",
    "马维娜的施展"
   ],
@@ -1992,12 +4752,28 @@
    "马维娜的拥抱"
   ],
   [
+   "M'avina's Icy Clutch",
+   "马维娜的冰握"
+  ],
+  [
+   "M'avina's Tenet",
+   "马维娜的教义"
+  ],
+  [
    "M'avina's True Sight",
    "马维娜的真实之眼"
   ],
   [
+   "Madness",
+   "疯狂"
+  ],
+  [
    "Magewrath",
    "巫师之怒"
+  ],
+  [
+   "Magnus' Skin",
+   "马格纳斯之皮"
   ],
   [
    "Mal",
@@ -2006,6 +4782,10 @@
   [
    "Malice",
    "怨恨"
+  ],
+  [
+   "Malignant Skull",
+   "邪心骨"
   ],
   [
    "Mang Song's Lesson",
@@ -2028,12 +4808,24 @@
    "麦克奥雷的碎石"
   ],
   [
+   "McAuley's Folly",
+   "麦克奥雷的愚行"
+  ],
+  [
+   "McAuley's Pledge",
+   "麦克奥雷的契约"
+  ],
+  [
    "McAuley's Superstition",
    "麦克奥雷的迷信"
   ],
   [
    "McAuley's Taboo",
    "麦克奥雷的禁忌"
+  ],
+  [
+   "Meatscrape",
+   "削肉"
   ],
   [
    "Medusa's Gaze",
@@ -2046,6 +4838,14 @@
   [
    "Memory",
    "记忆"
+  ],
+  [
+   "Messerschmidt's Reaver",
+   "希梅斯特的掠夺"
+  ],
+  [
+   "Metalgrid",
+   "金属网格"
   ],
   [
    "Metalite's Girth",
@@ -2066,6 +4866,14 @@
   [
    "Moonfall",
    "落月"
+  ],
+  [
+   "Moonrend",
+   "破碎之月"
+  ],
+  [
+   "Mordoc's Marauder",
+   "马德克的盗贼"
   ],
   [
    "Morning",
@@ -2096,6 +4904,10 @@
    "蛇龙"
   ],
   [
+   "Naj's Ancient Vestige",
+   "娜吉的古代遗迹"
+  ],
+  [
    "Naj's Circlet",
    "娜吉的小环"
   ],
@@ -2124,12 +4936,36 @@
    "娜塔亚的灵魂"
   ],
   [
+   "Natalya's Totem",
+   "娜塔亚的图腾"
+  ],
+  [
    "Nature's Kingdom",
    "天然的王国"
   ],
   [
+   "Nature's Peace",
+   "大自然的和平"
+  ],
+  [
+   "Nebuchadnezzar's Storm",
+   "拿布坎瑟的风暴"
+  ],
+  [
    "Nef",
    "那夫"
+  ],
+  [
+   "Nethercrow",
+   "冥府乌鸦"
+  ],
+  [
+   "Night",
+   "夜晚"
+  ],
+  [
+   "Nightsummon",
+   "夜之召唤"
   ],
   [
    "Nightwing's Veil",
@@ -2144,12 +4980,36 @@
    "吸血圣王之圈"
   ],
   [
+   "Oath",
+   "誓约"
+  ],
+  [
+   "Obedience",
+   "遵从"
+  ],
+  [
+   "Oblivion",
+   "湮没"
+  ],
+  [
+   "Obsession",
+   "着魔"
+  ],
+  [
    "Odium",
    "厌恶"
   ],
   [
    "Ogun's Fierce Visage",
    "奥岗的残暴面孔"
+  ],
+  [
+   "Ogun's Lash",
+   "奥岗之鞭"
+  ],
+  [
+   "Ogun's Shadow",
+   "奥岗之影"
   ],
   [
    "Ogun's Vengeance",
@@ -2168,6 +5028,10 @@
    "安戴尔的智慧"
   ],
   [
+   "Ormus' Robe",
+   "奥玛斯之袍"
+  ],
+  [
    "Ormus' Robes",
    "奥玛斯的长袍"
   ],
@@ -2184,12 +5048,32 @@
    "奥斯卡"
   ],
   [
+   "Pagan's Athame",
+   "异教的啊沙梅"
+  ],
+  [
    "Palo Grande",
    "派罗大公"
   ],
   [
    "Parkersor's Calm",
    "帕克索尔的冷静"
+  ],
+  [
+   "Passion",
+   "热情"
+  ],
+  [
+   "Patience",
+   "忍耐"
+  ],
+  [
+   "Patter",
+   "啪哒"
+  ],
+  [
+   "Peace",
+   "和平"
   ],
   [
    "Peasant Crown",
@@ -2236,6 +5120,14 @@
    "瘟疫"
   ],
   [
+   "Plague Bearer",
+   "疫病带原者"
+  ],
+  [
+   "Pompeii's Wrath",
+   "庞贝之怒"
+  ],
+  [
    "Praise",
    "颂扬"
   ],
@@ -2270,6 +5162,14 @@
   [
    "Purity",
    "纯洁"
+  ],
+  [
+   "Pus Spitter",
+   "毒液怪"
+  ],
+  [
+   "Qual-Khek's Enforcer",
+   "夸尔凯克执法者"
   ],
   [
    "Que-Hegan's Wisdom",
@@ -2324,6 +5224,10 @@
    "摆动剃刀"
   ],
   [
+   "Razortail",
+   "剃刀之尾"
+  ],
+  [
    "Reason",
    "理由"
   ],
@@ -2332,12 +5236,24 @@
    "鲜红"
   ],
   [
+   "Revenge",
+   "复仇"
+  ],
+  [
    "Rhyme",
    "押韵"
   ],
   [
+   "Ribcracker",
+   "肋骨粉碎者"
+  ],
+  [
    "Rift",
    "裂缝"
+  ],
+  [
+   "Riftlash",
+   "破裂之鞭"
   ],
   [
    "Riftslash",
@@ -2358,6 +5274,10 @@
   [
    "Robin's Yolk",
    "知更之蛋"
+  ],
+  [
+   "Rockhew",
+   "石块切割"
   ],
   [
    "Rockstopper",
@@ -2392,12 +5312,24 @@
    "山德的愚行"
   ],
   [
+   "Sander's Paragon",
+   "山德的模范"
+  ],
+  [
    "Sander's Riprap",
    "山德的碎石"
   ],
   [
    "Sander's Superstition",
    "山德的迷信"
+  ],
+  [
+   "Sander's Taboo",
+   "山德的禁忌"
+  ],
+  [
+   "Sandstorm Trek",
+   "沙暴之旅"
   ],
   [
    "Sankekur's Resurrection",
@@ -2414,6 +5346,14 @@
   [
    "Sazabi's Ghost Liberator",
    "沙撒璧的鬼魂释放者"
+  ],
+  [
+   "Sazabi's Grand Tribute",
+   "沙撒璧的雄伟贡品"
+  ],
+  [
+   "Sazabi's Mental Sheath",
+   "沙撒璧的精神之鞘"
   ],
   [
    "Schaefer's Hammer",
@@ -2500,6 +5440,10 @@
    "骷髅收集者"
   ],
   [
+   "Skullder's Ire",
+   "诗寇蒂的愤怒"
+  ],
+  [
    "Skulltred",
    "史古塔得"
   ],
@@ -2516,6 +5460,10 @@
    "蛇之舌"
   ],
   [
+   "Snowclash",
+   "雪之冲突"
+  ],
+  [
    "Sol",
    "索尔"
   ],
@@ -2524,12 +5472,24 @@
    "哀伤"
   ],
   [
+   "Soul Drainer",
+   "吸魂者"
+  ],
+  [
+   "Soul Reaper",
+   "灵魂收割者"
+  ],
+  [
    "Soulfeast Tine",
    "噬魂叉"
   ],
   [
    "Spellsteel",
    "钢铁魔咒"
+  ],
+  [
+   "Spike Thorn",
+   "尖刺根源"
   ],
   [
    "Spineripper",
@@ -2550,6 +5510,10 @@
   [
    "Spirit Keeper",
    "灵魂看守者"
+  ],
+  [
+   "Spirit Ward",
+   "魂系结界"
   ],
   [
    "Splendor",
@@ -2604,6 +5568,10 @@
    "石块"
   ],
   [
+   "Stone Crusher",
+   "碎石者"
+  ],
+  [
    "Stone Rattle",
    "自响之石"
   ],
@@ -2620,6 +5588,10 @@
    "风暴"
   ],
   [
+   "Stormchaser",
+   "风暴追逐者"
+  ],
+  [
    "Stormlash",
    "暴风之结"
   ],
@@ -2632,6 +5604,14 @@
    "暴风之盾"
   ],
   [
+   "Stormspike",
+   "暴风尖刺"
+  ],
+  [
+   "Stormspire",
+   "暴风尖塔"
+  ],
+  [
    "Stormwillow",
    "暴风柳木"
   ],
@@ -2642,6 +5622,10 @@
   [
    "String of Ears",
    "长串之耳"
+  ],
+  [
+   "Strong Oak",
+   "奇怪像树"
   ],
   [
    "Suicide Branch",
@@ -2668,7 +5652,7 @@
    "塔-拉夏的判决"
   ],
   [
-   "Tal Rasha's Fine-Spun C",
+   "Tal Rasha's Fine-Spun Cloth",
    "塔-拉夏的纤细衣服"
   ],
   [
@@ -2684,6 +5668,14 @@
    "塔-拉夏的警戒之眼"
   ],
   [
+   "Tal Rasha's Wrappings",
+   "塔-拉夏的外袍"
+  ],
+  [
+   "Talberd's Law",
+   "泰尔柏德的律法"
+  ],
+  [
    "Tang's Battle Standard",
    "坦的战斗常规"
   ],
@@ -2694,6 +5686,10 @@
   [
    "Tang's Imperial Robes",
    "坦的皇者之袍"
+  ],
+  [
+   "Tang's Rule",
+   "坦的规则"
   ],
   [
    "Tang's Throne",
@@ -2748,8 +5744,24 @@
    "门徒"
   ],
   [
+   "The Ensanguinator",
+   "血红之人"
+  ],
+  [
+   "The Fetid Sprinkler",
+   "恶臭散布者"
+  ],
+  [
+   "The Gavel of Pain",
+   "痛苦木槌"
+  ],
+  [
    "The Gladiator's Bane",
    "斗士的祸根"
+  ],
+  [
+   "The Grandfather",
+   "祖父"
   ],
   [
    "The Harbinger",
@@ -2758,6 +5770,14 @@
   [
    "The Harvester",
    "收割者"
+  ],
+  [
+   "The Impaler",
+   "穿刺者"
+  ],
+  [
+   "The Longest Rod",
+   "长棒"
   ],
   [
    "The Meat Scraper",
@@ -2780,12 +5800,28 @@
    "死神的丧钟"
   ],
   [
+   "The Redeemer",
+   "忏悔者"
+  ],
+  [
+   "The Rising Sun",
+   "旭日东升"
+  ],
+  [
+   "The Scalper",
+   "圆凿"
+  ],
+  [
    "The Spirit Shroud",
    "灵魂帷幕"
   ],
   [
    "The Swashbuckler",
    "暴徒"
+  ],
+  [
+   "The Treentster",
+   "崔恩斯特"
   ],
   [
    "The Vicar",
@@ -2840,8 +5876,16 @@
    "泰坦之拳"
   ],
   [
+   "Titan's Revenge",
+   "泰坦的复仇"
+  ],
+  [
    "Todesfaelle Flamme",
    "特迪斯法雷-芙法米"
+  ],
+  [
+   "Toothrow",
+   "排齿"
   ],
   [
    "Tradition",
@@ -2860,8 +5904,16 @@
    "塔格奥之束带"
   ],
   [
+   "Trang-Oul's Guise",
+   "塔格奥之外装"
+  ],
+  [
    "Trang-Oul's Mask",
    "塔格奥之面具"
+  ],
+  [
+   "Trang-Oul's Scales",
+   "塔格奥之鳞"
   ],
   [
    "Trang-Oul's Wing",
@@ -2872,8 +5924,16 @@
    "背信"
   ],
   [
+   "Triad's Foliage",
+   "三重叶"
+  ],
+  [
    "Trust",
    "信任"
+  ],
+  [
+   "Truth",
+   "真实"
   ],
   [
    "Tyrael's Mercy",
@@ -2884,16 +5944,44 @@
    "泰瑞尔力量"
   ],
   [
+   "Unbending Will",
+   "坚定意志"
+  ],
+  [
    "Valkyrie Wing",
    "女神之翼"
+  ],
+  [
+   "Valor",
+   "英勇"
+  ],
+  [
+   "Vampire Gaze",
+   "吸血鬼的凝视"
   ],
   [
    "Veil of Steel",
    "钢铁面纱"
   ],
   [
+   "Vengeance",
+   "复仇"
+  ],
+  [
+   "Venom",
+   "毒牙"
+  ],
+  [
+   "Venom Grip",
+   "剧毒之抓"
+  ],
+  [
    "Vex",
    "伐克斯"
+  ],
+  [
+   "Victory",
+   "胜利"
   ],
   [
    "Viperfork",
@@ -2904,20 +5992,60 @@
    "维斯尔坦特"
   ],
   [
+   "Voice",
+   "声音"
+  ],
+  [
+   "Voice of Reason",
+   "思考之声"
+  ],
+  [
+   "Void",
+   "虚无"
+  ],
+  [
    "Wallace's Tear",
    "华莱士之泪"
+  ],
+  [
+   "War",
+   "战争"
+  ],
+  [
+   "War Traveler",
+   "战争旅者"
+  ],
+  [
+   "Warhound",
+   "战争猎犬"
   ],
   [
    "Warlord's Trust",
    "战爵之证"
   ],
   [
+   "Warpspear",
+   "扭曲之矛"
+  ],
+  [
    "Warshrike",
    "战争之鸟"
   ],
   [
+   "Water",
+   "清水"
+  ],
+  [
    "Waterwalk",
    "水上飘"
+  ],
+  [
+   "Wealth",
+   "财富"
+  ],
+  [
+   "Whichwild String",
+   "狂野之弦"
   ],
   [
    "Whisper",
@@ -2928,8 +6056,20 @@
    "白色"
   ],
   [
+   "Whitstan's Guard",
+   "惠斯坦的武装"
+  ],
+  [
    "Widowmaker",
    "戮夫刃"
+  ],
+  [
+   "Wilhelm's Pride",
+   "威廉的自尊"
+  ],
+  [
+   "Willhelm's Pride",
+   "魏尔海姆的自尊"
   ],
   [
    "Wind",
@@ -2944,12 +6084,20 @@
    "风之锤"
   ],
   [
+   "Windstrike",
+   "风之击"
+  ],
+  [
    "Wings of Hope",
    "希望之翼"
   ],
   [
    "Wisdom",
    "智慧"
+  ],
+  [
+   "Wisp Projector",
+   "鬼火投射者"
   ],
   [
    "Wizardspike",
@@ -2972,8 +6120,16 @@
    "死灵夜翔"
   ],
   [
+   "Wraithfang",
+   "死灵之牙"
+  ],
+  [
    "Wrath",
    "愤怒"
+  ],
+  [
+   "Wrath of Cain",
+   "凯恩之怒"
   ],
   [
    "Wyvern's Head",
