@@ -3,7 +3,7 @@
 
 产物（均为查询友好字典）：
   dict_item_codes.json   物品码表: items(唯一列表{id,code,name,name_raw}) +
-                        by_id(物品码→{code}) + by_code(缩写→{id}) 纯索引瘦身
+                        by_id("330"→items下标) + by_code("lrg"→items下标) 键值对索引
   dict_set_items.json    套装部件: by_index(行号→原样) + by_code(缩写→列表)
   dict_unique_items.json 暗金表:   by_index(行号→原样) + by_code(缩写→列表, 过滤空code占位行)
   dict_set_names.json    套装组名: {英文: 中文}
@@ -27,20 +27,21 @@ def clean(s: str) -> str:
 
 
 def main() -> None:
-    # ---- 1. 物品码表（瘦身索引：数据只存一份 items，by_id/by_code 仅映射） ----
+    # ---- 1. 物品码表（索引指向 items 下标，键值对瘦身） ----
     ic = load("item_codes.json")
     items, by_id, by_code = [], {}, {}
     for it in ic["items"]:
         cid, code = it.get("id"), it.get("code")
         if cid is None or not code:
             continue
+        idx = len(items)  # 该条在 items 中的位置
         items.append({
             "id": cid, "code": code,
             "name": it.get("name_clean") or it.get("name", ""),
             "name_raw": it.get("name_raw", ""),
         })
-        by_id[str(cid)] = {"code": code}
-        by_code.setdefault(code, {"id": cid})
+        by_id[str(cid)] = idx
+        by_code.setdefault(code, idx)
     dump("dict_item_codes.json", {"items": items, "by_id": by_id, "by_code": by_code})
     print("dict_item_codes: items=%d by_id=%d by_code=%d" % (len(items), len(by_id), len(by_code)))
 
