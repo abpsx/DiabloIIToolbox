@@ -382,9 +382,11 @@ export default {
       const text = parts.join(" / ") || b.abbr;
       if (!asHtml) return text;
       const color = this.qualityColor(b.quality);
-      if (!color) return this.escapeHtml(text);
+      // \n → <br>：物品名保留换行（mod 多行文本如 星号装饰/描述+名字）
+      const safe = this.escapeHtml(text).replace(/\n/g, "<br>");
+      if (!color) return safe;
       const bold = b.quality === 3 ? "font-weight:600;" : "";
-      return `<span style="color:${color};${bold}">${this.escapeHtml(text)}</span>`;
+      return `<span style="color:${color};${bold}">${safe}</span>`;
     },
     bagText(bag) {
       const g = this.groupBag(bag);
