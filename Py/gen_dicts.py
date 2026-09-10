@@ -87,12 +87,8 @@ def main() -> None:
     dump("dict_unique_items.json", {"by_index": ui_idx, "by_code": ui_code})
     print("dict_unique_items: by_index=%d by_code=%d(过滤占位行)" % (len(ui_idx), len(ui_code)))
 
-    # ---- 4. 套装组名 ----
-    set_names = {en: zh for en, zh in sn.get("set_names", [])}
-    dump("dict_set_names.json", set_names)
-    print("dict_set_names: %d" % len(set_names))
-
-    # ---- 5. 注释池（并入 set_names 缺失项：保证 set/unique 的 desc 全部可反查中文） ----
+    # ---- 4. 注释池（并入 set_names 缺失项：保证 set/unique 的 desc 全部可反查中文；
+    #       dict_set_names 已并入本池，不再单独生成该字典） ----
     notes = dict(sn.get("notes", {}))
     for en, zh in sn.get("set_names", []):
         if en not in notes and (zh or "").strip():
