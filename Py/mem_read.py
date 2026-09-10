@@ -285,10 +285,21 @@ def _sn_lookup(pid: int, h: int, code_str: str, config_dir: str) -> str:
                 _sn_cache["notes"] = sn.note_map
                 good = _sn_cache["tables"]
                 try:
-                    out = {"ts": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
-                           "tables": _sn_cache["tables"], "notes": _sn_cache["notes"]}
-                    with open(os.path.join(config_dir, "special_names.json"), "w",
-                              encoding="utf-8") as f:
+                    # 保留既有元数据/套装字段，仅刷新 tables/notes
+                    p = os.path.join(config_dir, "special_names.json")
+                    out = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
+                    out.update({
+                        "exe": "D2Loader.exe",
+                        "ts": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
+                        "updated_at": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
+                        "tables": _sn_cache["tables"], "notes": _sn_cache["notes"],
+                        "unique_table_addr": ("0x%X" % sn.unique_tables[0][0]) if sn.unique_tables else "",
+                        "unique_count": sn.unique_tables[0][1] if sn.unique_tables else 0,
+                        "notes_addr": ("0x%X" % sn.notes_anchor) if sn.notes_anchor else "",
+                        "set_names_addr": ("0x%X" % sn.set_anchor) if sn.set_anchor else "",
+                        "set_names": [[en, cn] for en, cn in sn.set_names],
+                    })
+                    with open(p, "w", encoding="utf-8") as f:
                         json.dump(out, f, ensure_ascii=False, indent=1)
                 except Exception:
                     pass

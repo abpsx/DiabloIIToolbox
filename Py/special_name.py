@@ -60,7 +60,7 @@ def scan_mem(pid, h, pat: bytes) -> list[int]:
 
 
 class SpecialName:
-    """动态定位 unique 名表 + 注释池, 提供 code→特殊名。"""
+    """动态定位 unique 名表 + 注释池 + 套装部件名池, 提供 code→特殊名。"""
 
     REC_SIZE = 0x14C      # unique 名表记录大小
     NAME_LEN = 0x26       # 名字字段宽度
@@ -70,8 +70,12 @@ class SpecialName:
         self.pid, self.h = pid, h
         self.unique_tables = []     # [(记录首, 记录数)]
         self.note_map = {}          # 英文名 -> 中文名
+        self.notes_anchor = 0       # 注释池锚点（UTF-8 "巫师之刺" 命中）
+        self.set_names = []         # [(中文, 英文)] 套装部件名对
+        self.set_anchor = 0         # 套装名 String 表锚点
         self._locate_unique_tables()
         self._locate_notes()
+        self._locate_set_names()
 
     # ---------- unique 名表 ----------
     def _locate_unique_tables(self):
@@ -120,6 +124,7 @@ class SpecialName:
                 break
         if not anchor:
             return
+        self.notes_anchor = anchor
         lo, hi = anchor - 0x30000, anchor + 0x10000
         buf = b""
         for base in range(lo, hi, 0x8000):
@@ -142,6 +147,38 @@ class SpecialName:
         cn = self.note_map.get(en, "")
         return {"ok": True, "code": code, "en": en, "cn": cn,
                 "display": ("%s %s" % (cn, en)).strip() if cn else en}
+
+    # ---------- 套装部件名池（D2Lang String 表，双语 UTF-16LE） ----------
+    # 套装部件名在 String 表为 "中文(UTF-16)\x00英文(UTF-16)\x00" 对。
+    # 锚定已知套装部件名（华宁的祝福/正义），dump 其上下区域解析全部部件名对。
+    # 注意：set 物品 → 部件名的映射仍需 setitems 数据表（mod 偏移失效，待 CE 定位）；
+    # 本方法产出候选列表供后续接入，并供 mem_read 在 setitems 可用前展示部件名。
+    def _locate_set_names(self):
+        anchor = None
+        for pat in ("华宁的祝福".encode("utf-16-le"), "华宁的正义".encode("utf-16-le"),
+                    "华宁的光辉".encode("utf-16-le")):
+            hits = scan_mem(self.pid, self.h, pat)
+            if hits:
+                anchor = hits[0]
+                break
+        if not anchor:
+            return
+        self.set_anchor = anchor
+        lo = (anchor - 0x8000) & ~0xFFF
+        hi = anchor + 0x16000
+        buf = b""
+        for base in range(lo, hi, 0x8000):
+            chunk = mem.read(self.pid, self.h, base, 0x8000)
+            if chunk:
+                buf += chunk
+        txt = buf.decode("utf-16-le", "ignore")
+        pairs = {}
+        # 双语串为 "中文(2-8字) 英文(2-40字符)"（UTF-16 单串），英文需大写字母开头
+        for cn, en in re.findall(r"([\u4e00-\u9fff\u3400-\u4dbf]{2,8}) ([A-Z][A-Za-z '&;:\-]{2,40})(?=\x00)", txt):
+            en = en.strip()
+            if en and (en not in pairs or len(cn) > len(pairs[en])):
+                pairs[en] = cn
+        self.set_names = sorted(pairs.items())
 
 
 def find_bone_knife(pid, h):
@@ -193,15 +230,23 @@ def main():
 
     if args.dump_json:
         out = {
+            "exe": "D2Loader.exe",
             "ts": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
+            "updated_at": __import__("time").strftime("%Y-%m-%d %H:%M:%S"),
             "tables": [{"rec0": r, "count": c, "first": f} for r, c, f in sn.unique_tables],
+            "unique_table_addr": ("0x%X" % sn.unique_tables[0][0]) if sn.unique_tables else "",
+            "unique_count": sn.unique_tables[0][1] if sn.unique_tables else 0,
+            "notes_addr": ("0x%X" % sn.notes_anchor) if sn.notes_anchor else "",
+            "set_names_addr": ("0x%X" % sn.set_anchor) if sn.set_anchor else "",
             "notes": sn.note_map,
+            "set_names": [[en, cn] for en, cn in sn.set_names],
         }
         p = r"C:\Users\abps\Desktop\DiabloIIToolbox\Setting\memory\special_names.json"
         json = __import__("json")
         with open(p, "w", encoding="utf-8") as f:
             json.dump(out, f, ensure_ascii=False, indent=1)
-        print("已写入", p, "tables:", len(out["tables"]), "notes:", len(out["notes"]))
+        print("已写入", p, "tables:", len(out["tables"]), "notes:", len(out["notes"]),
+              "set_names:", len(out["set_names"]))
         return 0
 
     if args.test:

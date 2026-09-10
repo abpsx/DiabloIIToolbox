@@ -1,5 +1,7 @@
 {
- "ts": "2026-09-10 17:32:04",
+ "exe": "D2Loader.exe",
+ "ts": "2026-09-10 17:48:51",
+ "updated_at": "2026-09-10 17:48:51",
  "tables": [
   {
    "rec0": 311949826,
@@ -7,6 +9,10 @@
    "first": "Harlequin Crest"
   }
  ],
+ "unique_table_addr": "0x1297FA02",
+ "unique_count": 135,
+ "notes_addr": "0x4BD7926",
+ "set_names_addr": "0x12924514",
  "notes": {
   "Athena's Wrath": "阿西娜的忿怒",
   "Pierre Tombale Couant": "考恩特",
@@ -464,5 +470,1599 @@
   "Aix": "艾克",
   "Mon": "摩尼",
   "Osk": "奥斯卡"
- }
+ },
+ "set_names": [
+  [
+   "Aix",
+   "艾克"
+  ],
+  [
+   "Aladdin's Eviscerator",
+   "古代人的内脏"
+  ],
+  [
+   "Aldur's Advance",
+   "艾尔多的成长"
+  ],
+  [
+   "Aldur's Deception",
+   "艾尔多的欺暪"
+  ],
+  [
+   "Aldur's Rhythm",
+   "艾尔多的律动"
+  ],
+  [
+   "Aldur's Stony Gaze",
+   "艾尔多的冷酷凝视"
+  ],
+  [
+   "Aldur's Watchtower",
+   "艾尔多的守卫"
+  ],
+  [
+   "Amn",
+   "安姆"
+  ],
+  [
+   "Amodeus' Manipulator",
+   "阿姆德思的操弄器"
+  ],
+  [
+   "Ancient Eye",
+   "古代之眼"
+  ],
+  [
+   "Apothecary's Tote",
+   "药商的计算器"
+  ],
+  [
+   "Arachnid Mesh",
+   "蜘蛛之网"
+  ],
+  [
+   "Aragon's Masterpiece",
+   "亚拉岗的名作"
+  ],
+  [
+   "Aragon's Sunfire",
+   "亚拉岗太阳火焰"
+  ],
+  [
+   "Arch-angel's Deliverance",
+   "大天使的救助"
+  ],
+  [
+   "Arkaine's Valor",
+   "阿凯尼的荣耀"
+  ],
+  [
+   "Arm of King Leoric",
+   "李奥瑞克王的武器"
+  ],
+  [
+   "Armor",
+   "装甲"
+  ],
+  [
+   "Arreat's Face",
+   "亚瑞特的面容"
+  ],
+  [
+   "Astreon's Iron Ward",
+   "特龙之铁的保护区"
+  ],
+  [
+   "Athena's Wrath",
+   "阿西娜的忿怒"
+  ],
+  [
+   "Atma's Wail",
+   "亚特玛的哭喊"
+  ],
+  [
+   "Aurora's Guard",
+   "奥罗拉的守护"
+  ],
+  [
+   "Baezil's Vortex",
+   "贝西尔的漩涡"
+  ],
+  [
+   "Banshee's Wail",
+   "女妖嚎哭"
+  ],
+  [
+   "Baranar's Star",
+   "巴拉那之星"
+  ],
+  [
+   "Bartuc's Chop Chop",
+   "巴特克的猛击"
+  ],
+  [
+   "Bing Sz Wang",
+   "兵之王"
+  ],
+  [
+   "Black Hades",
+   "黑色黑帝斯"
+  ],
+  [
+   "Blackbog's Sharp",
+   "黑沼之锋"
+  ],
+  [
+   "Blackhand Key",
+   "黑手之钥"
+  ],
+  [
+   "Blackhorn's Face",
+   "黑角面具"
+  ],
+  [
+   "Blackleach Blade",
+   "黑水之刃"
+  ],
+  [
+   "Blade of Ali Baba",
+   "阿里巴巴之刃"
+  ],
+  [
+   "Blood Comet",
+   "血之彗星"
+  ],
+  [
+   "Blood Rain",
+   "血雨"
+  ],
+  [
+   "Blood Raven's Charge",
+   "血鸟的袭击"
+  ],
+  [
+   "Bloodmoon",
+   "血月"
+  ],
+  [
+   "Bonehew",
+   "破骨"
+  ],
+  [
+   "Bonescalpel",
+   "骨刀"
+  ],
+  [
+   "Boneshade",
+   "白骨阴影"
+  ],
+  [
+   "Bul-Kathos' Children",
+   "布尔凯索的孩子"
+  ],
+  [
+   "Bul-Kathos' Sacred Charge",
+   "尔凯索的神圣代价"
+  ],
+  [
+   "Bul-Kathos' Tribal Guardian",
+   "尔凯索的部族守护"
+  ],
+  [
+   "Bul-Kathos' Warden",
+   "布尔凯索之长"
+  ],
+  [
+   "Buriza-Do Kyanon",
+   "凯南"
+  ],
+  [
+   "Bush Wacker",
+   "伐木刀"
+  ],
+  [
+   "Butcher's Cleaver",
+   "屠夫切肉刀"
+  ],
+  [
+   "Butcher's Pupil",
+   "屠夫之瞳"
+  ],
+  [
+   "Cairn Shard",
+   "石冢碎片"
+  ],
+  [
+   "Catgut",
+   "肠线"
+  ],
+  [
+   "Cerebus' Bite",
+   "地狱之吻"
+  ],
+  [
+   "Cham",
+   "查姆"
+  ],
+  [
+   "Chromatic Ire",
+   "五彩的怒气"
+  ],
+  [
+   "Cloudcrack",
+   "云裂"
+  ],
+  [
+   "Coldkill",
+   "冷杀"
+  ],
+  [
+   "Cow King's Hide",
+   "牛魔王之皮"
+  ],
+  [
+   "Cow King's Horns",
+   "牛魔王之角"
+  ],
+  [
+   "Cow King's Leathers",
+   "牛魔王之皮甲"
+  ],
+  [
+   "Credendum",
+   "信条"
+  ],
+  [
+   "Crescent Moon",
+   "新月"
+  ],
+  [
+   "Crest of Morn",
+   "黎明徽章"
+  ],
+  [
+   "Crow Caw",
+   "鸦鸣"
+  ],
+  [
+   "Crown of Ages",
+   "年纪之冠"
+  ],
+  [
+   "Crown of Thieves",
+   "盗贼皇冠"
+  ],
+  [
+   "Dangoon's Teaching",
+   "丹弓的教导"
+  ],
+  [
+   "Darkforce Spawn",
+   "魔力肇生"
+  ],
+  [
+   "Darksight Helm",
+   "暗视之盔"
+  ],
+  [
+   "Dawn Bringer",
+   "黄昏降临者"
+  ],
+  [
+   "Death Cleaver",
+   "死亡之刀"
+  ],
+  [
+   "Death's Web",
+   "死亡之网"
+  ],
+  [
+   "Demonhorn's Edge",
+   "恶魔号角的边缘"
+  ],
+  [
+   "Demonweb",
+   "恶魔之网"
+  ],
+  [
+   "Djinn Slayer",
+   "魔灵杀手"
+  ],
+  [
+   "Dol",
+   "多尔"
+  ],
+  [
+   "Doombringer",
+   "末日毁灭者"
+  ],
+  [
+   "Doomseer",
+   "末日先知"
+  ],
+  [
+   "Dragonscale",
+   "龙鳞"
+  ],
+  [
+   "Dragontooth",
+   "龙牙"
+  ],
+  [
+   "Drakeflame",
+   "龙兽之焰"
+  ],
+  [
+   "Drulan's Tongue",
+   "杜兰之舌"
+  ],
+  [
+   "Duriel's Shell",
+   "都瑞尔的壳"
+  ],
+  [
+   "Dwarf Star",
+   "矮人之星"
+  ],
+  [
+   "Eaglewind",
+   "老鹰之风"
+  ],
+  [
+   "Earthshaker",
+   "撼地者"
+  ],
+  [
+   "El Espiritu",
+   "衣斯普利特"
+  ],
+  [
+   "El Infierno",
+   "妖精地狱火"
+  ],
+  [
+   "Eld",
+   "艾德"
+  ],
+  [
+   "Endlesshail",
+   "无休止的冰雹"
+  ],
+  [
+   "Erion's Bonehandle",
+   "爱力恩的骨柄"
+  ],
+  [
+   "Eth",
+   "爱斯"
+  ],
+  [
+   "Excalibur",
+   "石中剑"
+  ],
+  [
+   "Fal",
+   "法尔"
+  ],
+  [
+   "Firelizard's Talons",
+   "火蜥蜴之爪"
+  ],
+  [
+   "Flamebellow",
+   "火焰号叫"
+  ],
+  [
+   "Fleshbone",
+   "血肉之骨"
+  ],
+  [
+   "Fleshrender",
+   "血肉裁决者"
+  ],
+  [
+   "Fleshripper",
+   "裂肉者"
+  ],
+  [
+   "Flowkrad's Fur",
+   "夫罗卡德的毛皮"
+  ],
+  [
+   "Flowkrad's Paws",
+   "夫罗卡德的脚掌"
+  ],
+  [
+   "Flowkrad's Sinew",
+   "夫罗卡德之腱"
+  ],
+  [
+   "Foci of the Vizjerei",
+   "费斯杰利的焦点"
+  ],
+  [
+   "Gaya Wand",
+   "加耶之杖"
+  ],
+  [
+   "Gerke's Sanctuary",
+   "基尔克的圣堂"
+  ],
+  [
+   "Geronimo's Fury",
+   "吉拉尼莫的忿怒"
+  ],
+  [
+   "Ghost Leach",
+   "滤魂"
+  ],
+  [
+   "Ghost Liberator",
+   "鬼魂解放者"
+  ],
+  [
+   "Ghoulhide",
+   "食尸鬼外皮"
+  ],
+  [
+   "Giant Maimer",
+   "重残"
+  ],
+  [
+   "Giant Skull",
+   "巨骷髅"
+  ],
+  [
+   "Gimmershred",
+   "碎片贪婪者"
+  ],
+  [
+   "Globe of the Vizjerei",
+   "费斯杰利之球"
+  ],
+  [
+   "Gloom's Trap",
+   "阴影陷阱"
+  ],
+  [
+   "Goldstrike Arch",
+   "金击圆弧"
+  ],
+  [
+   "Gore Rider",
+   "蚀肉骑士"
+  ],
+  [
+   "Gravepalm",
+   "墓穴的抚弄"
+  ],
+  [
+   "Grim's Burning Dead",
+   "惊怖焰亡灵"
+  ],
+  [
+   "Griswold's Heart",
+   "格瑞斯华尔德之心"
+  ],
+  [
+   "Griswold's Legacy",
+   "瑞斯华尔德的传奇"
+  ],
+  [
+   "Griswold's Redemption",
+   "瑞斯华尔德的救赎"
+  ],
+  [
+   "Griswold's Valor",
+   "瑞斯华尔德的勇气"
+  ],
+  [
+   "Guardian Naga",
+   "蛇神守护者"
+  ],
+  [
+   "Gul",
+   "古尔"
+  ],
+  [
+   "Gut Siphon",
+   "内脏吸管"
+  ],
+  [
+   "Hadeshorn",
+   "黑帝斯号角"
+  ],
+  [
+   "Haemosu's Adamant",
+   "黑摩苏的坚决"
+  ],
+  [
+   "Hand of Blessed Light",
+   "祝福之光之手"
+  ],
+  [
+   "Harlequin Crest",
+   "谐角之冠"
+  ],
+  [
+   "Heaven's Brethren",
+   "天堂的信徒"
+  ],
+  [
+   "Heaven's Light",
+   "天堂之光"
+  ],
+  [
+   "Hel",
+   "海尔"
+  ],
+  [
+   "Hell Warden's Husk",
+   "地狱刑长之壳"
+  ],
+  [
+   "Hellmouth",
+   "地狱之嘴"
+  ],
+  [
+   "Hellrack",
+   "地狱拷问"
+  ],
+  [
+   "Hellslayer",
+   "地狱毁灭者"
+  ],
+  [
+   "Herald of Zakarum",
+   "撒卡兰姆使者"
+  ],
+  [
+   "Highlord's Wrath",
+   "大君之怒"
+  ],
+  [
+   "Hightower's Watch",
+   "高塔之视"
+  ],
+  [
+   "Homunculus",
+   "侏儒"
+  ],
+  [
+   "Howling Visage",
+   "狂号的面孔"
+  ],
+  [
+   "Hwanin's Blessing",
+   "华宁的祝福"
+  ],
+  [
+   "Hwanin's Cordon",
+   "华宁的饰带"
+  ],
+  [
+   "Hwanin's Justice",
+   "华宁的正义"
+  ],
+  [
+   "Hwanin's Splendor",
+   "华宁的光辉"
+  ],
+  [
+   "Immortal King",
+   "不朽之王"
+  ],
+  [
+   "Immortal King's Detail",
+   "不朽之王的琐事"
+  ],
+  [
+   "Immortal King's Soul Cage",
+   "朽之王的灵魂牢笼"
+  ],
+  [
+   "Immortal King's Stone Crusher",
+   "不朽之王的碎魂者"
+  ],
+  [
+   "Immortal King's Will",
+   "不朽之王的意志"
+  ],
+  [
+   "Indiego's Fancy",
+   "印地哥的幻想"
+  ],
+  [
+   "Ist",
+   "伊斯特"
+  ],
+  [
+   "Ith",
+   "伊司"
+  ],
+  [
+   "Kelpie Snare",
+   "水魔陷阱"
+  ],
+  [
+   "Kira's Guardian",
+   "奇拉的守护"
+  ],
+  [
+   "Kuko Shakaku",
+   "社角久子"
+  ],
+  [
+   "Kurast Shield",
+   "库拉斯特之盾"
+  ],
+  [
+   "Lance Guard",
+   "长枪守卫"
+  ],
+  [
+   "Langer Briser",
+   "布里瑟"
+  ],
+  [
+   "Larzuk's Champion",
+   "拉苏克的斗士"
+  ],
+  [
+   "Lem",
+   "蓝姆"
+  ],
+  [
+   "Lestron's Mark",
+   "里斯仑的印记"
+  ],
+  [
+   "Leviathan",
+   "海王利维亚桑"
+  ],
+  [
+   "Lidless Wall",
+   "警戒之墙"
+  ],
+  [
+   "Lifechoke",
+   "窒息生命"
+  ],
+  [
+   "Lightsabre",
+   "光之军刀"
+  ],
+  [
+   "Lum",
+   "卢姆"
+  ],
+  [
+   "Lycander's Aim",
+   "雷山德的指标"
+  ],
+  [
+   "M'avina's Caster",
+   "马维娜的施展"
+  ],
+  [
+   "M'avina's Embrace",
+   "马维娜的拥抱"
+  ],
+  [
+   "M'avina's True Sight",
+   "马维娜的真实之眼"
+  ],
+  [
+   "Magewrath",
+   "巫师之怒"
+  ],
+  [
+   "Mal",
+   "马尔"
+  ],
+  [
+   "Malice",
+   "怨恨"
+  ],
+  [
+   "Mang Song's Lesson",
+   "梅格之歌的教训"
+  ],
+  [
+   "Mara's Kaleidoscope",
+   "马拉的万花筒"
+  ],
+  [
+   "Marrow Grinder",
+   "磨骨者"
+  ],
+  [
+   "Marrowwalk",
+   "骨髓行走"
+  ],
+  [
+   "McAuley's Basis",
+   "麦克奥雷的碎石"
+  ],
+  [
+   "McAuley's Superstition",
+   "麦克奥雷的迷信"
+  ],
+  [
+   "McAuley's Taboo",
+   "麦克奥雷的禁忌"
+  ],
+  [
+   "Medusa's Gaze",
+   "梅杜莎的凝视"
+  ],
+  [
+   "Melody",
+   "旋律"
+  ],
+  [
+   "Memory",
+   "记忆"
+  ],
+  [
+   "Metalite's Girth",
+   "梅塔利丝的腰"
+  ],
+  [
+   "Mist",
+   "迷雾"
+  ],
+  [
+   "Mon",
+   "摩尼"
+  ],
+  [
+   "Moonfall",
+   "落月"
+  ],
+  [
+   "Morning",
+   "早晨"
+  ],
+  [
+   "Mortal Crescent",
+   "死亡新月"
+  ],
+  [
+   "Moser's Blessed Circle",
+   "摩西祝福之环"
+  ],
+  [
+   "Mystery",
+   "神秘"
+  ],
+  [
+   "Myth",
+   "神话"
+  ],
+  [
+   "Nadir",
+   "天底"
+  ],
+  [
+   "Nagas",
+   "蛇龙"
+  ],
+  [
+   "Naj's Circlet",
+   "娜吉的小环"
+  ],
+  [
+   "Naj's Light Plate",
+   "娜吉的轻铠甲"
+  ],
+  [
+   "Naj's Puzzler",
+   "娜吉解迷杖"
+  ],
+  [
+   "Natalya's Mark",
+   "娜塔亚的记号"
+  ],
+  [
+   "Natalya's Odium",
+   "娜塔亚的非难"
+  ],
+  [
+   "Natalya's Soul",
+   "娜塔亚的灵魂"
+  ],
+  [
+   "Nature's Kingdom",
+   "天然的王国"
+  ],
+  [
+   "Nef",
+   "那夫"
+  ],
+  [
+   "Nightwing's Veil",
+   "夜翼面纱"
+  ],
+  [
+   "Nord's Tenderizer",
+   "诺德的蚀肉药"
+  ],
+  [
+   "Nosferatu's Coil",
+   "吸血圣王之圈"
+  ],
+  [
+   "Odium",
+   "厌恶"
+  ],
+  [
+   "Ogun's Vengeance",
+   "奥岗的复仇"
+  ],
+  [
+   "Ohm",
+   "欧姆"
+  ],
+  [
+   "Ondal's Almighty",
+   "安戴尔的全灵"
+  ],
+  [
+   "Ondal's Wisdom",
+   "安戴尔的智慧"
+  ],
+  [
+   "Ormus' Robes",
+   "奥玛斯的长袍"
+  ],
+  [
+   "Ort",
+   "欧特"
+  ],
+  [
+   "Osk",
+   "奥斯卡"
+  ],
+  [
+   "Parkersor's Calm",
+   "帕克索尔的冷静"
+  ],
+  [
+   "Peasant Crown",
+   "粗野之冠"
+  ],
+  [
+   "Penitence",
+   "忏悔"
+  ],
+  [
+   "Peril",
+   "危害"
+  ],
+  [
+   "Pestilence",
+   "疫病"
+  ],
+  [
+   "Phoenix",
+   "凤凰"
+  ],
+  [
+   "Phoenix Egg",
+   "凤凰蛋"
+  ],
+  [
+   "Pierre Tombale Couant",
+   "考恩特"
+  ],
+  [
+   "Piety",
+   "虔诚"
+  ],
+  [
+   "Pillar of Faith",
+   "信念之柱"
+  ],
+  [
+   "Pitblood Thirst",
+   "血之狂欲"
+  ],
+  [
+   "Plague",
+   "瘟疫"
+  ],
+  [
+   "Praise",
+   "颂扬"
+  ],
+  [
+   "Prayer",
+   "祈祷"
+  ],
+  [
+   "Pride",
+   "骄傲"
+  ],
+  [
+   "Principle",
+   "原理"
+  ],
+  [
+   "Prowess in Battle",
+   "战斗中的勇气"
+  ],
+  [
+   "Prudence",
+   "谨重"
+  ],
+  [
+   "Pul",
+   "普尔"
+  ],
+  [
+   "Punishment",
+   "惩罚"
+  ],
+  [
+   "Purity",
+   "纯洁"
+  ],
+  [
+   "Que-Hegan's Wisdom",
+   "魁黑刚的智慧"
+  ],
+  [
+   "Question",
+   "疑问"
+  ],
+  [
+   "Rabbit Slayer",
+   "白兔杀手"
+  ],
+  [
+   "Radament's Sphere",
+   "罗达门特之球体"
+  ],
+  [
+   "Radiance",
+   "光辉"
+  ],
+  [
+   "Raiden's Crutch",
+   "雷电拐杖"
+  ],
+  [
+   "Rain",
+   "降雨"
+  ],
+  [
+   "Rainbow Facet",
+   "彩虹刻面"
+  ],
+  [
+   "Ral",
+   "拉尔"
+  ],
+  [
+   "Raven Frost",
+   "乌鸦之霜"
+  ],
+  [
+   "Ravenlore",
+   "乌鸦之王"
+  ],
+  [
+   "Razor's Edge",
+   "刀锋边缘"
+  ],
+  [
+   "Razorswitch",
+   "摆动剃刀"
+  ],
+  [
+   "Reason",
+   "理由"
+  ],
+  [
+   "Red",
+   "鲜红"
+  ],
+  [
+   "Rhyme",
+   "押韵"
+  ],
+  [
+   "Rift",
+   "裂缝"
+  ],
+  [
+   "Riftslash",
+   "烈斩"
+  ],
+  [
+   "Rings",
+   "指环"
+  ],
+  [
+   "Rite of Passage",
+   "仪式的走道"
+  ],
+  [
+   "Rockstopper",
+   "岩石制动器"
+  ],
+  [
+   "Rune Master",
+   "符文大师"
+  ],
+  [
+   "Sacred Charge",
+   "神圣突击"
+  ],
+  [
+   "Samurai Justice",
+   "武士的正义"
+  ],
+  [
+   "Sanctuary",
+   "圣堂"
+  ],
+  [
+   "Sander's Folly",
+   "山德的愚行"
+  ],
+  [
+   "Sander's Riprap",
+   "山德的碎石"
+  ],
+  [
+   "Sander's Superstition",
+   "山德的迷信"
+  ],
+  [
+   "Sankekur's Resurrection",
+   "桑坎克的复活"
+  ],
+  [
+   "Saracen's Chance",
+   "萨拉森的机会"
+  ],
+  [
+   "Sazabi's Cobalt Redeemer",
+   "沙撒璧的忏悔之钴"
+  ],
+  [
+   "Sazabi's Ghost Liberator",
+   "撒璧的鬼魂释放者"
+  ],
+  [
+   "Schaefer's Hammer",
+   "史恰佛之锤"
+  ],
+  [
+   "Seraph's Hymn",
+   "炽天使之韵"
+  ],
+  [
+   "Serendipity",
+   "奇遇"
+  ],
+  [
+   "Shade Falcon",
+   "阴影之鹰"
+  ],
+  [
+   "Shadow",
+   "影子"
+  ],
+  [
+   "Shadow Dancer",
+   "影舞者"
+  ],
+  [
+   "Shadow Killer",
+   "影杀者"
+  ],
+  [
+   "Shadow Touch",
+   "影之接触"
+  ],
+  [
+   "Shadow of Doubt",
+   "怀疑之影"
+  ],
+  [
+   "Shaftstop",
+   "谢夫特斯坦布"
+  ],
+  [
+   "Shakabra's Crux",
+   "赛可伯的谜题"
+  ],
+  [
+   "Sightless Veil",
+   "目盲面纱"
+  ],
+  [
+   "Silence",
+   "寂静"
+  ],
+  [
+   "Silkweave",
+   "纱织"
+  ],
+  [
+   "Sinblade",
+   "原罪之刃"
+  ],
+  [
+   "Siren's Call",
+   "赛莲的呼唤"
+  ],
+  [
+   "Siren's Song",
+   "海妖之歌"
+  ],
+  [
+   "Skin of Flayed One",
+   "剥皮者之皮"
+  ],
+  [
+   "Skin of the Flayed One",
+   "剥皮者之皮"
+  ],
+  [
+   "Skin of the Vipermagi",
+   "蛇魔法师之皮"
+  ],
+  [
+   "Skull Collector",
+   "骷髅收集者"
+  ],
+  [
+   "Skystrike",
+   "天击"
+  ],
+  [
+   "Smoke",
+   "烟雾"
+  ],
+  [
+   "Snake Tongue",
+   "蛇之舌"
+  ],
+  [
+   "Sol",
+   "索尔"
+  ],
+  [
+   "Sorrow",
+   "哀伤"
+  ],
+  [
+   "Soulfeast Tine",
+   "噬魂叉"
+  ],
+  [
+   "Spellsteel",
+   "钢铁魔咒"
+  ],
+  [
+   "Spineripper",
+   "裂脊者"
+  ],
+  [
+   "Spire of Honor",
+   "荣耀的尖塔"
+  ],
+  [
+   "Spirit",
+   "精神"
+  ],
+  [
+   "Spirit Forge",
+   "灵魂熔炉"
+  ],
+  [
+   "Spirit Keeper",
+   "灵魂看守者"
+  ],
+  [
+   "Splendor",
+   "灿烂"
+  ],
+  [
+   "Squire's Cover",
+   "护卫的掩护"
+  ],
+  [
+   "Starlight",
+   "星光"
+  ],
+  [
+   "Stealth",
+   "隐密"
+  ],
+  [
+   "Steel",
+   "钢铁"
+  ],
+  [
+   "Steel Carapace",
+   "钢铁铠甲"
+  ],
+  [
+   "Steel Pillar",
+   "铁柱"
+  ],
+  [
+   "Steel Shade",
+   "钢影"
+  ],
+  [
+   "Steelrend",
+   "碎钢"
+  ],
+  [
+   "Still Water",
+   "寂静之水"
+  ],
+  [
+   "Sting",
+   "刺伤"
+  ],
+  [
+   "Stone",
+   "石块"
+  ],
+  [
+   "Stone Rattle",
+   "自响之石"
+  ],
+  [
+   "Stoneraven",
+   "石乌鸦"
+  ],
+  [
+   "Storm",
+   "风暴"
+  ],
+  [
+   "Stormlash",
+   "暴风之结"
+  ],
+  [
+   "Stormrider",
+   "暴风骑士"
+  ],
+  [
+   "Stormshield",
+   "暴风之盾"
+  ],
+  [
+   "Stormwillow",
+   "暴风柳木"
+  ],
+  [
+   "Strength",
+   "力量"
+  ],
+  [
+   "String of Ears",
+   "长串之耳"
+  ],
+  [
+   "Suicide Branch",
+   "自杀支系"
+  ],
+  [
+   "Sureshrill Frost",
+   "尖啸冰霜"
+  ],
+  [
+   "Taebaek's Glory",
+   "泰比克的光荣"
+  ],
+  [
+   "Tal",
+   "塔尔"
+  ],
+  [
+   "Tal Rasha's Adjudication",
+   "拉夏的判决"
+  ],
+  [
+   "Tal Rasha's Guardianship",
+   "拉夏的守护"
+  ],
+  [
+   "Tal Rasha's Lidless Eye",
+   "拉夏的警戒之眼"
+  ],
+  [
+   "Tang's Battle Standard",
+   "坦的战斗常规"
+  ],
+  [
+   "Tang's Fore-Fathers",
+   "坦的祖先"
+  ],
+  [
+   "Tang's Throne",
+   "坦的王权"
+  ],
+  [
+   "Telling of Beads",
+   "述说之珠"
+  ],
+  [
+   "Tempest",
+   "暴风雨"
+  ],
+  [
+   "Templar's Might",
+   "圣堂武士的力量"
+  ],
+  [
+   "Temptation",
+   "诱惑"
+  ],
+  [
+   "Terra's Guardian",
+   "提拉守护者"
+  ],
+  [
+   "Terror",
+   "恐布"
+  ],
+  [
+   "The Achron Magus",
+   "大法师"
+  ],
+  [
+   "The Atlantean",
+   "亚特拉斯"
+  ],
+  [
+   "The Black Adder",
+   "闇蛇"
+  ],
+  [
+   "The Cat's Eye",
+   "猫眼"
+  ],
+  [
+   "The Disciple",
+   "门徒"
+  ],
+  [
+   "The Harbinger",
+   "先兆"
+  ],
+  [
+   "The Harvester",
+   "收割者"
+  ],
+  [
+   "The Meat Scraper",
+   "刮肉者"
+  ],
+  [
+   "The Minotaur",
+   "牛头怪"
+  ],
+  [
+   "The Reaper's Toll",
+   "死神的丧钟"
+  ],
+  [
+   "The Swashbuckler",
+   "暴徒"
+  ],
+  [
+   "The Vicar",
+   "代理教皇"
+  ],
+  [
+   "The Vile Husk",
+   "卑劣躯壳"
+  ],
+  [
+   "The Wanderer's Blade",
+   "流浪者之刀"
+  ],
+  [
+   "Thirst",
+   "饥饿"
+  ],
+  [
+   "Thought",
+   "思维"
+  ],
+  [
+   "Thul",
+   "書尔"
+  ],
+  [
+   "Thunder",
+   "雷电"
+  ],
+  [
+   "Thundergod's Vigor",
+   "雷神之力"
+  ],
+  [
+   "Thunderstroke",
+   "雷击"
+  ],
+  [
+   "Tiamat's Rebuke",
+   "魔龙的非难"
+  ],
+  [
+   "Time",
+   "时间"
+  ],
+  [
+   "Tir",
+   "特尔"
+  ],
+  [
+   "Titan's Fist",
+   "泰坦之拳"
+  ],
+  [
+   "Todesfaelle Flamme",
+   "芙法米"
+  ],
+  [
+   "Tradition",
+   "传统"
+  ],
+  [
+   "Trang-Oul's Avatar",
+   "塔格奥的化身"
+  ],
+  [
+   "Trang-Oul's Claws",
+   "塔格奥之手"
+  ],
+  [
+   "Trang-Oul's Girth",
+   "塔格奥之束带"
+  ],
+  [
+   "Trang-Oul's Mask",
+   "塔格奥之面具"
+  ],
+  [
+   "Trang-Oul's Wing",
+   "塔格奥之翼"
+  ],
+  [
+   "Treachery",
+   "背信"
+  ],
+  [
+   "Trust",
+   "信任"
+  ],
+  [
+   "Tyrael's Mercy",
+   "泰瑞尔的慈悲"
+  ],
+  [
+   "Tyrael's Might",
+   "泰瑞尔力量"
+  ],
+  [
+   "Valkyrie Wing",
+   "女神之翼"
+  ],
+  [
+   "Veil of Steel",
+   "钢铁面纱"
+  ],
+  [
+   "Vex",
+   "伐克斯"
+  ],
+  [
+   "Viperfork",
+   "蝮蛇叉"
+  ],
+  [
+   "Visceratuant",
+   "维斯尔坦特"
+  ],
+  [
+   "Warlord's Trust",
+   "战爵之证"
+  ],
+  [
+   "Warshrike",
+   "战争之鸟"
+  ],
+  [
+   "Waterwalk",
+   "水上飘"
+  ],
+  [
+   "Whisper",
+   "低语"
+  ],
+  [
+   "White",
+   "白色"
+  ],
+  [
+   "Widowmaker",
+   "戮夫刃"
+  ],
+  [
+   "Wind",
+   "轻风"
+  ],
+  [
+   "Windforce",
+   "风之力"
+  ],
+  [
+   "Wings of Hope",
+   "希望之翼"
+  ],
+  [
+   "Wisdom",
+   "智慧"
+  ],
+  [
+   "Woe",
+   "悲痛"
+  ],
+  [
+   "Wolfhowl",
+   "狼嚎"
+  ],
+  [
+   "Wonder",
+   "惊奇"
+  ],
+  [
+   "Wraith Flight",
+   "死灵夜翔"
+  ],
+  [
+   "Wrath",
+   "愤怒"
+  ],
+  [
+   "Wyvern's Head",
+   "翼龙首"
+  ],
+  [
+   "Xenos",
+   "异地"
+  ],
+  [
+   "Youth",
+   "年轻"
+  ],
+  [
+   "Zakarum's Hand",
+   "撒卡兰姆之手"
+  ],
+  [
+   "Zakarum's Salvation",
+   "撒卡兰姆的救赎"
+  ],
+  [
+   "Zephyr",
+   "和风"
+  ],
+  [
+   "Zod",
+   "萨德"
+  ]
+ ]
 }
