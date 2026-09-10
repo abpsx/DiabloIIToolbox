@@ -268,6 +268,8 @@ def read_item_row(pid, h, base, txt_id):
         "ntype": raw[0x11E],
         "fquest": raw[0x12A],
         "socket": raw[0x138],
+        "xsize": raw[0xFC],   # 占格宽（格数）
+        "ysize": raw[0xFD],   # 占格高（格数）
     }
 
 
