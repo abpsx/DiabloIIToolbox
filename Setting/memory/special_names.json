@@ -1,20 +1,20 @@
 {
  "exe": "D2Loader.exe",
- "ts": "2026-09-10 19:16:49",
- "updated_at": "2026-09-10 19:16:49",
+ "ts": "2026-09-10 23:52:13",
+ "updated_at": "2026-09-10 23:52:13",
  "tables": [
   {
-   "rec0": 311949826,
+   "rec0": 319622834,
    "count": 135,
    "first": "Harlequin Crest"
   }
  ],
- "unique_table_addr": "0x1297FA02",
+ "unique_table_addr": "0x130D0EB2",
  "unique_count": 135,
- "notes_addr": "0x4BD7926",
- "set_names_addr": "0x12941EB0",
+ "notes_addr": "0x3E5436A",
+ "set_names_addr": "0x13004630",
  "sgpt_offset": "0x99E1C",
- "set_table_addr": "0x12EFD0E0",
+ "set_table_addr": "0x124818A8",
  "set_count": 127,
  "set_items": {
   "0": {
@@ -907,1205 +907,1205 @@
    "zh": "山德的迷信"
   }
  },
- "unique_items_txt_addr": "0x1296B860",
+ "unique_items_txt_addr": "0x130BCD10",
  "unique_items_count": 538,
  "unique_items": {
   "0": {
-   "code": "",
+   "code": "hax",
    "name": "The Gnasher",
    "wloc": 2574,
-   "zh": " "
+   "zh": ""
   },
   "1": {
-   "code": "",
+   "code": "axe",
    "name": "Deathspade",
    "wloc": 2575,
    "zh": " "
   },
   "2": {
-   "code": "",
+   "code": "2ax",
    "name": "Bladebone",
    "wloc": 2576,
-   "zh": " "
+   "zh": ""
   },
   "3": {
-   "code": "",
+   "code": "mpi",
    "name": "Mindrend",
    "wloc": 2577,
    "zh": " "
   },
   "4": {
-   "code": "",
+   "code": "wax",
    "name": "Rakescar",
    "wloc": 2578,
-   "zh": " "
+   "zh": ""
   },
   "5": {
-   "code": "",
+   "code": "lax",
    "name": "Fechmars Axe",
    "wloc": 2579,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "6": {
-   "code": "",
+   "code": "bax",
    "name": "Goreshovel",
    "wloc": 2580,
    "zh": " "
   },
   "7": {
-   "code": "",
+   "code": "btx",
    "name": "The Chieftan",
    "wloc": 2581,
-   "zh": " "
+   "zh": ""
   },
   "8": {
-   "code": "",
+   "code": "gax",
    "name": "Brainhew",
    "wloc": 2582,
    "zh": " "
   },
   "9": {
-   "code": "",
+   "code": "gix",
    "name": "The Humongous",
    "wloc": 2583,
-   "zh": " "
+   "zh": ""
   },
   "10": {
-   "code": "",
+   "code": "wnd",
    "name": "Iros Torch",
    "wloc": 2584,
    "zh": " "
   },
   "11": {
-   "code": "",
+   "code": "ywn",
    "name": "Maelstromwrath",
    "wloc": 2585,
-   "zh": " "
+   "zh": ""
   },
   "12": {
-   "code": "",
+   "code": "bwn",
    "name": "Gravenspine",
    "wloc": 2586,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "13": {
-   "code": "",
+   "code": "gwn",
    "name": "Umes Lament",
    "wloc": 2587,
    "zh": " "
   },
   "14": {
-   "code": "",
+   "code": "clb",
    "name": "Felloak",
    "wloc": 2588,
-   "zh": " "
+   "zh": ""
   },
   "15": {
-   "code": "",
+   "code": "scp",
    "name": "Knell Striker",
    "wloc": 2589,
    "zh": " "
   },
   "16": {
-   "code": "",
+   "code": "gsc",
    "name": "Rusthandle",
    "wloc": 2590,
-   "zh": " "
+   "zh": ""
   },
   "17": {
-   "code": "",
+   "code": "wsp",
    "name": "Stormeye",
    "wloc": 2591,
    "zh": " "
   },
   "18": {
-   "code": "",
+   "code": "spc",
    "name": "Stoutnail",
    "wloc": 2592,
-   "zh": " "
+   "zh": ""
   },
   "19": {
-   "code": "",
+   "code": "mac",
    "name": "Crushflange",
    "wloc": 2593,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "20": {
-   "code": "",
+   "code": "mst",
    "name": "Bloodrise",
    "wloc": 2594,
    "zh": " "
   },
   "21": {
-   "code": "",
+   "code": "fla",
    "name": "The Generals Tan Do Li Ga",
    "wloc": 2595,
-   "zh": " "
+   "zh": ""
   },
   "22": {
-   "code": "",
+   "code": "whm",
    "name": "Ironstone",
    "wloc": 2596,
    "zh": " "
   },
   "23": {
-   "code": "",
+   "code": "mau",
    "name": "Bonesob",
    "wloc": 2597,
-   "zh": " "
+   "zh": ""
   },
   "24": {
-   "code": "",
+   "code": "gma",
    "name": "Steeldriver",
    "wloc": 2598,
    "zh": " "
   },
   "25": {
-   "code": "",
+   "code": "ssd",
    "name": "Rixots Keen",
    "wloc": 2599,
-   "zh": " "
+   "zh": ""
   },
   "26": {
-   "code": "",
+   "code": "scm",
    "name": "Blood Crescent",
    "wloc": 2600,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "27": {
-   "code": "",
+   "code": "sbr",
    "name": "Krintizs Skewer",
    "wloc": 2601,
    "zh": " "
   },
   "28": {
-   "code": "",
+   "code": "flc",
    "name": "Gleamscythe",
    "wloc": 2602,
-   "zh": " "
+   "zh": ""
   },
   "29": {
-   "code": "",
+   "code": "crs",
    "name": "Azurewrath",
    "wloc": 2603,
    "zh": " "
   },
   "30": {
-   "code": "",
+   "code": "bsd",
    "name": "Griswolds Edge",
    "wloc": 2604,
-   "zh": " "
+   "zh": ""
   },
   "31": {
-   "code": "",
+   "code": "lsd",
    "name": "Hellplague",
    "wloc": 2605,
    "zh": " "
   },
   "32": {
-   "code": "",
+   "code": "wsd",
    "name": "Culwens Point",
    "wloc": 2606,
-   "zh": " "
+   "zh": ""
   },
   "33": {
-   "code": "",
+   "code": "2hs",
    "name": "Shadowfang",
    "wloc": 2607,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "34": {
-   "code": "",
+   "code": "clm",
    "name": "Soulflay",
    "wloc": 2608,
    "zh": " "
   },
   "35": {
-   "code": "",
+   "code": "gis",
    "name": "Kinemils Awl",
    "wloc": 2609,
-   "zh": " "
+   "zh": ""
   },
   "36": {
-   "code": "",
+   "code": "bsw",
    "name": "Blacktongue",
    "wloc": 2610,
    "zh": " "
   },
   "37": {
-   "code": "",
+   "code": "flb",
    "name": "Ripsaw",
    "wloc": 2611,
-   "zh": " "
+   "zh": ""
   },
   "38": {
-   "code": "",
+   "code": "gsd",
    "name": "The Patriarch",
    "wloc": 2612,
    "zh": " "
   },
   "39": {
-   "code": "",
+   "code": "dgr",
    "name": "Gull",
    "wloc": 2613,
-   "zh": " "
+   "zh": ""
   },
   "40": {
-   "code": "",
+   "code": "dir",
    "name": "The Diggler",
    "wloc": 2614,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "41": {
-   "code": "",
+   "code": "kri",
    "name": "The Jade Tan Do",
    "wloc": 2615,
    "zh": " "
   },
   "42": {
-   "code": "",
+   "code": "bld",
    "name": "Irices Shard",
    "wloc": 2616,
-   "zh": " "
+   "zh": ""
   },
   "43": {
-   "code": "",
+   "code": "spr",
    "name": "The Dragon Chang",
    "wloc": 2617,
    "zh": " "
   },
   "44": {
-   "code": "",
+   "code": "tri",
    "name": "Razortine",
    "wloc": 2618,
-   "zh": " "
+   "zh": ""
   },
   "45": {
-   "code": "",
+   "code": "brn",
    "name": "Bloodthief",
    "wloc": 2619,
    "zh": " "
   },
   "46": {
-   "code": "",
+   "code": "spt",
    "name": "Lance of Yaggai",
    "wloc": 2620,
-   "zh": " "
+   "zh": ""
   },
   "47": {
-   "code": "",
+   "code": "pik",
    "name": "The Tannr Gorerod",
    "wloc": 2621,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "48": {
-   "code": "",
+   "code": "bar",
    "name": "Dimoaks Hew",
    "wloc": 2622,
    "zh": " "
   },
   "49": {
-   "code": "",
+   "code": "vou",
    "name": "Steelgoad",
    "wloc": 2623,
-   "zh": " "
+   "zh": ""
   },
   "50": {
-   "code": "",
+   "code": "scy",
    "name": "Soul Harvest",
    "wloc": 2624,
    "zh": " "
   },
   "51": {
-   "code": "",
+   "code": "pax",
    "name": "The Battlebranch",
    "wloc": 2625,
-   "zh": " "
+   "zh": ""
   },
   "52": {
-   "code": "",
+   "code": "hal",
    "name": "Woestave",
    "wloc": 2626,
    "zh": " "
   },
   "53": {
-   "code": "",
+   "code": "wsc",
    "name": "The Grim Reaper",
    "wloc": 2627,
-   "zh": " "
+   "zh": ""
   },
   "54": {
-   "code": "",
+   "code": "sst",
    "name": "Bane Ash",
    "wloc": 2628,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "55": {
-   "code": "",
+   "code": "lst",
    "name": "Serpent Lord",
    "wloc": 2629,
    "zh": " "
   },
   "56": {
-   "code": "",
+   "code": "cst",
    "name": "Lazarus Spire",
    "wloc": 2630,
-   "zh": " "
+   "zh": ""
   },
   "57": {
-   "code": "",
+   "code": "bst",
    "name": "The Salamander",
    "wloc": 2631,
    "zh": " "
   },
   "58": {
-   "code": "",
+   "code": "wst",
    "name": "The Iron Jang Bong",
    "wloc": 2632,
-   "zh": " "
+   "zh": ""
   },
   "59": {
-   "code": "",
+   "code": "sbw",
    "name": "Pluckeye",
    "wloc": 2633,
    "zh": " "
   },
   "60": {
-   "code": "",
+   "code": "hbw",
    "name": "Witherstring",
    "wloc": 2634,
-   "zh": " "
+   "zh": ""
   },
   "61": {
-   "code": "",
+   "code": "lbw",
    "name": "Rimeraven",
    "wloc": 2635,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "62": {
-   "code": "",
+   "code": "cbw",
    "name": "Piercerib",
    "wloc": 2636,
    "zh": " "
   },
   "63": {
-   "code": "",
+   "code": "sbb",
    "name": "Pullspite",
    "wloc": 2637,
-   "zh": " "
+   "zh": ""
   },
   "64": {
-   "code": "",
+   "code": "lbb",
    "name": "Wizendraw",
    "wloc": 2638,
    "zh": " "
   },
   "65": {
-   "code": "",
+   "code": "swb",
    "name": "Hellclap",
    "wloc": 2639,
-   "zh": " "
+   "zh": ""
   },
   "66": {
-   "code": "",
+   "code": "lwb",
    "name": "Blastbark",
    "wloc": 2640,
    "zh": " "
   },
   "67": {
-   "code": "",
+   "code": "lxb",
    "name": "Leadcrow",
    "wloc": 2641,
-   "zh": " "
+   "zh": ""
   },
   "68": {
-   "code": "",
+   "code": "mxb",
    "name": "Ichorsting",
    "wloc": 2642,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "69": {
-   "code": "",
+   "code": "hxb",
    "name": "Hellcast",
    "wloc": 2643,
    "zh": " "
   },
   "70": {
-   "code": "",
+   "code": "rxb",
    "name": "Doomspittle",
    "wloc": 2644,
-   "zh": " "
+   "zh": ""
   },
   "71": {
-   "code": "",
+   "code": "cap",
    "name": "War Bonnet",
    "wloc": 2645,
    "zh": " "
   },
   "72": {
-   "code": "",
+   "code": "skp",
    "name": "Tarnhelm",
    "wloc": 2646,
-   "zh": " "
+   "zh": ""
   },
   "73": {
-   "code": "",
+   "code": "hlm",
    "name": "Coif of Glory",
    "wloc": 2647,
    "zh": " "
   },
   "74": {
-   "code": "",
+   "code": "fhl",
    "name": "Duskdeep",
    "wloc": 2648,
-   "zh": " "
+   "zh": ""
   },
   "75": {
-   "code": "",
+   "code": "bhm",
    "name": "Wormskull",
    "wloc": 2649,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "76": {
-   "code": "",
+   "code": "ghm",
    "name": "Howltusk",
    "wloc": 2650,
    "zh": " "
   },
   "77": {
-   "code": "",
+   "code": "crn",
    "name": "Undead Crown",
    "wloc": 2651,
-   "zh": " "
+   "zh": ""
   },
   "78": {
-   "code": "",
+   "code": "msk",
    "name": "The Face of Horror",
    "wloc": 2652,
    "zh": " "
   },
   "79": {
-   "code": "",
+   "code": "qui",
    "name": "Greyform",
    "wloc": 2653,
-   "zh": " "
+   "zh": ""
   },
   "80": {
-   "code": "",
+   "code": "lea",
    "name": "Blinkbats Form",
    "wloc": 2654,
    "zh": " "
   },
   "81": {
-   "code": "",
+   "code": "hla",
    "name": "The Centurion",
    "wloc": 2655,
-   "zh": " "
+   "zh": ""
   },
   "82": {
-   "code": "",
+   "code": "stu",
    "name": "Twitchthroe",
    "wloc": 2656,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "83": {
-   "code": "",
+   "code": "rng",
    "name": "Darkglow",
    "wloc": 2657,
    "zh": " "
   },
   "84": {
-   "code": "",
+   "code": "scl",
    "name": "Hawkmail",
    "wloc": 2658,
-   "zh": " "
+   "zh": ""
   },
   "85": {
-   "code": "",
+   "code": "chn",
    "name": "Sparking Mail",
    "wloc": 2659,
    "zh": " "
   },
   "86": {
-   "code": "",
+   "code": "brs",
    "name": "Venomsward",
    "wloc": 2660,
-   "zh": " "
+   "zh": ""
   },
   "87": {
-   "code": "",
+   "code": "spl",
    "name": "Iceblink",
    "wloc": 2661,
    "zh": " "
   },
   "88": {
-   "code": "",
+   "code": "plt",
    "name": "Boneflesh",
    "wloc": 2662,
-   "zh": " "
+   "zh": ""
   },
   "89": {
-   "code": "",
+   "code": "fld",
    "name": "Rockfleece",
    "wloc": 2663,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "90": {
-   "code": "",
+   "code": "gth",
    "name": "Rattlecage",
    "wloc": 2664,
    "zh": " "
   },
   "91": {
-   "code": "",
+   "code": "ful",
    "name": "Goldskin",
    "wloc": 2665,
-   "zh": " "
+   "zh": ""
   },
   "92": {
-   "code": "",
+   "code": "aar",
    "name": "Victors Silk",
    "wloc": 2666,
    "zh": " "
   },
   "93": {
-   "code": "",
+   "code": "ltp",
    "name": "Heavenly Garb",
    "wloc": 2667,
-   "zh": " "
+   "zh": ""
   },
   "94": {
-   "code": "",
+   "code": "buc",
    "name": "Pelta Lunata",
    "wloc": 2668,
    "zh": " "
   },
   "95": {
-   "code": "",
+   "code": "sml",
    "name": "Umbral Disk",
    "wloc": 2669,
-   "zh": " "
+   "zh": ""
   },
   "96": {
-   "code": "",
+   "code": "lrg",
    "name": "Stormguild",
    "wloc": 2670,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "97": {
-   "code": "",
+   "code": "bsh",
    "name": "Wall of the Eyeless",
    "wloc": 2671,
    "zh": " "
   },
   "98": {
-   "code": "",
+   "code": "spk",
    "name": "Swordback Hold",
    "wloc": 2672,
-   "zh": " "
+   "zh": ""
   },
   "99": {
-   "code": "",
+   "code": "kit",
    "name": "Steelclash",
    "wloc": 2673,
    "zh": " "
   },
   "100": {
-   "code": "",
+   "code": "tow",
    "name": "Bverrit Keep",
    "wloc": 2674,
-   "zh": " "
+   "zh": ""
   },
   "101": {
-   "code": "",
+   "code": "gts",
    "name": "The Ward",
    "wloc": 2675,
    "zh": " "
   },
   "102": {
-   "code": "",
+   "code": "lgl",
    "name": "The Hand of Broc",
    "wloc": 2676,
-   "zh": " "
+   "zh": ""
   },
   "103": {
-   "code": "",
+   "code": "vgl",
    "name": "Bloodfist",
    "wloc": 2677,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "104": {
-   "code": "",
+   "code": "mgl",
    "name": "Chance Guards",
    "wloc": 2678,
    "zh": " "
   },
   "105": {
-   "code": "",
+   "code": "tgl",
    "name": "Magefist",
    "wloc": 2679,
-   "zh": " "
+   "zh": ""
   },
   "106": {
-   "code": "",
+   "code": "hgl",
    "name": "Frostburn",
    "wloc": 2680,
    "zh": " "
   },
   "107": {
-   "code": "",
+   "code": "lbt",
    "name": "Hotspur",
    "wloc": 2681,
-   "zh": " "
+   "zh": ""
   },
   "108": {
-   "code": "",
+   "code": "vbt",
    "name": "Gorefoot",
    "wloc": 2682,
    "zh": " "
   },
   "109": {
-   "code": "",
+   "code": "mbt",
    "name": "Treads of Cthon",
    "wloc": 2683,
-   "zh": " "
+   "zh": ""
   },
   "110": {
-   "code": "",
+   "code": "tbt",
    "name": "Goblin Toe",
    "wloc": 2684,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "111": {
-   "code": "",
+   "code": "hbt",
    "name": "Tearhaunch",
    "wloc": 2685,
    "zh": " "
   },
   "112": {
-   "code": "",
+   "code": "lbl",
    "name": "Lenyms Cord",
    "wloc": 2686,
-   "zh": " "
+   "zh": ""
   },
   "113": {
-   "code": "",
+   "code": "vbl",
    "name": "Snakecord",
    "wloc": 2687,
    "zh": " "
   },
   "114": {
-   "code": "",
+   "code": "mbl",
    "name": "Nightsmoke",
    "wloc": 2688,
-   "zh": " "
+   "zh": ""
   },
   "115": {
-   "code": "",
+   "code": "tbl",
    "name": "Goldwrap",
    "wloc": 2689,
    "zh": " "
   },
   "116": {
-   "code": "",
+   "code": "hbl",
    "name": "Bladebuckle",
    "wloc": 2690,
-   "zh": " "
+   "zh": ""
   },
   "117": {
-   "code": "",
+   "code": "amu",
    "name": "Nokozan Relic",
    "wloc": 2691,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "118": {
-   "code": "",
+   "code": "amu",
    "name": "The Eye of Etlich",
    "wloc": 2692,
    "zh": " "
   },
   "119": {
-   "code": "",
+   "code": "amu",
    "name": "The Mahim-Oak Curio",
    "wloc": 2693,
-   "zh": " "
+   "zh": ""
   },
   "120": {
-   "code": "",
+   "code": "rin",
    "name": "Nagelring",
    "wloc": 2694,
    "zh": " "
   },
   "121": {
-   "code": "",
+   "code": "rin",
    "name": "Manald Heal",
    "wloc": 2695,
-   "zh": " "
+   "zh": ""
   },
   "122": {
-   "code": "",
+   "code": "rin",
    "name": "The Stone of Jordan",
    "wloc": 2701,
    "zh": " "
   },
   "123": {
-   "code": "",
+   "code": "vip",
    "name": "Amulet of the Viper",
    "wloc": 2697,
-   "zh": " "
+   "zh": ""
   },
   "124": {
-   "code": "",
+   "code": "msf",
    "name": "Staff of Kings",
    "wloc": 2698,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "125": {
-   "code": "",
+   "code": "hst",
    "name": "Horadric Staff",
    "wloc": 2699,
    "zh": " "
   },
   "126": {
-   "code": "",
+   "code": "hfh",
    "name": "Hell Forge Hammer",
    "wloc": 2700,
-   "zh": " "
+   "zh": ""
   },
   "127": {
-   "code": "",
+   "code": "qf1",
    "name": "KhalimFlail",
    "wloc": 1062,
-   "zh": " "
+   "zh": ""
   },
   "128": {
-   "code": "",
+   "code": "qf2",
    "name": "SuperKhalimFlail",
    "wloc": 1063,
    "zh": " "
   },
   "129": {
-   "code": "",
+   "code": "9ha",
    "name": "Coldkill",
    "wloc": 21286,
    "zh": "冷杀"
   },
   "130": {
-   "code": "",
+   "code": "9ax",
    "name": "Butcher's Pupil",
    "wloc": 21288,
    "zh": "屠夫之瞳"
   },
   "131": {
-   "code": "",
+   "code": "92a",
    "name": "Islestrike",
    "wloc": 21289,
    "zh": "岛击"
   },
   "132": {
-   "code": "",
+   "code": "9mp",
    "name": "Pompe's Wrath",
    "wloc": 21290,
    "zh": "庞贝之怒"
   },
   "133": {
-   "code": "",
+   "code": "9wa",
    "name": "Guardian Naga",
    "wloc": 21291,
    "zh": "蛇神守护者"
   },
   "134": {
-   "code": "",
+   "code": "9la",
    "name": "Warlord's Trust",
    "wloc": 21292,
    "zh": "战爵之证"
   },
   "135": {
-   "code": "",
+   "code": "9ba",
    "name": "Spellsteel",
    "wloc": 21293,
    "zh": "钢铁魔咒"
   },
   "136": {
-   "code": "",
+   "code": "9bt",
    "name": "Stormrider",
    "wloc": 21294,
    "zh": "暴风骑士"
   },
   "137": {
-   "code": "",
+   "code": "9ga",
    "name": "Boneslayer Blade",
    "wloc": 21295,
    "zh": "碎骨者之刃"
   },
   "138": {
-   "code": "",
+   "code": "9gi",
    "name": "The Minataur",
    "wloc": 21659,
    "zh": "牛头怪"
   },
   "139": {
-   "code": "",
+   "code": "9wn",
    "name": "Suicide Branch",
    "wloc": 21297,
    "zh": "自杀支系"
   },
   "140": {
-   "code": "",
+   "code": "9yw",
    "name": "Carin Shard",
    "wloc": 21658,
    "zh": "凯恩碎片"
   },
   "141": {
-   "code": "",
+   "code": "9bw",
    "name": "Arm of King Leoric",
    "wloc": 21299,
    "zh": "李奥瑞克王的武器"
   },
   "142": {
-   "code": "",
+   "code": "9gw",
    "name": "Blackhand Key",
    "wloc": 21300,
    "zh": "黑手之钥"
   },
   "143": {
-   "code": "",
+   "code": "9cl",
    "name": "Dark Clan Crusher",
    "wloc": 21301,
    "zh": "暗族碎灭者"
   },
   "144": {
-   "code": "",
+   "code": "9sc",
    "name": "Zakarum's Hand",
    "wloc": 21657,
    "zh": "撒卡兰姆之手"
   },
   "145": {
-   "code": "",
+   "code": "9qs",
    "name": "The Fetid Sprinkler",
    "wloc": 21304,
    "zh": "恶臭散布者"
   },
   "146": {
-   "code": "",
+   "code": "9ws",
    "name": "Hand of Blessed Light",
    "wloc": 21305,
    "zh": "祝福之光之手"
   },
   "147": {
-   "code": "",
+   "code": "9sp",
    "name": "Fleshrender",
    "wloc": 21306,
    "zh": "血肉裁决者"
   },
   "148": {
-   "code": "",
+   "code": "9ma",
    "name": "Sureshrill Frost",
    "wloc": 21307,
    "zh": "尖啸冰霜"
   },
   "149": {
-   "code": "",
+   "code": "9mt",
    "name": "Moonfall",
    "wloc": 21308,
    "zh": "落月"
   },
   "150": {
-   "code": "",
+   "code": "9fl",
    "name": "Baezil's Vortex",
    "wloc": 21656,
    "zh": "贝西尔的漩涡"
   },
   "151": {
-   "code": "",
+   "code": "9wh",
    "name": "Earthshaker",
    "wloc": 21310,
    "zh": "撼地者"
   },
   "152": {
-   "code": "",
+   "code": "9m9",
    "name": "Bloodtree Stump",
    "wloc": 21311,
    "zh": "血树残株"
   },
   "153": {
-   "code": "",
+   "code": "9gm",
    "name": "The Gavel of Pain",
    "wloc": 21312,
    "zh": "痛苦木槌"
   },
   "154": {
-   "code": "",
+   "code": "9ss",
    "name": "Bloodletter",
    "wloc": 21313,
    "zh": "血书"
   },
   "155": {
-   "code": "",
+   "code": "9sm",
    "name": "Coldsteel Eye",
    "wloc": 21372,
    "zh": "冰钢之眼"
   },
   "156": {
-   "code": "",
+   "code": "9sb",
    "name": "Hexfire",
    "wloc": 21315,
    "zh": "六角之火"
   },
   "157": {
-   "code": "",
+   "code": "9fc",
    "name": "Blade of Ali Baba",
    "wloc": 21316,
    "zh": "阿里巴巴之刃"
   },
   "158": {
-   "code": "",
+   "code": "9cr",
    "name": "Ginther's Rift",
    "wloc": 21829,
    "zh": "金瑟的裂缝"
   },
   "159": {
-   "code": "",
+   "code": "9bs",
    "name": "Headstriker",
    "wloc": 21318,
    "zh": "击头者"
   },
   "160": {
-   "code": "",
+   "code": "9ls",
    "name": "Plague Bearer",
    "wloc": 21319,
    "zh": "疫病带原者"
   },
   "161": {
-   "code": "",
+   "code": "9wd",
    "name": "The Atlantian",
    "wloc": 21654,
    "zh": "亚特拉斯"
   },
   "162": {
-   "code": "",
+   "code": "92h",
    "name": "Crainte Vomir",
    "wloc": 21321,
    "zh": "克林铁-弗姆"
   },
   "163": {
-   "code": "",
+   "code": "9cm",
    "name": "Bing Sz Wang",
    "wloc": 21322,
    "zh": "兵之王"
   },
   "164": {
-   "code": "",
+   "code": "9gs",
    "name": "The Vile Husk",
    "wloc": 21323,
    "zh": "卑劣躯壳"
   },
   "165": {
-   "code": "",
+   "code": "9b9",
    "name": "Cloudcrack",
    "wloc": 21324,
    "zh": "云裂"
   },
   "166": {
-   "code": "",
+   "code": "9fb",
    "name": "Todesfaelle Flamme",
    "wloc": 21325,
    "zh": "特迪斯法雷-芙法米"
   },
   "167": {
-   "code": "",
+   "code": "9gd",
    "name": "Swordguard",
    "wloc": 21326,
    "zh": "剑卫"
   },
   "168": {
-   "code": "",
+   "code": "9dg",
    "name": "Spineripper",
    "wloc": 21327,
    "zh": "裂脊者"
   },
   "169": {
-   "code": "",
+   "code": "9di",
    "name": "Heart Carver",
    "wloc": 21328,
    "zh": "刻心者"
   },
   "170": {
-   "code": "",
+   "code": "9kr",
    "name": "Blackbog's Sharp",
    "wloc": 21329,
    "zh": "黑沼之锋"
   },
   "171": {
-   "code": "",
+   "code": "9bl",
    "name": "Stormspike",
    "wloc": 21330,
    "zh": "暴风尖刺"
   },
   "172": {
-   "code": "",
+   "code": "9sr",
    "name": "The Impaler",
    "wloc": 21331,
    "zh": "穿刺者"
   },
   "173": {
-   "code": "",
+   "code": "9tr",
    "name": "Kelpie Snare",
    "wloc": 21332,
    "zh": "水魔陷阱"
   },
   "174": {
-   "code": "",
+   "code": "9br",
    "name": "Soulfeast Tine",
    "wloc": 21333,
    "zh": "噬魂叉"
   },
   "175": {
-   "code": "",
+   "code": "9st",
    "name": "Hone Sundan",
    "wloc": 21334,
    "zh": "宏-森丹"
   },
   "176": {
-   "code": "",
+   "code": "9p9",
    "name": "Spire of Honor",
    "wloc": 21335,
    "zh": "荣耀的尖塔"
   },
   "177": {
-   "code": "",
+   "code": "9b7",
    "name": "The Meat Scraper",
    "wloc": 21336,
    "zh": "刮肉者"
   },
   "178": {
-   "code": "",
+   "code": "9vo",
    "name": "Blackleach Blade",
    "wloc": 21337,
    "zh": "黑水之刃"
   },
   "179": {
-   "code": "",
+   "code": "9s8",
    "name": "Athena's Wrath",
    "wloc": 21338,
    "zh": "阿西娜的忿怒"
   },
   "180": {
-   "code": "",
+   "code": "9pa",
    "name": "Pierre Tombale Couant",
    "wloc": 21339,
    "zh": "皮尔-通把-考恩特"
   },
   "181": {
-   "code": "",
+   "code": "9h9",
    "name": "Husoldal Evo",
    "wloc": 21340,
    "zh": "胡索丹-依弗"
   },
   "182": {
-   "code": "",
+   "code": "9wc",
    "name": "Grim's Burning Dead",
    "wloc": 21341,
    "zh": "惊怖焰亡灵"
   },
   "183": {
-   "code": "",
+   "code": "8ss",
    "name": "Razorswitch",
    "wloc": 21370,
    "zh": "摆动剃刀"
   },
   "184": {
-   "code": "",
+   "code": "8ls",
    "name": "Ribcracker",
    "wloc": 21342,
    "zh": "肋骨粉碎者"
   },
   "185": {
-   "code": "",
+   "code": "8cs",
    "name": "Chromatic Ire",
    "wloc": 21343,
    "zh": "五彩的怒气"
   },
   "186": {
-   "code": "",
+   "code": "8bs",
    "name": "Warpspear",
    "wloc": 21344,
    "zh": "扭曲之矛"
   },
   "187": {
-   "code": "",
+   "code": "8ws",
    "name": "Skullcollector",
    "wloc": 21345,
    "zh": "骷髅收集者"
   },
   "188": {
-   "code": "",
+   "code": "8sb",
    "name": "Skystrike",
    "wloc": 21346,
    "zh": "天击"
   },
   "189": {
-   "code": "",
+   "code": "8hb",
    "name": "Riphook",
    "wloc": 21369,
    "zh": "撕裂之钩"
   },
   "190": {
-   "code": "",
+   "code": "8lb",
    "name": "Kuko Shakaku",
    "wloc": 21347,
    "zh": "社角久子"
   },
   "191": {
-   "code": "",
+   "code": "8cb",
    "name": "Endlesshail",
    "wloc": 21653,
    "zh": "无休止的冰雹"
   },
   "192": {
-   "code": "",
+   "code": "8s8",
    "name": "Whichwild String",
    "wloc": 10911,
    "zh": "狂野之弦"
   },
   "193": {
-   "code": "",
+   "code": "8l8",
    "name": "Cliffkiller",
    "wloc": 21368,
    "zh": "岩壁杀手"
   },
   "194": {
-   "code": "",
+   "code": "8sw",
    "name": "Magewrath",
    "wloc": 21367,
    "zh": "巫师之怒"
   },
   "195": {
-   "code": "",
+   "code": "8lw",
    "name": "Godstrike Arch",
    "wloc": 21350,
    "zh": "金击圆弧"
   },
   "196": {
-   "code": "",
+   "code": "8lx",
    "name": "Langer Briser",
    "wloc": 21351,
    "zh": "兰格-布里瑟"
   },
   "197": {
-   "code": "",
+   "code": "8mx",
    "name": "Pus Spiter",
    "wloc": 21352,
    "zh": "毒液怪"
   },
   "198": {
-   "code": "",
+   "code": "8hx",
    "name": "Buriza-Do Kyanon",
    "wloc": 21353,
    "zh": "布理撒-多-凯南"
   },
   "199": {
-   "code": "",
+   "code": "8rx",
    "name": "Demon Machine",
    "wloc": 21366,
    "zh": "恶魔机器"
@@ -2117,277 +2117,277 @@
    "zh": "装甲"
   },
   "201": {
-   "code": "",
+   "code": "xap",
    "name": "Peasent Crown",
    "wloc": 21365,
    "zh": "粗野之冠"
   },
   "202": {
-   "code": "",
+   "code": "xkp",
    "name": "Rockstopper",
    "wloc": 21519,
    "zh": "岩石制动器"
   },
   "203": {
-   "code": "",
+   "code": "xlm",
    "name": "Stealskull",
    "wloc": 21520,
    "zh": "偷取骷髅"
   },
   "204": {
-   "code": "",
+   "code": "xhl",
    "name": "Darksight Helm",
    "wloc": 21521,
    "zh": "暗视之盔"
   },
   "205": {
-   "code": "",
+   "code": "xhm",
    "name": "Valkiry Wing",
    "wloc": 21364,
    "zh": "女神之翼"
   },
   "206": {
-   "code": "",
+   "code": "xrn",
    "name": "Crown of Thieves",
    "wloc": 21522,
    "zh": "盗贼皇冠"
   },
   "207": {
-   "code": "",
+   "code": "xsk",
    "name": "Blackhorn's Face",
    "wloc": 21523,
    "zh": "黑角面具"
   },
   "208": {
-   "code": "",
+   "code": "xh9",
    "name": "Vampiregaze",
    "wloc": 21354,
    "zh": "吸血鬼的凝视"
   },
   "209": {
-   "code": "",
+   "code": "xui",
    "name": "The Spirit Shroud",
    "wloc": 21524,
    "zh": "灵魂帷幕"
   },
   "210": {
-   "code": "",
+   "code": "xea",
    "name": "Skin of the Vipermagi",
    "wloc": 21362,
    "zh": "蛇魔法师之皮"
   },
   "211": {
-   "code": "",
+   "code": "xla",
    "name": "Skin of the Flayerd One",
    "wloc": 21633,
    "zh": "剥皮者之皮"
   },
   "212": {
-   "code": "",
+   "code": "xtu",
    "name": "Ironpelt",
    "wloc": 21526,
    "zh": "掷铁"
   },
   "213": {
-   "code": "",
+   "code": "xng",
    "name": "Spiritforge",
    "wloc": 21527,
    "zh": "灵魂熔炉"
   },
   "214": {
-   "code": "",
+   "code": "xcl",
    "name": "Crow Caw",
    "wloc": 21528,
    "zh": "鸦鸣"
   },
   "215": {
-   "code": "",
+   "code": "xhn",
    "name": "Shaftstop",
    "wloc": 21361,
    "zh": "谢夫特斯坦布"
   },
   "216": {
-   "code": "",
+   "code": "xrs",
    "name": "Duriel's Shell",
    "wloc": 21529,
    "zh": "都瑞尔的壳"
   },
   "217": {
-   "code": "",
+   "code": "xpl",
    "name": "Skullder's Ire",
    "wloc": 21530,
    "zh": "诗寇蒂的愤怒"
   },
   "218": {
-   "code": "",
+   "code": "xlt",
    "name": "Guardian Angel",
    "wloc": 21632,
    "zh": "守护天使"
   },
   "219": {
-   "code": "",
+   "code": "xld",
    "name": "Toothrow",
    "wloc": 21531,
    "zh": "排齿"
   },
   "220": {
-   "code": "",
+   "code": "xth",
    "name": "Atma's Wail",
    "wloc": 21532,
    "zh": "亚特玛的哭喊"
   },
   "221": {
-   "code": "",
+   "code": "xul",
    "name": "Black Hades",
    "wloc": 21533,
    "zh": "黑色黑帝斯"
   },
   "222": {
-   "code": "",
+   "code": "xar",
    "name": "Corpsemourn",
    "wloc": 21534,
    "zh": "尸体的哀伤"
   },
   "223": {
-   "code": "",
+   "code": "xtp",
    "name": "Que-Hegan's Wisdon",
    "wloc": 21631,
    "zh": "魁黑刚的智慧"
   },
   "224": {
-   "code": "",
+   "code": "xuc",
    "name": "Visceratuant",
    "wloc": 21359,
    "zh": "维斯尔坦特"
   },
   "225": {
-   "code": "",
+   "code": "xml",
    "name": "Mosers Blessed Circle",
    "wloc": 21630,
    "zh": "摩西祝福之环"
   },
   "226": {
-   "code": "",
+   "code": "xrg",
    "name": "Stormchaser",
    "wloc": 21537,
    "zh": "风暴追逐者"
   },
   "227": {
-   "code": "",
+   "code": "xit",
    "name": "Tiamat's Rebuke",
    "wloc": 21538,
    "zh": "魔龙的非难"
   },
   "228": {
-   "code": "",
+   "code": "xow",
    "name": "Kerke's Sanctuary",
    "wloc": 21629,
    "zh": "基尔克的圣堂"
   },
   "229": {
-   "code": "",
+   "code": "xts",
    "name": "Radimant's Sphere",
    "wloc": 21540,
    "zh": "罗达门特之球体"
   },
   "230": {
-   "code": "",
+   "code": "xsh",
    "name": "Lidless Wall",
    "wloc": 21552,
    "zh": "警戒之墙"
   },
   "231": {
-   "code": "",
+   "code": "xpk",
    "name": "Lance Guard",
    "wloc": 21628,
    "zh": "长枪守卫"
   },
   "232": {
-   "code": "",
+   "code": "xlg",
    "name": "Venom Grip",
    "wloc": 21358,
    "zh": "剧毒之抓"
   },
   "233": {
-   "code": "",
+   "code": "xvg",
    "name": "Gravepalm",
    "wloc": 21541,
    "zh": "墓穴的抚弄"
   },
   "234": {
-   "code": "",
+   "code": "xmg",
    "name": "Ghoulhide",
    "wloc": 21542,
    "zh": "食尸鬼外皮"
   },
   "235": {
-   "code": "",
+   "code": "xtg",
    "name": "Lavagout",
    "wloc": 21357,
    "zh": "熔岩角羊"
   },
   "236": {
-   "code": "",
+   "code": "xhg",
    "name": "Hellmouth",
    "wloc": 21543,
    "zh": "地狱之嘴"
   },
   "237": {
-   "code": "",
+   "code": "xlb",
    "name": "Infernostride",
    "wloc": 21544,
    "zh": "地狱阔步"
   },
   "238": {
-   "code": "",
+   "code": "xvb",
    "name": "Waterwalk",
    "wloc": 21545,
    "zh": "水上飘"
   },
   "239": {
-   "code": "",
+   "code": "xmb",
    "name": "Silkweave",
    "wloc": 21546,
    "zh": "纱织"
   },
   "240": {
-   "code": "",
+   "code": "xtb",
    "name": "Wartraveler",
    "wloc": 21547,
    "zh": "战争旅者"
   },
   "241": {
-   "code": "",
+   "code": "xhb",
    "name": "Gorerider",
    "wloc": 21356,
    "zh": "蚀肉骑士"
   },
   "242": {
-   "code": "",
+   "code": "zlb",
    "name": "String of Ears",
    "wloc": 21355,
    "zh": "长串之耳"
   },
   "243": {
-   "code": "",
+   "code": "zvb",
    "name": "Razortail",
    "wloc": 21548,
    "zh": "剃刀之尾"
   },
   "244": {
-   "code": "",
+   "code": "zmb",
    "name": "Gloomstrap",
    "wloc": 21549,
    "zh": "阴影陷阱"
   },
   "245": {
-   "code": "",
+   "code": "ztb",
    "name": "Snowclash",
    "wloc": 21550,
    "zh": "雪之冲突"
   },
   "246": {
-   "code": "",
+   "code": "zhb",
    "name": "Thudergod's Vigor",
    "wloc": 21551,
    "zh": "雷神之力"
@@ -2399,115 +2399,115 @@
    "zh": ""
   },
   "248": {
-   "code": "",
+   "code": "uap",
    "name": "Harlequin Crest",
    "wloc": 21627,
    "zh": "谐角之冠"
   },
   "249": {
-   "code": "",
+   "code": "uhm",
    "name": "Veil of Steel",
    "wloc": 21626,
    "zh": "钢铁面纱"
   },
   "250": {
-   "code": "",
+   "code": "utu",
    "name": "The Gladiator's Bane",
    "wloc": 21625,
    "zh": "斗士的祸根"
   },
   "251": {
-   "code": "",
+   "code": "upl",
    "name": "Arkaine's Valor",
    "wloc": 21624,
    "zh": "阿凯尼的荣耀"
   },
   "252": {
-   "code": "",
+   "code": "uml",
    "name": "Blackoak Shield",
    "wloc": 21622,
    "zh": "黑橡树盾"
   },
   "253": {
-   "code": "",
+   "code": "uit",
    "name": "Stormshield",
    "wloc": 21621,
    "zh": "暴风之盾"
   },
   "254": {
-   "code": "",
+   "code": "7bt",
    "name": "Hellslayer",
    "wloc": 21652,
    "zh": "地狱毁灭者"
   },
   "255": {
-   "code": "",
+   "code": "7ga",
    "name": "Messerschmidt's Reaver",
    "wloc": 21651,
    "zh": "希梅斯特的掠夺"
   },
   "256": {
-   "code": "",
+   "code": "7mt",
    "name": "Baranar's Star",
    "wloc": 21649,
    "zh": "巴拉那之星"
   },
   "257": {
-   "code": "",
+   "code": "7wh",
    "name": "Schaefer's Hammer",
    "wloc": 21648,
    "zh": "史恰佛之锤"
   },
   "258": {
-   "code": "",
+   "code": "7gm",
    "name": "The Cranium Basher",
    "wloc": 21647,
    "zh": "碎脑锤"
   },
   "259": {
-   "code": "",
+   "code": "7cr",
    "name": "Lightsabre",
    "wloc": 21646,
    "zh": "光之军刀"
   },
   "260": {
-   "code": "",
+   "code": "7b7",
    "name": "Doombringer",
    "wloc": 21644,
    "zh": "末日毁灭者"
   },
   "261": {
-   "code": "",
+   "code": "7gd",
    "name": "The Grandfather",
    "wloc": 21643,
    "zh": "祖父"
   },
   "262": {
-   "code": "",
+   "code": "7dg",
    "name": "Wizardspike",
    "wloc": 21642,
    "zh": "巫师之刺"
   },
   "263": {
-   "code": "",
+   "code": "rin",
    "name": "Constricting Ring",
    "wloc": 21828,
    "zh": "收缩戒指"
   },
   "264": {
-   "code": "",
+   "code": "7wc",
    "name": "Stormspire",
    "wloc": 21639,
    "zh": "暴风尖塔"
   },
   "265": {
-   "code": "",
+   "code": "6l7",
    "name": "Eaglehorn",
    "wloc": 21636,
    "zh": "鹰号角"
   },
   "266": {
-   "code": "",
+   "code": "6lw",
    "name": "Windforce",
    "wloc": 21635,
    "zh": "风之力"
@@ -2519,61 +2519,61 @@
    "zh": "指环"
   },
   "268": {
-   "code": "",
+   "code": "rin",
    "name": "Bul Katho's Wedding Band",
    "wloc": 21617,
    "zh": "布尔凯索之戒"
   },
   "269": {
-   "code": "",
+   "code": "amu",
    "name": "The Cat's Eye",
    "wloc": 21616,
    "zh": "猫眼"
   },
   "270": {
-   "code": "",
+   "code": "amu",
    "name": "The Rising Sun",
    "wloc": 21615,
    "zh": "旭日东升"
   },
   "271": {
-   "code": "",
+   "code": "amu",
    "name": "Crescent Moon",
    "wloc": 21614,
    "zh": "新月"
   },
   "272": {
-   "code": "",
+   "code": "amu",
    "name": "Mara's Kaleidoscope",
    "wloc": 21613,
    "zh": "马拉的万花筒"
   },
   "273": {
-   "code": "",
+   "code": "amu",
    "name": "Atma's Scarab",
    "wloc": 21612,
    "zh": "亚特玛的圣甲虫"
   },
   "274": {
-   "code": "",
+   "code": "rin",
    "name": "Dwarf Star",
    "wloc": 21611,
    "zh": "矮人之星"
   },
   "275": {
-   "code": "",
+   "code": "rin",
    "name": "Raven Frost",
    "wloc": 21610,
    "zh": "乌鸦之霜"
   },
   "276": {
-   "code": "",
+   "code": "amu",
    "name": "Highlord's Wrath",
    "wloc": 21609,
    "zh": "大君之怒"
   },
   "277": {
-   "code": "",
+   "code": "amu",
    "name": "Saracen's Chance",
    "wloc": 21608,
    "zh": "萨拉森的机会"
@@ -2585,145 +2585,145 @@
    "zh": "指定职业"
   },
   "279": {
-   "code": "",
+   "code": "baa",
    "name": "Arreat's Face",
    "wloc": 21744,
    "zh": "亚瑞特的面容"
   },
   "280": {
-   "code": "",
+   "code": "nea",
    "name": "Homunculus",
    "wloc": 21755,
    "zh": "侏儒"
   },
   "281": {
-   "code": "",
+   "code": "ama",
    "name": "Titan's Revenge",
    "wloc": 21735,
    "zh": "泰坦的复仇"
   },
   "282": {
-   "code": "",
+   "code": "am7",
    "name": "Lycander's Aim",
    "wloc": 21737,
    "zh": "雷山德的指标"
   },
   "283": {
-   "code": "",
+   "code": "am9",
    "name": "Lycander's Flank",
    "wloc": 21827,
    "zh": "雷山德的侧腹"
   },
   "284": {
-   "code": "",
+   "code": "oba",
    "name": "The Oculus",
    "wloc": 21762,
    "zh": "眼球"
   },
   "285": {
-   "code": "",
+   "code": "pa9",
    "name": "Herald of Zakarum",
    "wloc": 21758,
    "zh": "撒卡兰姆使者"
   },
   "286": {
-   "code": "",
+   "code": "9tw",
    "name": "Cutthroat1",
    "wloc": 10000,
    "zh": "巴特克的猛击"
   },
   "287": {
-   "code": "",
+   "code": "dra",
    "name": "Jalal's Mane",
    "wloc": 21750,
    "zh": "加尔的长发"
   },
   "288": {
-   "code": "",
+   "code": "9ta",
    "name": "The Scalper",
    "wloc": 21448,
    "zh": "圆凿"
   },
   "289": {
-   "code": "",
+   "code": "7sb",
    "name": "Bloodmoon",
    "wloc": 21449,
    "zh": "血月"
   },
   "290": {
-   "code": "",
+   "code": "7sm",
    "name": "Djinnslayer",
    "wloc": 21450,
    "zh": "魔灵杀手"
   },
   "291": {
-   "code": "",
+   "code": "9tk",
    "name": "Deathbit",
    "wloc": 21379,
    "zh": "死亡碎片"
   },
   "292": {
-   "code": "",
+   "code": "7bk",
    "name": "Warshrike",
    "wloc": 21380,
    "zh": "战争之鸟"
   },
   "293": {
-   "code": "",
+   "code": "6rx",
    "name": "Gutsiphon",
    "wloc": 21381,
    "zh": "内脏吸管"
   },
   "294": {
-   "code": "",
+   "code": "7ha",
    "name": "Razoredge",
    "wloc": 21382,
    "zh": "刀锋边缘"
   },
   "295": {
-   "code": "",
+   "code": "ulg",
    "name": "Gore Ripper",
    "wloc": 21385,
    "zh": "自助回收价22~23~28-67%~30%~3%"
   },
   "296": {
-   "code": "",
+   "code": "7sp",
    "name": "Demonlimb",
    "wloc": 21387,
    "zh": "恶魔爪牙"
   },
   "297": {
-   "code": "",
+   "code": "ulm",
    "name": "Steelshade",
    "wloc": 21388,
    "zh": "钢影"
   },
   "298": {
-   "code": "",
+   "code": "7pa",
    "name": "Tomb Reaver",
    "wloc": 21389,
    "zh": "盗墓者"
   },
   "299": {
-   "code": "",
+   "code": "7gw",
    "name": "Deaths's Web",
    "wloc": 21650,
    "zh": "死亡之网"
   },
   "300": {
-   "code": "",
+   "code": "rin",
    "name": "Nature's Peace",
    "wloc": 21462,
    "zh": "大自然的和平"
   },
   "301": {
-   "code": "",
+   "code": "7cr",
    "name": "Azurewrath",
    "wloc": 2603,
    "zh": " "
   },
   "302": {
-   "code": "",
+   "code": "amu",
    "name": "Seraph's Hymn",
    "wloc": 21464,
    "zh": "炽天使之韵"
@@ -2735,7 +2735,7 @@
    "zh": "撒卡兰姆的救赎"
   },
   "304": {
-   "code": "",
+   "code": "7kr",
    "name": "Fleshripper",
    "wloc": 21466,
    "zh": "裂肉者"
@@ -2747,73 +2747,73 @@
    "zh": "厌恶"
   },
   "306": {
-   "code": "",
+   "code": "7fl",
    "name": "Horizon's Tornado",
    "wloc": 21469,
    "zh": "地平线的台风"
   },
   "307": {
-   "code": "",
+   "code": "7wh",
    "name": "Stone Crusher",
    "wloc": 21400,
    "zh": "碎石者"
   },
   "308": {
-   "code": "",
+   "code": "7wb",
    "name": "Jadetalon",
    "wloc": 21473,
    "zh": "碧玉爪"
   },
   "309": {
-   "code": "",
+   "code": "uhb",
    "name": "Shadowdancer",
    "wloc": 21403,
    "zh": "影舞者"
   },
   "310": {
-   "code": "",
+   "code": "drb",
    "name": "Cerebus",
    "wloc": 21476,
    "zh": "地狱之吻"
   },
   "311": {
-   "code": "",
+   "code": "uar",
    "name": "Tyrael's Might",
    "wloc": 21645,
    "zh": "泰瑞尔力量"
   },
   "312": {
-   "code": "",
+   "code": "umg",
    "name": "Souldrain",
    "wloc": 21407,
    "zh": "吸魂者"
   },
   "313": {
-   "code": "",
+   "code": "72a",
    "name": "Runemaster",
    "wloc": 21408,
    "zh": "符文大师"
   },
   "314": {
-   "code": "",
+   "code": "7wa",
    "name": "Deathcleaver",
    "wloc": 21409,
    "zh": "死亡之刀"
   },
   "315": {
-   "code": "",
+   "code": "7gi",
    "name": "Executioner's Justice",
    "wloc": 21410,
    "zh": "刽子手的裁决"
   },
   "316": {
-   "code": "",
+   "code": "amd",
    "name": "Stoneraven",
    "wloc": 21482,
    "zh": "石乌鸦"
   },
   "317": {
-   "code": "",
+   "code": "uld",
    "name": "Leviathan",
    "wloc": 21412,
    "zh": "海王利维亚桑"
@@ -2825,121 +2825,121 @@
    "zh": "拉苏克的斗士"
   },
   "319": {
-   "code": "",
+   "code": "rin",
    "name": "Wisp",
    "wloc": 21417,
    "zh": "鬼火投射者"
   },
   "320": {
-   "code": "",
+   "code": "7ts",
    "name": "Gargoyle's Bite",
    "wloc": 21418,
    "zh": "石像鬼之噬"
   },
   "321": {
-   "code": "",
+   "code": "7b8",
    "name": "Lacerator",
    "wloc": 21419,
    "zh": "撕裂者"
   },
   "322": {
-   "code": "",
+   "code": "6ws",
    "name": "Mang Song's Lesson",
    "wloc": 21420,
    "zh": "梅格之歌的教训"
   },
   "323": {
-   "code": "",
+   "code": "7br",
    "name": "Viperfork",
    "wloc": 21421,
    "zh": "蝮蛇叉"
   },
   "324": {
-   "code": "",
+   "code": "7ba",
    "name": "Ethereal Edge",
    "wloc": 21641,
    "zh": "永恒边界"
   },
   "325": {
-   "code": "",
+   "code": "bad",
    "name": "Demonhorn's Edge",
    "wloc": 21425,
    "zh": "恶魔号角的边缘"
   },
   "326": {
-   "code": "",
+   "code": "7s8",
    "name": "The Reaper's Toll",
    "wloc": 21427,
    "zh": "死神的丧钟"
   },
   "327": {
-   "code": "",
+   "code": "drd",
    "name": "Spiritkeeper",
    "wloc": 21428,
    "zh": "灵魂看守者"
   },
   "328": {
-   "code": "",
+   "code": "6hx",
    "name": "Hellrack",
    "wloc": 21429,
    "zh": "地狱拷问"
   },
   "329": {
-   "code": "",
+   "code": "pac",
    "name": "Alma Negra",
    "wloc": 21430,
    "zh": "阿尔玛-尼格拉"
   },
   "330": {
-   "code": "",
+   "code": "nef",
    "name": "Darkforge Spawn",
    "wloc": 21431,
    "zh": "魔力肇生"
   },
   "331": {
-   "code": "",
+   "code": "6sw",
    "name": "Widowmaker",
    "wloc": 21638,
    "zh": "戮夫刃"
   },
   "332": {
-   "code": "",
+   "code": "amb",
    "name": "Bloodraven's Charge",
    "wloc": 21508,
    "zh": "血鸟的袭击"
   },
   "333": {
-   "code": "",
+   "code": "7bl",
    "name": "Ghostflame",
    "wloc": 21438,
    "zh": "鬼火焰"
   },
   "334": {
-   "code": "",
+   "code": "7cs",
    "name": "Shadowkiller",
    "wloc": 21439,
    "zh": "影杀者"
   },
   "335": {
-   "code": "",
+   "code": "7ta",
    "name": "Gimmershred",
    "wloc": 21637,
    "zh": "碎片贪婪者"
   },
   "336": {
-   "code": "",
+   "code": "ci3",
    "name": "Griffon's Eye",
    "wloc": 21442,
    "zh": "格利风之眼"
   },
   "337": {
-   "code": "",
+   "code": "7m7",
    "name": "Windhammer",
    "wloc": 21444,
    "zh": "风之锤"
   },
   "338": {
-   "code": "",
+   "code": "amf",
    "name": "Thunderstroke",
    "wloc": 21445,
    "zh": "雷击"
@@ -2951,1195 +2951,1605 @@
    "zh": "重残"
   },
   "340": {
-   "code": "",
+   "code": "7s7",
    "name": "Demon's Arch",
    "wloc": 21447,
    "zh": "恶魔之王"
   },
   "341": {
-   "code": "",
+   "code": "nee",
    "name": "Boneflame",
    "wloc": 21555,
    "zh": "骨焰"
   },
   "342": {
-   "code": "",
+   "code": "7p7",
    "name": "Steelpillar",
    "wloc": 21556,
    "zh": "铁柱"
   },
   "343": {
-   "code": "",
+   "code": "uhm",
    "name": "Nightwing's Veil",
    "wloc": 21557,
    "zh": "夜翼面纱"
   },
   "344": {
-   "code": "",
+   "code": "urn",
    "name": "Crown of Ages",
    "wloc": 21559,
    "zh": "年纪之冠"
   },
   "345": {
-   "code": "",
+   "code": "usk",
    "name": "Andariel's Visage",
    "wloc": 21560,
    "zh": "安达利尔的面貌"
   },
   "346": {
-   "code": "",
+   "code": "ulm",
    "name": "Darkfear",
    "wloc": 21561,
    "zh": "黑暗恐惧"
   },
   "347": {
-   "code": "",
+   "code": "pae",
    "name": "Dragonscale",
    "wloc": 21562,
    "zh": "龙鳞"
   },
   "348": {
-   "code": "",
+   "code": "uul",
    "name": "Steel Carapice",
    "wloc": 21563,
    "zh": "钢铁铠甲"
   },
   "349": {
-   "code": "",
+   "code": "uow",
    "name": "Medusa's Gaze",
    "wloc": 21516,
    "zh": "梅杜莎的凝视"
   },
   "350": {
-   "code": "",
+   "code": "dre",
    "name": "Ravenlore",
    "wloc": 21566,
    "zh": "乌鸦之王"
   },
   "351": {
-   "code": "",
+   "code": "7bw",
    "name": "Boneshade",
    "wloc": 21567,
    "zh": "白骨阴影"
   },
   "352": {
-   "code": "",
+   "code": "cm3",
    "name": "Nethercrow",
    "wloc": 21568,
    "zh": "冥府乌鸦"
   },
   "353": {
-   "code": "",
+   "code": "7gs",
    "name": "Flamebellow",
    "wloc": 21570,
    "zh": "火焰号叫"
   },
   "354": {
-   "code": "",
+   "code": "obf",
    "name": "Fathom",
    "wloc": 21571,
    "zh": "死亡深度"
   },
   "355": {
-   "code": "",
+   "code": "bac",
    "name": "Wolfhowl",
    "wloc": 21572,
    "zh": "狼嚎"
   },
   "356": {
-   "code": "",
+   "code": "uts",
    "name": "Spirit Ward",
    "wloc": 21573,
    "zh": "魂系结界"
   },
   "357": {
-   "code": "",
+   "code": "ci2",
    "name": "Kira's Guardian",
    "wloc": 21574,
    "zh": "奇拉的守护"
   },
   "358": {
-   "code": "",
+   "code": "uui",
    "name": "Ormus' Robes",
    "wloc": 21623,
    "zh": "奥玛斯的长袍"
   },
   "359": {
-   "code": "",
+   "code": "cm3",
    "name": "Gheed's Fortune",
    "wloc": 21576,
    "zh": "基得的运气"
   },
   "360": {
-   "code": "",
+   "code": "7fl",
    "name": "Stormlash",
    "wloc": 21578,
    "zh": "暴风之结"
   },
   "361": {
-   "code": "",
+   "code": "bae",
    "name": "Halaberd's Reign",
    "wloc": 21579,
    "zh": "海拉柏得的国度"
   },
   "362": {
-   "code": "",
+   "code": "utc",
    "name": "Warriv's Warder",
    "wloc": 21581,
    "zh": "自助回收价25~27~29-87%~10%~3%"
   },
   "363": {
-   "code": "",
+   "code": "upk",
    "name": "Spike Thorn",
    "wloc": 21582,
    "zh": "尖刺根源"
   },
   "364": {
-   "code": "",
+   "code": "uvg",
    "name": "Dracul's Grasp",
    "wloc": 21583,
    "zh": "卓古拉之握"
   },
   "365": {
-   "code": "",
+   "code": "7ls",
    "name": "Frostwind",
    "wloc": 21584,
    "zh": "冰霜之风"
   },
   "366": {
-   "code": "",
+   "code": "uar",
    "name": "Templar's Might",
    "wloc": 21585,
    "zh": "圣堂武士的力量"
   },
   "367": {
-   "code": "",
+   "code": "obc",
    "name": "Eschuta's temper",
    "wloc": 21586,
    "zh": "艾斯屈塔的脾气"
   },
   "368": {
-   "code": "",
+   "code": "7lw",
    "name": "Firelizard's Talons",
    "wloc": 21587,
    "zh": "火蜥蜴之爪"
   },
   "369": {
-   "code": "",
+   "code": "uvb",
    "name": "Sandstorm Trek",
    "wloc": 21588,
    "zh": "沙暴之旅"
   },
   "370": {
-   "code": "",
+   "code": "umb",
    "name": "Marrowwalk",
    "wloc": 21589,
    "zh": "骨髓行走"
   },
   "371": {
-   "code": "",
+   "code": "7sc",
    "name": "Heaven's Light",
    "wloc": 21590,
    "zh": "天堂之光"
   },
   "372": {
-   "code": "",
+   "code": "ulb",
    "name": "Merman's Speed",
    "wloc": 21591,
    "zh": "自助回收价22~23~28-67%~30%~3%"
   },
   "373": {
-   "code": "",
+   "code": "ulc",
    "name": "Arachnid Mesh",
    "wloc": 21592,
    "zh": "蜘蛛之网"
   },
   "374": {
-   "code": "",
+   "code": "uvc",
    "name": "Nosferatu's Coil",
    "wloc": 21593,
    "zh": "吸血圣王之圈"
   },
   "375": {
-   "code": "",
+   "code": "amu",
    "name": "Metalgrid",
    "wloc": 21619,
    "zh": "金属网格"
   },
   "376": {
-   "code": "",
+   "code": "umc",
    "name": "Verdugo's Hearty Cord",
    "wloc": 21595,
    "zh": "维尔登戈的心结"
   },
   "377": {
-   "code": "",
+   "code": "7p7",
    "name": "Sigurd's Staunch",
    "wloc": 21596,
    "zh": "自助回收价25~27~29-87%~10%~3%"
   },
   "378": {
-   "code": "",
+   "code": "rin",
    "name": "Carrion Wind",
    "wloc": 21597,
    "zh": "腐肉之风"
   },
   "379": {
-   "code": "",
+   "code": "uh9",
    "name": "Giantskull",
    "wloc": 21598,
    "zh": "巨骷髅"
   },
   "380": {
-   "code": "",
+   "code": "7ws",
    "name": "Ironward",
    "wloc": 21599,
    "zh": "爱斯特龙之铁的保护区"
   },
   "381": {
-   "code": "",
+   "code": "cm1",
    "name": "Annihilus",
    "wloc": 21743,
    "zh": "毁灭"
   },
   "382": {
-   "code": "",
+   "code": "7sr",
    "name": "Arioc's Needle",
    "wloc": 21402,
    "zh": "爱理欧克之针"
   },
   "383": {
-   "code": "",
+   "code": "7mp",
    "name": "Cranebeak",
    "wloc": 21451,
    "zh": "鹤嘴"
   },
   "384": {
-   "code": "",
+   "code": "7cl",
    "name": "Nord's Tenderizer",
    "wloc": 21470,
    "zh": "诺德的蚀肉药"
   },
   "385": {
-   "code": "",
+   "code": "7gm",
    "name": "Earthshifter",
    "wloc": 21461,
    "zh": "大地变形者"
   },
   "386": {
-   "code": "",
+   "code": "7gl",
    "name": "Wraithflight",
    "wloc": 21512,
    "zh": "死灵夜翔"
   },
   "387": {
-   "code": "",
+   "code": "7o7",
    "name": "Bonehew",
    "wloc": 21398,
    "zh": "破骨"
   },
   "388": {
-   "code": "",
+   "code": "6cs",
    "name": "Ondal's Wisdom",
    "wloc": 21375,
    "zh": "安戴尔的智慧"
   },
   "389": {
-   "code": "",
+   "code": "7sc",
    "name": "The Reedeemer",
    "wloc": 21394,
    "zh": "忏悔者"
   },
   "390": {
-   "code": "",
+   "code": "ush",
    "name": "Headhunter's Glory",
    "wloc": 21455,
    "zh": "猎头人的荣耀"
   },
   "391": {
-   "code": "",
+   "code": "uhg",
    "name": "Steelrend",
    "wloc": 21399,
    "zh": "碎钢"
   },
   "392": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "393": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "394": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "395": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "396": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "397": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "398": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "399": {
-   "code": "",
+   "code": "jew",
    "name": "Rainbow Facet",
    "wloc": 21565,
    "zh": "彩虹刻面"
   },
   "400": {
-   "code": "",
+   "code": "cm2",
    "name": "Hellfire Torch",
    "wloc": 11153,
    "zh": "地狱火炬"
   },
   "401": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "402": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "403": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "404": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "405": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "406": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "407": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "408": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "409": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "410": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "411": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "412": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "413": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "414": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "415": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "416": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "417": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "418": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "419": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "420": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "421": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "422": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "423": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "424": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "425": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "426": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "427": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "428": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "429": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "430": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "431": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "432": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "433": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "434": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "435": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "436": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "437": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "438": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "439": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "440": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "441": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "442": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "443": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "444": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "445": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "446": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "447": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "448": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "449": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "450": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "451": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "452": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "453": {
-   "code": "",
+   "code": "amu",
    "name": "Larzuk's Champion",
    "wloc": 21485,
    "zh": "拉苏克的斗士"
   },
   "454": {
-   "code": "",
+   "code": "cm3",
    "name": "This Cow Bites",
    "wloc": 3219,
    "zh": " "
   },
   "455": {
-   "code": "",
+   "code": "cm3",
    "name": "ModStr1z",
    "wloc": 3498,
-   "zh": " "
+   "zh": ""
   },
   "456": {
-   "code": "",
+   "code": "cm3",
    "name": "ModStr2a",
    "wloc": 3499,
    "zh": " "
   },
   "457": {
-   "code": "",
+   "code": "cm3",
    "name": "ModStr2c",
    "wloc": 3501,
    "zh": " "
   },
   "458": {
-   "code": "",
+   "code": "cm3",
    "name": "ModStr2b",
    "wloc": 3500,
-   "zh": " "
+   "zh": ""
   },
   "459": {
-   "code": "",
+   "code": "cm3",
    "name": "talisman",
    "wloc": 2455,
-   "zh": " "
+   "zh": ""
   },
   "460": {
-   "code": "",
+   "code": "cm3",
    "name": "aegis",
    "wloc": 2407,
    "zh": " "
   },
   "461": {
-   "code": "",
+   "code": "cm3",
    "name": "guard",
    "wloc": 2404,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "462": {
-   "code": "",
+   "code": "cm3",
    "name": "mantle",
    "wloc": 2403,
-   "zh": " "
+   "zh": ""
   },
   "463": {
-   "code": "",
+   "code": "cm3",
    "name": "chant",
    "wloc": 2381,
    "zh": " "
   },
   "464": {
-   "code": "",
+   "code": "cm3",
    "name": "grip",
    "wloc": 2418,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "465": {
-   "code": "",
+   "code": "cm3",
    "name": "Wings",
    "wloc": 2566,
    "zh": " "
   },
   "466": {
-   "code": "",
+   "code": "cm3",
    "name": "Witch Doctor Endugu",
    "wloc": 2867,
    "zh": " "
   },
   "467": {
-   "code": "",
+   "code": "cm3",
    "name": "SandRaider",
    "wloc": 2995,
    "zh": " "
   },
   "468": {
-   "code": "",
+   "code": "cm3",
    "name": "Bloodwitch the Wild",
    "wloc": 2880,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "469": {
-   "code": "",
+   "code": "cm3",
    "name": "MercX102",
    "wloc": 10836,
    "zh": "可汗"
   },
   "470": {
-   "code": "",
+   "code": "cm3",
    "name": "JungleHunter",
    "wloc": 2978,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "471": {
-   "code": "",
+   "code": "cm3",
    "name": "StormCaster",
    "wloc": 3162,
-   "zh": " "
+   "zh": ""
   },
   "472": {
-   "code": "",
+   "code": "cm3",
    "name": "Sarina the Battlemaid",
    "wloc": 2865,
-   "zh": " "
+   "zh": ""
   },
   "473": {
-   "code": "",
+   "code": "cm3",
    "name": "DarkLord",
    "wloc": 2914,
-   "zh": " "
+   "zh": ""
   },
   "474": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "475": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "476": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "477": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "478": {
-   "code": "",
+   "code": "cm3",
    "name": "DemonID",
    "wloc": 10078,
    "zh": "恶魔"
   },
   "479": {
-   "code": "",
+   "code": "cm3",
    "name": "TrappDoor",
    "wloc": 11007,
    "zh": "陷阱门"
   },
   "480": {
-   "code": "",
+   "code": "cm3",
    "name": "steals life",
    "wloc": 3197,
    "zh": ""
   },
   "481": {
-   "code": "",
+   "code": "cm3",
    "name": "merc09",
    "wloc": 3419,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "482": {
-   "code": "",
+   "code": "cm3",
    "name": "ModStr2d",
    "wloc": 3502,
-   "zh": " "
+   "zh": ""
   },
   "483": {
-   "code": "",
+   "code": "cm3",
    "name": "Wraith",
    "wloc": 11016,
    "zh": "忿怒"
   },
   "484": {
-   "code": "",
+   "code": "cm3",
    "name": "Shocking Hit",
    "wloc": 11031,
    "zh": "震惊攻击"
   },
   "485": {
-   "code": "",
+   "code": "cm3",
    "name": "ModStr2e",
    "wloc": 3503,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "486": {
-   "code": "",
+   "code": "cm3",
    "name": "ShrMsg22",
    "wloc": 3705,
-   "zh": " "
+   "zh": ""
   },
   "487": {
-   "code": "",
+   "code": "cm3",
    "name": "Shelter",
    "wloc": 2537,
-   "zh": " "
+   "zh": "+%d 支配性"
   },
   "488": {
-   "code": "",
+   "code": "cm3",
    "name": "Strong",
    "wloc": 1731,
-   "zh": " "
+   "zh": ""
   },
   "489": {
-   "code": "",
+   "code": "cm3",
    "name": "Lord's",
    "wloc": 1767,
-   "zh": " "
+   "zh": "+%d 战斗技能"
   },
   "490": {
-   "code": "",
+   "code": "cm3",
    "name": "Angel's",
    "wloc": 1823,
-   "zh": " "
+   "zh": "+%d 战斗技能"
   },
   "491": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "492": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "493": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "494": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "495": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "496": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "497": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "498": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "499": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "500": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "501": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "502": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "503": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "504": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "505": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "506": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "507": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "508": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "509": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "510": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "511": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "512": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "513": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "514": {
-   "code": "",
+   "code": "rin",
    "name": "knuckle",
    "wloc": 2423,
    "zh": " "
   },
   "515": {
-   "code": "",
+   "code": "jew",
    "name": "jew",
    "wloc": 20433,
    "zh": "珠宝"
   },
   "516": {
-   "code": "",
+   "code": "jew",
    "name": "jew",
    "wloc": 20433,
    "zh": "珠宝"
   },
   "517": {
-   "code": "",
+   "code": "jew",
    "name": "jew",
    "wloc": 20433,
    "zh": "珠宝"
   },
   "518": {
-   "code": "",
+   "code": "jew",
    "name": "jew",
    "wloc": 20433,
    "zh": "珠宝"
   },
   "519": {
-   "code": "",
+   "code": "jew",
    "name": "jew",
    "wloc": 20433,
    "zh": "珠宝"
   },
   "520": {
-   "code": "",
+   "code": "jew",
    "name": "jew",
    "wloc": 20433,
    "zh": "珠宝"
   },
   "521": {
-   "code": "",
+   "code": "jew",
    "name": "jew",
    "wloc": 20433,
    "zh": "珠宝"
   },
   "522": {
-   "code": "",
+   "code": "cm11",
    "name": "Annihilus-1",
    "wloc": 22842,
    "zh": "【白羊的技能符】"
   },
   "523": {
-   "code": "",
+   "code": "cm12",
    "name": "Annihilus-2",
    "wloc": 22868,
    "zh": "【金牛的技能符】"
   },
   "524": {
-   "code": "",
+   "code": "cm13",
    "name": "Annihilus-3",
    "wloc": 22869,
    "zh": "【双子的技能符】"
   },
   "525": {
-   "code": "",
+   "code": "cm14",
    "name": "Annihilus-4",
    "wloc": 22870,
    "zh": "【巨蟹的技能符】"
   },
   "526": {
-   "code": "",
+   "code": "cm15",
    "name": "Annihilus-5",
    "wloc": 22871,
    "zh": "【狮子的技能符】"
   },
   "527": {
-   "code": "",
+   "code": "cm16",
    "name": "Annihilus-6",
    "wloc": 22872,
    "zh": "【处女的技能符】"
   },
   "528": {
-   "code": "",
+   "code": "cm17",
    "name": "Annihilus-7",
    "wloc": 22873,
    "zh": "【天秤的技能符】"
   },
   "529": {
-   "code": "",
+   "code": "cm18",
    "name": "Annihilus-8",
    "wloc": 22874,
    "zh": "【天蝎的技能符】"
   },
   "530": {
-   "code": "",
+   "code": "cm19",
    "name": "Annihilus-9",
    "wloc": 22875,
    "zh": "【射手的技能符】"
   },
   "531": {
-   "code": "",
+   "code": "cm20",
    "name": "Annihilus-10",
    "wloc": 22876,
    "zh": "【山羊的技能符】"
   },
   "532": {
-   "code": "",
+   "code": "cm21",
    "name": "Annihilus-11",
    "wloc": 22877,
    "zh": "【水瓶的技能符】"
   },
   "533": {
-   "code": "",
+   "code": "cm22",
    "name": "Annihilus-12",
    "wloc": 22878,
    "zh": "【双鱼的技能符】"
   },
   "534": {
-   "code": "",
+   "code": "cm23",
    "name": "Annihilus-13",
    "wloc": 22879,
    "zh": "【波塞冬的肝】"
   },
   "535": {
-   "code": "",
+   "code": "cm24",
    "name": "Annihilus-14",
    "wloc": 22880,
    "zh": "【哈迪斯的灵魂】"
   },
   "536": {
-   "code": "",
+   "code": "cm25",
    "name": "Annihilus-15",
    "wloc": 22881,
    "zh": "【智慧女神的守护】"
   },
   "537": {
-   "code": "",
+   "code": "cm26",
    "name": "Annihilus-16",
    "wloc": 22882,
    "zh": "【天堂的祝福】"
   }
  },
  "notes": {
+  "Suwayyah": "近身刃",
+  "Wrist Sword": "腕剑",
+  "War Fist": "战拳",
+  "Battle Cestus": "斗腰刀",
+  "Feral Claws": "猛禽爪",
+  "Runic Talons": "符纹爪",
+  "Scissors Suwayyah": "近身剪",
+  "Tomahawk": "战钺",
+  "Small Crescent": "弯月斧",
+  "Ettin Axe": "双头斧",
+  "War Spike": "战刺",
+  "Beserker Axe": "狂战士斧",
+  "Feral Axe": "猛禽斧",
+  "Silver-edged Axe": "银刃斧",
+  "Decapitator": "斩首斧",
+  "Champion Axe": "豪杰斧",
+  "Glorious Axe": "荣光之斧",
+  "Polished Wand": "洗炼法杖",
+  "Ghost Wand": "鬼魂法杖",
+  "Lich Wand": "巫妖法杖",
+  "Unearthed Wand": "破隐法杖",
+  "Truncheon": "战仪杖",
+  "Mighty Scepter": "强威权杖",
+  "Seraph Rod": "炽天使法杖",
+  "Caduceus": "神使之杖",
+  "Tyrant Club": "暴君之棒",
+  "Reinforced Mace": "强化钉头锤",
+  "Devil Star": "恶魔流星锤",
+  "Scourge": "天罚之锤",
+  "Legendary Mallet": "传说之锤",
+  "Ogre Maul": "食人魔之锤",
+  "Thunder Maul": "雷锤",
+  "Falcata": "短剑",
+  "Ataghan": "土耳其剑",
+  "Elegant Blade": "优雅之剑",
+  "Hydra Edge": "九头蛇刃",
+  "Phase Blade": "幻化之刃",
+  "Conquest Sword": "征服之剑",
+  "Cryptic Sword": "神秘之剑",
+  "Mythical Sword": "秘仪之剑",
+  "Legend Sword": "传说之剑",
+  "Highland Blade": "高地之剑",
+  "Balrog Blade": "炎魔之刃",
+  "Champion Sword": "冠军之剑",
+  "Colossus Sword": "巨神之剑",
+  "Colossus Blade": "巨神之刃",
+  "Bone Knife": "骸骨小刀",
+  "Mithril Point": "秘银小刀",
+  "Fanged Knife": "齿缘小刀",
+  "Legend Spike": "传说尖刺",
+  "Flying Knife": "飞刀",
+  "Flying Axe": "飞斧",
+  "Winged Knife": "翼刀",
+  "Winged Axe": "翼斧",
+  "Hyperion Javelin": "亥伯龙之枪",
+  "Stygian Pilum": "冥河标枪",
+  "Balrog Spear": "炎魔长矛",
+  "Ghost Glaive": "鬼魂尖枪",
+  "Winged Harpoon": "翼鱼叉",
+  "Hyperion Spear": "亥伯龙之矛",
+  "Stygian Pike": "冥河之枪",
+  "Mancatcher": "刺人枪",
+  "Ghost Spear": "鬼魂之矛",
+  "War Pike": "战枪",
+  "Ogre Axe": "食人魔之斧",
+  "Colossus Voulge": "巨神之斧",
+  "Thresher": "锐利之斧",
+  "Cryptic Axe": "神秘之斧",
+  "Great Poleaxe": "巨长斧",
+  "Giant Thresher": "鲛尾巨斧",
+  "Walking Stick": "手杖",
+  "Stalagmite": "钟乳石之杖",
+  "Elder Staff": "长老之杖",
+  "Shillelagh": "树皮之杖",
+  "Archon Staff": "执政官之杖",
+  "Spider Bow": "蜘蛛弓",
+  "Blade Bow": "刀锋弓",
+  "Shadow Bow": "阴影弓",
+  "Great Bow": "巨弓",
+  "Diamond Bow": "钻石弓",
+  "Crusader Bow": "十字军之弓",
+  "Ward Bow": "庇护之弓",
+  "Hydra Bow": "九头蛇弓",
+  "Pellet Bow": "弹丸弓",
+  "Gorgon Crossbow": "蛇魔女十字弓",
+  "Colossus Crossbow": "巨神十字弓",
+  "Demon Crossbow": "恶魔十字弓",
+  "Heavenly Stone": "天堂之石",
+  "Eldritch Orb": "怪异之球",
+  "Demon Heart": "恶魔之心",
+  "Vortex Orb": "漩涡球",
+  "Dimensional Shard": "次元碎片",
+  "Matriarchal Bow": "女族长之弓",
+  "Grand Matron Bow": "大院长之弓",
+  "Matriarchal Spear": "女族长之矛",
+  "Matriarchal Pike": "女族长之长矛",
+  "Matriarchal Javelin": "女族长之镖枪",
+  "Circlet": "头饰",
+  "Coronet": "宝冠",
+  "Tiara": "三重冠",
+  "Diadem": "权冠",
+  "Shako": "军帽",
+  "Hydraskull": "九头蛇头盖骨圆帽",
+  "Armet": "活动头盔",
+  "Giant Conch": "巨贝头盔",
+  "Spired Helm": "螺旋头盔",
+  "Corona": "头冠",
+  "Demonhead": "恶魔头盖骨面具",
+  "Dusk Shroud": "灰暮寿衣",
+  "Wyrmhide": "古龙皮",
+  "Scarab Husk": "圣甲虫壳皮甲",
+  "Wire Fleece": "线羊毛皮甲",
+  "Diamond Mail": "钻石锁子甲",
+  "Loricated Mail": "甲壳铠鳞甲",
+  "Boneweave": "骸骨链甲",
+  "Great Hauberk": "巨型鳞铠胸甲",
+  "Balrog Skin": "炎魔皮板甲",
+  "Hellforge Plate": "地狱锻甲",
+  "Kraken Shell": "海妖壳甲",
+  "Lacquered Plate": "漆甲",
+  "Shadow Plate": "阴影铠甲",
+  "Sacred Armor": "神圣盔甲",
+  "Archon Plate": "执政官铠甲",
+  "Heater": "防寒圆盾",
+  "Luna": "月精灵护盾",
+  "Hyperion": "亥伯龙盾",
+  "Monarch": "统治者大盾",
+  "Aegis": "圣盾",
+  "Ward": "保护盾牌",
+  "Bramble Mitts": "荆棘连指手套",
+  "Vampirebone Gloves": "吸血鬼骸骨手套",
+  "Vambraces": "吸血鬼手套",
+  "Crusader Gauntlets": "十字军铁手套",
+  "Ogre Gauntlets": "食人魔铁手套",
+  "Wyrmhide Boots": "飞龙皮靴",
+  "Scarabshell Boots": "圣甲虫壳靴",
+  "Boneweave Boots": "骸骨靴",
+  "Mirrored Boots": "镜化靴",
+  "Myrmidon Greaves": "极速靴",
+  "Spiderweb Sash": "蛛网腰带",
+  "Vampirefang Belt": "吸血鬼燎牙腰带",
+  "Mithril Coil": "秘银腰带",
+  "Troll Belt": "洞穴巨魔腰带",
+  "Colossus Girdle": "巨神腰带",
+  "Bone Visage": "骸骨面罩",
+  "Troll Nest": "洞穴巨魔巢穴骨盾",
+  "Blade Barrier": "刀刃刺盾",
+  "Sky Spirit": "天空之灵",
+  "Sun Spirit": "太阳之灵",
+  "Earth Spirit": "大地之灵",
+  "Blood Spirit": "血腥之灵",
+  "Dream Spirit": "幽梦之灵",
+  "Carnage Helm": "屠杀头盔",
+  "Fury Visor": "暴怒面甲",
+  "Destroyer Helm": "毁灭者头盔",
+  "Conqueror Crown": "征服者皇冠面甲",
+  "Guardian Crown": "守护者皇冠面甲",
+  "Sacred Targe": "神圣小盾",
+  "Sacred Rondache": "神圣轻圆盾",
+  "Zakarum Shield": "撒卡兰姆盾牌",
+  "Vortex Shield": "旋风盾",
+  "Minion Skull": "随侍之骨",
+  "Hellspawn Skull": "地狱爪牙之骨",
+  "Overseer Skull": "监视者之骨",
+  "Succubus Skull": "女妖之骨",
+  "Bloodlord Skull": "血王之骨",
+  "Zod": "萨德",
+  "Cham": "查姆",
+  "Ohm": "欧姆",
+  "Vex": "伐克斯",
+  "Gul": "古尔",
+  "Ist": "伊斯特",
+  "Mal": "马尔",
+  "Pul": "普尔",
+  "Lem": "蓝姆",
+  "Fal": "法尔",
+  "Lum": "卢姆",
+  "Hel": "海尔",
+  "Dol": "多尔",
+  "Sol": "索尔",
+  "Amn": "安姆",
+  "Thul": "書尔",
+  "Ort": "欧特",
+  "Ral": "拉尔",
+  "Tal": "塔尔",
+  "Ith": "伊司",
+  "Eth": "爱斯",
+  "Nef": "那夫",
+  "Tir": "特尔",
+  "Eld": "艾德",
+  "Ancients' Pledge": "古代人的契约",
+  "Armageddon": "毁天灭地",
+  "Authority": "权威",
+  "Beast": "野兽",
+  "Beauty": "美貌",
+  "Black": "黑色",
+  "Blood": "血腥",
+  "Bone": "白骨",
+  "Bramble": "野蔷薇",
+  "Brand": "烙印",
+  "Breath of the Dying": "死亡呼吸",
+  "Broken Promise": "破碎的誓言",
+  "Call to Arms": "战争召唤",
+  "Chains of Honor": "荣耀之链",
+  "Chance": "机会",
+  "Chaos": "混沌",
+  "Crescent Moon": "新月",
+  "Darkness": "黑暗",
+  "Daylight": "白天",
+  "Death": "死神",
+  "Deception": "欺暪",
+  "Delerium": "迪勒瑞姆",
+  "Desire": "渴望",
+  "Despair": "失望",
+  "Destruction": "毁灭",
+  "Doom": "末日",
+  "Dragon": "飞龙",
+  "Dread": "恐惧",
+  "Dream": "梦境",
+  "Duress": "强制",
+  "Edge": "边缘",
+  "Elation": "兴高彩烈",
+  "Enigma": "谜团",
+  "Enlightenment": "教化",
+  "Envy": "羡慕",
+  "Eternity": "永恒",
+  "Exile": "流亡",
+  "Faith": "信心",
+  "Famine": "饥荒",
+  "Flame": "火焰",
+  "Fortitude": "刚毅",
+  "Fortune": "幸运",
+  "Friendship": "友情",
+  "Fury": "狂怒",
+  "Gloom": "幽暗",
+  "Glory": "荣誉",
+  "Grief": "悔恨",
+  "Hand of Justice": "正义之手",
+  "Harmony": "和谐",
+  "Hatred": "憎恨",
+  "Heart of the Oak": "橡树之心",
+  "Heaven's Will": "天堂的意识",
+  "Holy Tears": "神圣之泪",
+  "Holy Thunder": "神圣雷击",
+  "Honor": "荣耀",
+  "Revenge": "复仇",
+  "Humility": "谦恭",
+  "Hunger": "饥饿",
+  "Ice": "冰冻",
+  "Infinity": "无限",
+  "Innocence": "纯洁",
+  "Jealousy": "妒忌",
+  "Judgement": "审判",
+  "King's Grace": "王者的慈悲",
+  "Kingslayer": "拭王者",
+  "Knight's Vigil": "骑士的警戒",
+  "Knowledge": "知识",
+  "Last Wish": "最后希望",
+  "Law": "法律",
+  "Lawbringer": "执法者",
+  "Leaf": "叶子",
+  "Lightning": "闪电",
+  "Lionheart": "狮子心",
+  "Lore": "知识",
+  "Love": "爱情",
+  "Loyalty": "忠诚",
+  "Lust": "欲望",
+  "Madness": "疯狂",
+  "Malice": "怨恨",
+  "Melody": "旋律",
+  "Memory": "记忆",
+  "Mist": "迷雾",
+  "Morning": "早晨",
+  "Mystery": "神秘",
+  "Myth": "神话",
+  "Nadir": "天底",
+  "Nature's Kingdom": "天然的王国",
+  "Night": "夜晚",
+  "Oath": "誓约",
+  "Obedience": "遵从",
+  "Oblivion": "湮没",
+  "Obsession": "着魔",
+  "Passion": "热情",
+  "Patience": "忍耐",
+  "Patter": "啪哒",
+  "Peace": "和平",
+  "Voice of Reason": "思考之声",
+  "Penitence": "忏悔",
+  "Peril": "危害",
+  "Pestilence": "疫病",
+  "Phoenix": "凤凰",
+  "Piety": "虔诚",
+  "Pillar of Faith": "信念之柱",
+  "Plague": "瘟疫",
+  "Praise": "颂扬",
+  "Prayer": "祈祷",
+  "Pride": "骄傲",
+  "Principle": "原理",
+  "Prowess in Battle": "战斗中的勇气",
+  "Prudence": "谨重",
+  "Punishment": "惩罚",
+  "Purity": "纯洁",
+  "Question": "疑问",
+  "Radiance": "光辉",
+  "Rain": "降雨",
+  "Reason": "理由",
+  "Red": "鲜红",
+  "Rhyme": "押韵",
+  "Rift": "裂缝",
+  "Sanctuary": "圣堂",
+  "Serendipity": "奇遇",
+  "Shadow": "影子",
+  "Shadow of Doubt": "怀疑之影",
+  "Silence": "寂静",
+  "Siren's Song": "海妖之歌",
+  "Smoke": "烟雾",
+  "Sorrow": "哀伤",
+  "Spirit": "精神",
+  "Splendor": "灿烂",
+  "Starlight": "星光",
+  "Stealth": "隐密",
+  "Steel": "钢铁",
+  "Still Water": "寂静之水",
+  "Sting": "刺伤",
+  "Stone": "石块",
+  "Storm": "风暴",
+  "Strength": "力量",
+  "Tempest": "暴风雨",
+  "Temptation": "诱惑",
+  "Terror": "恐布",
+  "Thirst": "饥饿",
+  "Thought": "思维",
+  "Thunder": "雷电",
+  "Time": "时间",
+  "Tradition": "传统",
+  "Treachery": "背信",
+  "Trust": "信任",
+  "Truth": "真实",
+  "Unbending Will": "坚定意志",
+  "Valor": "英勇",
+  "Vengeance": "复仇",
+  "Venom": "毒牙",
+  "Victory": "胜利",
+  "Voice": "声音",
+  "Void": "虚无",
+  "War": "战争",
+  "Water": "清水",
+  "Wealth": "财富",
+  "Whisper": "低语",
+  "White": "白色",
+  "Wind": "轻风",
+  "Wings of Hope": "希望之翼",
+  "Wisdom": "智慧",
+  "Woe": "悲痛",
+  "Wonder": "惊奇",
+  "Wrath": "愤怒",
+  "Youth": "年轻",
+  "Zephyr": "和风",
+  "Coldkill": "冷杀",
+  "Butcher's Cleaver": "屠夫切肉刀",
+  "Butcher's Pupil": "屠夫之瞳",
+  "Islestrike": "岛击",
+  "Pompeii's Wrath": "庞贝之怒",
+  "Guardian Naga": "蛇神守护者",
+  "Warlord's Trust": "战爵之证",
+  "Spellsteel": "钢铁魔咒",
+  "Stormrider": "暴风骑士",
+  "Boneslayer Blade": "碎骨者之刃",
+  "The Minotaur": "牛头怪",
+  "Suicide Branch": "自杀支系",
+  "Cairn Shard": "石冢碎片",
+  "Arm of King Leoric": "李奥瑞克王的武器",
+  "Blackhand Key": "黑手之钥",
+  "Dark Clan Crusher": "暗族碎灭者",
+  "Drulan's Tongue": "杜兰之舌",
+  "Zakarum's Hand": "撒卡兰姆之手",
+  "The Fetid Sprinkler": "恶臭散布者",
+  "Hand of Blessed Light": "祝福之光之手",
+  "Fleshrender": "血肉裁决者",
+  "Sureshrill Frost": "尖啸冰霜",
+  "Moonfall": "落月",
+  "Baezil's Vortex": "贝西尔的漩涡",
+  "Earthshaker": "撼地者",
+  "Bloodtree Stump": "血树残株",
+  "The Gavel of Pain": "痛苦木槌",
+  "Bloodletter": "血书",
+  "Coldsteal Eye": "窃冷之眼",
+  "Hexfire": "六角之火",
+  "Blade of Ali Baba": "阿里巴巴之刃",
+  "Riftslash": "烈斩",
+  "Headstriker": "击头者",
+  "Plague Bearer": "疫病带原者",
+  "The Atlantean": "亚特拉斯",
+  "Crainte Vomir": "弗姆",
+  "Bing Sz Wang": "兵之王",
+  "The Vile Husk": "卑劣躯壳",
+  "Cloudcrack": "云裂",
+  "Todesfaelle Flamme": "芙法米",
+  "Swordguard": "剑卫",
+  "Spineripper": "裂脊者",
+  "Heart Carver": "刻心者",
+  "Blackbog's Sharp": "黑沼之锋",
+  "Stormspike": "暴风尖刺",
+  "The Impaler": "穿刺者",
+  "Kelpie Snare": "水魔陷阱",
+  "Soulfeast Tine": "噬魂叉",
+  "Hone Sundan": "森丹",
+  "Spire of Honor": "荣耀的尖塔",
+  "The Meat Scraper": "刮肉者",
+  "Blackleach Blade": "黑水之刃",
   "Athena's Wrath": "阿西娜的忿怒",
   "Pierre Tombale Couant": "考恩特",
   "Husoldal Evo": "依弗",
@@ -4400,7 +4810,6 @@
   "Dust Storm": "沙尘暴",
   "Skulltred": "史古塔得",
   "Alma's Reflection": "阿尔玛的回忆",
-  "Drulan's Tongue": "杜兰之舌",
   "Sacred Charge": "神圣突击",
   "Bul-Kathos": "布尔凯索斯",
   "Saracen's Chance": "萨拉森的机会",
@@ -4409,7 +4818,6 @@
   "Dwarf Star": "矮人之星",
   "Atma's Scarab": "亚特玛的圣甲虫",
   "Mara's Kaleidoscope": "马拉的万花筒",
-  "Crescent Moon": "新月",
   "The Rising Sun": "旭日东升",
   "The Cat's Eye": "猫眼",
   "Bul-Kathos' Wedding Band": "布尔凯索之戒",
@@ -4440,12 +4848,8 @@
   "Baranar's Star": "巴拉那之星",
   "Messerschmidt's Reaver": "希梅斯特的掠夺",
   "Hellslayer": "地狱毁灭者",
-  "The Atlantean": "亚特拉斯",
   "Riftlash": "破裂之鞭",
-  "Baezil's Vortex": "贝西尔的漩涡",
-  "Zakarum's Hand": "撒卡兰姆之手",
   "Carin Shard": "凯恩碎片",
-  "The Minotaur": "牛头怪",
   "Trang-Oul's Avatar": "塔格奥的化身",
   "Trang-Oul's Guise": "塔格奥之外装",
   "Trang-Oul's Wing": "塔格奥之翼",
@@ -4596,180 +5000,82 @@
   "Aix": "艾克",
   "Mon": "摩尼",
   "Osk": "奥斯卡",
-  "The Gnasher": " ",
   "Deathspade": " ",
-  "Bladebone": " ",
   "Mindrend": " ",
-  "Rakescar": " ",
-  "Fechmars Axe": " ",
+  "Fechmars Axe": "+%d 支配性",
   "Goreshovel": " ",
-  "The Chieftan": " ",
   "Brainhew": " ",
-  "The Humongous": " ",
   "Iros Torch": " ",
-  "Maelstromwrath": " ",
-  "Gravenspine": " ",
+  "Gravenspine": "+%d 支配性",
   "Umes Lament": " ",
-  "Felloak": " ",
   "Knell Striker": " ",
-  "Rusthandle": " ",
   "Stormeye": " ",
-  "Stoutnail": " ",
-  "Crushflange": " ",
+  "Crushflange": "+%d 支配性",
   "Bloodrise": " ",
-  "The Generals Tan Do Li Ga": " ",
   "Ironstone": " ",
-  "Bonesob": " ",
   "Steeldriver": " ",
-  "Rixots Keen": " ",
-  "Blood Crescent": " ",
+  "Blood Crescent": "+%d 支配性",
   "Krintizs Skewer": " ",
-  "Gleamscythe": " ",
   "Azurewrath": " ",
-  "Griswolds Edge": " ",
   "Hellplague": " ",
-  "Culwens Point": " ",
-  "Shadowfang": " ",
+  "Shadowfang": "+%d 支配性",
   "Soulflay": " ",
-  "Kinemils Awl": " ",
   "Blacktongue": " ",
-  "Ripsaw": " ",
   "The Patriarch": " ",
-  "Gull": " ",
-  "The Diggler": " ",
+  "The Diggler": "+%d 支配性",
   "The Jade Tan Do": " ",
-  "Irices Shard": " ",
   "The Dragon Chang": " ",
-  "Razortine": " ",
   "Bloodthief": " ",
-  "Lance of Yaggai": " ",
-  "The Tannr Gorerod": " ",
+  "The Tannr Gorerod": "+%d 支配性",
   "Dimoaks Hew": " ",
-  "Steelgoad": " ",
   "Soul Harvest": " ",
-  "The Battlebranch": " ",
   "Woestave": " ",
-  "The Grim Reaper": " ",
-  "Bane Ash": " ",
+  "Bane Ash": "+%d 支配性",
   "Serpent Lord": " ",
-  "Lazarus Spire": " ",
   "The Salamander": " ",
-  "The Iron Jang Bong": " ",
   "Pluckeye": " ",
-  "Witherstring": " ",
-  "Rimeraven": " ",
+  "Rimeraven": "+%d 支配性",
   "Piercerib": " ",
-  "Pullspite": " ",
   "Wizendraw": " ",
-  "Hellclap": " ",
   "Blastbark": " ",
-  "Leadcrow": " ",
-  "Ichorsting": " ",
+  "Ichorsting": "+%d 支配性",
   "Hellcast": " ",
-  "Doomspittle": " ",
   "War Bonnet": " ",
-  "Tarnhelm": " ",
   "Coif of Glory": " ",
-  "Duskdeep": " ",
-  "Wormskull": " ",
+  "Wormskull": "+%d 支配性",
   "Howltusk": " ",
-  "Undead Crown": " ",
   "The Face of Horror": " ",
-  "Greyform": " ",
   "Blinkbats Form": " ",
-  "The Centurion": " ",
-  "Twitchthroe": " ",
+  "Twitchthroe": "+%d 支配性",
   "Darkglow": " ",
-  "Hawkmail": " ",
   "Sparking Mail": " ",
-  "Venomsward": " ",
   "Iceblink": " ",
-  "Boneflesh": " ",
-  "Rockfleece": " ",
+  "Rockfleece": "+%d 支配性",
   "Rattlecage": " ",
-  "Goldskin": " ",
   "Victors Silk": " ",
-  "Heavenly Garb": " ",
   "Pelta Lunata": " ",
-  "Umbral Disk": " ",
-  "Stormguild": " ",
+  "Stormguild": "+%d 支配性",
   "Wall of the Eyeless": " ",
-  "Swordback Hold": " ",
   "Steelclash": " ",
-  "Bverrit Keep": " ",
   "The Ward": " ",
-  "The Hand of Broc": " ",
-  "Bloodfist": " ",
+  "Bloodfist": "+%d 支配性",
   "Chance Guards": " ",
-  "Magefist": " ",
   "Frostburn": " ",
-  "Hotspur": " ",
   "Gorefoot": " ",
-  "Treads of Cthon": " ",
-  "Goblin Toe": " ",
+  "Goblin Toe": "+%d 支配性",
   "Tearhaunch": " ",
-  "Lenyms Cord": " ",
   "Snakecord": " ",
-  "Nightsmoke": " ",
   "Goldwrap": " ",
-  "Bladebuckle": " ",
-  "Nokozan Relic": " ",
+  "Nokozan Relic": "+%d 支配性",
   "The Eye of Etlich": " ",
-  "The Mahim-Oak Curio": " ",
   "Nagelring": " ",
-  "Manald Heal": " ",
   "The Stone of Jordan": " ",
-  "Amulet of the Viper": " ",
-  "Staff of Kings": " ",
+  "Staff of Kings": "+%d 支配性",
   "Horadric Staff": " ",
-  "Hell Forge Hammer": " ",
-  "KhalimFlail": " ",
   "SuperKhalimFlail": " ",
-  "Coldkill": "冷杀",
-  "Butcher's Pupil": "屠夫之瞳",
-  "Islestrike": "岛击",
   "Pompe's Wrath": "庞贝之怒",
-  "Guardian Naga": "蛇神守护者",
-  "Warlord's Trust": "战爵之证",
-  "Spellsteel": "钢铁魔咒",
-  "Stormrider": "暴风骑士",
-  "Boneslayer Blade": "碎骨者之刃",
   "The Minataur": "牛头怪",
-  "Suicide Branch": "自杀支系",
-  "Arm of King Leoric": "李奥瑞克王的武器",
-  "Blackhand Key": "黑手之钥",
-  "Dark Clan Crusher": "暗族碎灭者",
-  "The Fetid Sprinkler": "恶臭散布者",
-  "Hand of Blessed Light": "祝福之光之手",
-  "Fleshrender": "血肉裁决者",
-  "Sureshrill Frost": "尖啸冰霜",
-  "Moonfall": "落月",
-  "Earthshaker": "撼地者",
-  "Bloodtree Stump": "血树残株",
-  "The Gavel of Pain": "痛苦木槌",
-  "Bloodletter": "血书",
-  "Hexfire": "六角之火",
-  "Blade of Ali Baba": "阿里巴巴之刃",
-  "Headstriker": "击头者",
-  "Plague Bearer": "疫病带原者",
   "The Atlantian": "亚特拉斯",
-  "Crainte Vomir": "克林铁-弗姆",
-  "Bing Sz Wang": "兵之王",
-  "The Vile Husk": "卑劣躯壳",
-  "Cloudcrack": "云裂",
-  "Todesfaelle Flamme": "特迪斯法雷-芙法米",
-  "Swordguard": "剑卫",
-  "Spineripper": "裂脊者",
-  "Heart Carver": "刻心者",
-  "Blackbog's Sharp": "黑沼之锋",
-  "Stormspike": "暴风尖刺",
-  "The Impaler": "穿刺者",
-  "Kelpie Snare": "水魔陷阱",
-  "Soulfeast Tine": "噬魂叉",
-  "Hone Sundan": "宏-森丹",
-  "Spire of Honor": "荣耀的尖塔",
-  "The Meat Scraper": "刮肉者",
-  "Blackleach Blade": "黑水之刃",
   "Skullcollector": "骷髅收集者",
   "Godstrike Arch": "金击圆弧",
   "Pus Spiter": "毒液怪",
@@ -4826,38 +5132,28 @@
   "Headhunter's Glory": "猎头人的荣耀",
   "Hellfire Torch": "地狱火炬",
   "This Cow Bites": " ",
-  "ModStr1z": " ",
   "ModStr2a": " ",
   "ModStr2c": " ",
-  "ModStr2b": " ",
-  "talisman": " ",
   "aegis": " ",
-  "guard": " ",
-  "mantle": " ",
+  "guard": "+%d 支配性",
   "chant": " ",
-  "grip": " ",
+  "grip": "+%d 支配性",
   "Wings": " ",
   "Witch Doctor Endugu": " ",
   "SandRaider": " ",
-  "Bloodwitch the Wild": " ",
+  "Bloodwitch the Wild": "+%d 支配性",
   "MercX102": "可汗",
-  "JungleHunter": " ",
-  "StormCaster": " ",
-  "Sarina the Battlemaid": " ",
-  "DarkLord": " ",
+  "JungleHunter": "+%d 支配性",
   "knuckle": " ",
   "DemonID": "恶魔",
   "TrappDoor": "陷阱门",
-  "merc09": " ",
-  "ModStr2d": " ",
+  "merc09": "+%d 支配性",
   "Wraith": "忿怒",
   "Shocking Hit": "震惊攻击",
-  "ModStr2e": " ",
-  "ShrMsg22": " ",
-  "Shelter": " ",
-  "Strong": " ",
-  "Lord's": " ",
-  "Angel's": " ",
+  "ModStr2e": "+%d 支配性",
+  "Shelter": "+%d 支配性",
+  "Lord's": "+%d 战斗技能",
+  "Angel's": "+%d 战斗技能",
   "jew": "珠宝",
   "Annihilus-1": "【白羊的技能符】",
   "Annihilus-2": "【金牛的技能符】",

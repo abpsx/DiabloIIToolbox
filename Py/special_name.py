@@ -192,8 +192,8 @@ def dump_unique_items(pid, h, pUni, nUni, tables=None):
     out = {}
     for i in range(nUni):
         r = pUni + i * UNI_REC_SIZE
-        b = mem.read(pid, h, r, UNI_NAME_LEN + 4)
-        if not b or len(b) < UNI_NAME_LEN + 4:
+        b = mem.read(pid, h, r, UNI_CODE_OFF + 4)   # 需覆盖 szCode@+0x28（0x2C 字节）
+        if not b or len(b) < UNI_CODE_OFF + 4:
             continue
         dw_idx = int.from_bytes(b[0:2], "little")
         name = b[2:2 + UNI_NAME_LEN].split(b"\x00")[0].decode("latin-1", "ignore")
